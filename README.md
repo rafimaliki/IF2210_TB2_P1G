@@ -1,7 +1,7 @@
 # IF2210_TB2_P1G
 Repository Tugas Besar 2 IF2210 Pemrograman Berorientasi Objek
 
-### Dibuat oleh Kelompok P1G dengan anggota:
+### Dibuat oleh Kelompok P1G
 | Nama | NIM |
 | ---- |-----|
 | Hugo Sabam Augusto | 13522129 |

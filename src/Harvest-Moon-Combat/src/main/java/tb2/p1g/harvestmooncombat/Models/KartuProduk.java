@@ -11,6 +11,12 @@ public class KartuProduk implements Kartu {
         this.beratTambah = Config.mapProduk.get(this.nama).getLast();
     }
 
+    public KartuProduk(KartuProduk other){
+        this.nama = other.getNama();
+        this.hargaJual = other.getHargaJual();
+        this.beratTambah = other.getBeratTambah();
+    }
+
     public String getNama(){
         return this.nama;
     }

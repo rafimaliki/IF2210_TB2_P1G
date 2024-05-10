@@ -8,6 +8,9 @@ public class Deck {
 
     public Deck(int n){
         this.kartu = new ArrayList<>(n);
+        for(int i = 0; i < n; i++){
+            this.kartu.add(null);
+        }
     }
 
     public void setKartu(Kartu kartu, int i){
@@ -19,10 +22,20 @@ public class Deck {
     }
 
     public void removeKartu(int i){
-        this.kartu.remove(i);
+        this.kartu.set(i, null);
     }
 
     public int getLengthKartu(){
-        return this.kartu.size();
+        int count = 0;
+        for(Kartu kartu : this.kartu){
+            if(kartu != null){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public void setKartu(int index, Kartu kartu){
+        this.kartu.set(index, kartu);
     }
 }

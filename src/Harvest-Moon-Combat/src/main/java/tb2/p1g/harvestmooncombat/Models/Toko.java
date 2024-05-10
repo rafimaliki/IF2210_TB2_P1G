@@ -60,11 +60,28 @@ public class Toko {
         } else {
             kartu = new KartuProduk(produkToko.get(i).getKartu());
 
-            if (removeIdx == -1){
+            if (removeIdx != -1){
                 produkToko.remove(removeIdx);
             }
 
             return kartu;
         }
+    }
+
+    public KartuProduk subtractByIndex(int idx) throws Exception {
+        if ((idx < 0) || (idx >= produkToko.size())){
+            throw (new Exception("Indeks tidak valid"));
+        }
+
+        TokoEntry currentProduk = produkToko.get(idx);
+        int newKuantitas = currentProduk.getKuantitas();
+        newKuantitas--;
+        KartuProduk kartu = new KartuProduk(currentProduk.getKartu());
+
+        if (newKuantitas == 0){
+            produkToko.remove(idx);
+        }
+
+        return kartu;
     }
 }

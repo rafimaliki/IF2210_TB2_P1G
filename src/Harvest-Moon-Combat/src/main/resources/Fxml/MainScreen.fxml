@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tb2.p1g.harvestmooncombat.Controllers.MainScreenController">
    <children>
       <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="38.0" layoutY="93.0" prefHeight="360.0" prefWidth="350.0">
         <columnConstraints>

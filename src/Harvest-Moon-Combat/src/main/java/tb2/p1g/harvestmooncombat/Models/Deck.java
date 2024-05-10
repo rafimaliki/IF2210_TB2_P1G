@@ -9,4 +9,20 @@ public class Deck {
     public Deck(int n){
         this.kartu = new ArrayList<>(n);
     }
+
+    public void setKartu(Kartu kartu, int i){
+        this.kartu.set(i, kartu);
+    }
+
+    public Kartu getKartu(int i){
+        return this.kartu.get(i);
+    }
+
+    public void removeKartu(int i){
+        this.kartu.remove(i);
+    }
+
+    public int getLengthKartu(){
+        return this.kartu.size();
+    }
 }

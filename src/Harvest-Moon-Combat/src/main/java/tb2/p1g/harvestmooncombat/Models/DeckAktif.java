@@ -4,4 +4,8 @@ public class DeckAktif extends Deck {
     public DeckAktif() {
         super(6);
     }
+
+    public int getJumlahSlotKosong(){
+        return 6 - super.getLengthKartu();
+    }
 }

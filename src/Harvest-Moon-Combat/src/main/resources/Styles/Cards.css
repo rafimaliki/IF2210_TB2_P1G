@@ -1,0 +1,55 @@
+.card_slot, .cards {
+    -fx-background-size: cover;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-width: 70px;
+    -fx-height: 90px;
+    -fx-min-width: 70px;
+    -fx-max-width: 70px;
+    -fx-min-height: 90px;
+    -fx-max-height: 90px;
+    -fx-overflow: hidden;
+}
+
+.bear-card {
+    -fx-background-image: url('../Images/Hewan/bear.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.chicken-card {
+    -fx-background-image: url('../Images/Hewan/chicken.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.hiu_darat-card {
+    -fx-background-image: url('../Images/Hewan/hiu_darat.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.horse-card {
+    -fx-background-image: url('../Images/Hewan/horse.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.sheep-card {
+    -fx-background-image: url('../Images/Hewan/sheep.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.cow-card {
+    -fx-background-image: url('../Images/Hewan/cow.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}

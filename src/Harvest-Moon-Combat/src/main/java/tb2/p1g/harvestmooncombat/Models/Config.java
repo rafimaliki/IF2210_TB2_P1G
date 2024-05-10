@@ -56,11 +56,23 @@ public class Config {
         put("SIRIP_HIU", Arrays.asList(HARGA_SIRIP_HIU, BERAT_TAMBAH_SIRIP_HIU));
         put("SUSU", Arrays.asList(HARGA_SUSU, BERAT_TAMBAH_SUSU));
         put("DAGING_DOMBA", Arrays.asList(HARGA_DAGING_DOMBA, BERAT_TAMBAH_DAGING_DOMBA));
-        put("DAGING_KUDA", Arrays.asList(HARGA_SIRIP_HIU, BERAT_TAMBAH_SIRIP_HIU));
+        put("DAGING_KUDA", Arrays.asList(HARGA_DAGING_KUDA, BERAT_TAMBAH_DAGING_KUDA));
         put("TELUR", Arrays.asList(HARGA_TELUR, BERAT_TAMBAH_TELUR));
         put("DAGING_BERUANG", Arrays.asList(HARGA_DAGING_BERUANG, BERAT_TAMBAH_DAGING_BERUANG));
         put("JAGUNG", Arrays.asList(HARGA_JAGUNG, BERAT_TAMBAH_JAGUNG));
         put("LABU", Arrays.asList(HARGA_LABU, BERAT_TAMBAH_LABU));
         put("STROBERI", Arrays.asList(HARGA_STROBERI, BERAT_TAMBAH_STROBERI));
     }};
+
+    // map tipe hewan String (nama) -> String (tipe)
+    final static Map<String, String> mapAnimalType = new HashMap<>(){{
+        put("HIU_DARAT", "CARNIVORE");
+        put("SAPI", "HERBIVORE");
+        put("DOMBA", "HERBIVORE");
+        put("KUDA", "HERBIVORE");
+        put("AYAM", "HERBIVORE");
+        put("BERUANG", "HERBIVORE");
+    }};
+
+
 }

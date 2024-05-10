@@ -25,4 +25,12 @@ public class KartuTanaman implements Kartu {
     public void setUmur(int umur){
         this.umur = umur;
     }
+
+    public boolean isReadyToHarvest(){
+        return this.umur >= Config.mapUmurPanen.get(this.nama);
+    }
+
+    public void grow(){
+        this.umur++;
+    }
 }

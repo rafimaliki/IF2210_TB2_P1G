@@ -14,4 +14,52 @@ public class Player {
         this.deckNonAktif = new DeckNonAktif();
         this.ladang = new Ladang();
     }
+
+    public String getNama(){
+        return this.nama;
+    }
+
+    public int getGulden(){
+        return this.gulden;
+    }
+
+    public DeckAktif getDeckAktif(){
+        return this.deckAktif;
+    }
+
+    public DeckNonAktif getDeckNonAktif(){
+        return this.deckNonAktif;
+    }
+
+    public Ladang getLadang(){
+        return this.ladang;
+    }
+
+    public void setNama(String nama){
+        this.nama = nama;
+    }
+
+    public void setGulden(int gulden){
+        this.gulden = gulden;
+    }
+
+    public void setDeckAktif(DeckAktif deckAktif){
+        this.deckAktif = deckAktif;
+    }
+
+    public void setDeckNonAktif(DeckNonAktif deckNonAktif){
+        this.deckNonAktif = deckNonAktif;
+    }
+
+    public void setLadang(Ladang ladang){
+        this.ladang = ladang;
+    }
+
+    public void addGulden(int gulden){
+        this.gulden += gulden;
+    }
+
+    public void reduceGulden(int gulden){
+        this.gulden -= gulden;
+    }
 }

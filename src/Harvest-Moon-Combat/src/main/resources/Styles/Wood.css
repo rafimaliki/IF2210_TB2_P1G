@@ -1,0 +1,4 @@
+.wood {
+    -fx-background-image: url('../Images/Other/Wood.jpg');
+    -fx-background-size: cover;
+}

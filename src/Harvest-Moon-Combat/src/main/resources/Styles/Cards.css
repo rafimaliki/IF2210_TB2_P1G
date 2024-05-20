@@ -1,0 +1,225 @@
+.card-slot {
+    -fx-background-size: cover;
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-width: 70px;
+    -fx-height: 90px;
+    -fx-min-width: 70px;
+    -fx-max-width: 70px;
+    -fx-min-height: 90px;
+    -fx-max-height: 90px;
+    -fx-overflow: hidden;
+}
+
+.card-slot-red {
+    -fx-background-size: cover;
+    -fx-background-color: red;
+    -fx-background-radius: 10px;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-width: 70px;
+    -fx-height: 90px;
+    -fx-min-width: 70px;
+    -fx-max-width: 70px;
+    -fx-min-height: 90px;
+    -fx-max-height: 90px;
+    -fx-overflow: hidden;
+}
+
+.cards {
+    -fx-background-size: cover;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-width: 70px;
+    -fx-height: 90px;
+    -fx-min-width: 70px;
+    -fx-max-width: 70px;
+    -fx-min-height: 90px;
+    -fx-max-height: 90px;
+    -fx-overflow: hidden;
+}
+
+.card-label {
+    -fx-font-size: 9px;
+    -fx-text-fill: black;
+    -fx-background-color: rgb(234, 234, 234);
+    -fx-padding: 0px 5px;
+    /*-fx-background-radius: 15px;*/
+    -fx-text-alignment: center;
+    -fx-pref-width: 65px;
+    -fx-alignment: center;
+}
+
+
+.bear-card {
+    -fx-background-image: url('../Images/Hewan/bear.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.chicken-card {
+    -fx-background-image: url('../Images/Hewan/chicken.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.hiu_darat-card {
+    -fx-background-image: url('../Images/Hewan/hiu_darat.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.horse-card {
+    -fx-background-image: url('../Images/Hewan/horse.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.sheep-card {
+    -fx-background-image: url('../Images/Hewan/sheep.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.cow-card {
+    -fx-background-image: url('../Images/Hewan/cow.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.accelerate-card {
+    -fx-background-image: url('../Images/Item/Accelerate.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.bear_trap-card {
+    -fx-background-image: url('../Images/Item/bear_trap.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.delay-card {
+    -fx-background-image: url('../Images/Item/Delay.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.destroy-card {
+    -fx-background-image: url('../Images/Item/Destroy.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.instant_harvest-card {
+    -fx-background-image: url('../Images/Item/Instant_Harvest.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.protect-card {
+    -fx-background-image: url('../Images/Item/Protect.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.corn-card {
+    -fx-background-image: url('../Images/Produk/corn.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.daging_beruang-card {
+    -fx-background-image: url('../Images/Produk/Daging_Beruang.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.daging_domba-card {
+    -fx-background-image: url('../Images/Produk/Daging_Domba.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.daging_kuda-card {
+    -fx-background-image: url('../Images/Produk/Daging_Kuda.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.pumpkin-card {
+    -fx-background-image: url('../Images/Produk/pumpkin.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.shark_fin-card {
+    -fx-background-image: url('../Images/Produk/shark-fin.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.strawberry-card {
+    -fx-background-image: url('../Images/Produk/strawberry.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.susu-card {
+    -fx-background-image: url('../Images/Produk/susu.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.telur-card {
+    -fx-background-image: url('../Images/Produk/telur.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.corn_seeds-card {
+    -fx-background-image: url('../Images/Tanaman/corn_seeds.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.pumpkin_seeds-card {
+    -fx-background-image: url('../Images/Tanaman/pumpkin_seeds.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.strawberry_seeds-card {
+    -fx-background-image: url('../Images/Tanaman/strawberry_seeds.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}

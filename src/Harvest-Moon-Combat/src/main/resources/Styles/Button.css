@@ -1,0 +1,14 @@
+.styled-button {
+    -fx-background-color: #eee6e6; /* Default background color */
+    -fx-text-fill: #000000;          /* Text color */
+    /*-fx-padding: 10 20;            !* Padding *!*/
+    -fx-border-radius: 5;          /* Border radius */
+    -fx-background-radius: 5;      /* Background radius */
+    -fx-font-size: 12px;           /* Font size */
+    -fx-cursor: hand;              /* Change cursor to hand */
+}
+
+/* Hover effect */
+.styled-button:hover {
+    -fx-background-color: #d9b383; /* Background color on hover */
+}

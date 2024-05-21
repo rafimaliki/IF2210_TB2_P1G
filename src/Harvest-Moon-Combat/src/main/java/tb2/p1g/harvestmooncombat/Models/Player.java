@@ -108,6 +108,22 @@ public class Player {
         deckAktif.removeKartu(index);
     }
 
+    //Masukan 2 kartu ke dalam deck aktif
+    public void masukanKartuKeDeckAktif(Kartu kartu1, Kartu kartu2) throws Exception{
+        // Cek apakah deck aktif bisa menyimpan 2 kartu?
+        if (deckAktif.getJumlahSlotKosong() < 2){
+            throw new Exception("Deck aktif tidak bisa menyimpan 2 kartu");
+        }
+        deckAktif.setKartu(deckAktif.getLengthKartu(), kartu1);
+        deckAktif.setKartu(deckAktif.getLengthKartu(), kartu2);
+    }
+
+    //Masukan 2 kartu ke dalam deck non aktif
+    public void masukanKartuKeDeckNonAktif(Kartu kartu1, Kartu kartu2){
+        deckNonAktif.setKartu(deckNonAktif.getLengthKartu(), kartu1);
+        deckNonAktif.setKartu(deckNonAktif.getLengthKartu(), kartu2);
+    }
+
     //TAHAPAN AKSI BEBAS
 
     // param idxInit = lXX or dXX, parse into row/column
@@ -201,6 +217,7 @@ public class Player {
     public void addKartuToLadang(Kartu kartu, int row, int col){
         ladang.addKartu(kartu, row, col);
     }
+
 
     public void tumbuhkanTanaman(){
         List<List<Kartu>> ladangContent = ladang.getLadang();

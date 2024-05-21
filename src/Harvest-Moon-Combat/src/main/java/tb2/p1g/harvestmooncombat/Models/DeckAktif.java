@@ -8,4 +8,8 @@ public class DeckAktif extends Deck {
     public int getJumlahSlotKosong(){
         return 6 - super.getLengthKartu();
     }
+
+    public boolean isFull(){
+        return super.getLengthKartu() == 6;
+    }
 }

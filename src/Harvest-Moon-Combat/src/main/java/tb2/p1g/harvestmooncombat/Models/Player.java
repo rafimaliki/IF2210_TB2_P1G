@@ -9,14 +9,14 @@ public class Player {
     private int gulden;
     private DeckAktif deckAktif;
     private DeckNonAktif deckNonAktif;
-    private Ladang ladang;
+    private Ladang_Logic ladang;
 
     public Player(String nama){
         this.nama = nama;
         this.gulden = 0;
         this.deckAktif = new DeckAktif();
         this.deckNonAktif = new DeckNonAktif(40);
-        this.ladang = new Ladang();
+        this.ladang = new Ladang_Logic();
     }
 
     public String getNama(){
@@ -35,7 +35,7 @@ public class Player {
         return this.deckNonAktif;
     }
 
-    public Ladang getLadang(){
+    public Ladang_Logic getLadang(){
         return this.ladang;
     }
 
@@ -55,7 +55,7 @@ public class Player {
         this.deckNonAktif = deckNonAktif;
     }
 
-    public void setLadang(Ladang ladang){
+    public void setLadang(Ladang_Logic ladang){
         this.ladang = ladang;
     }
 
@@ -234,4 +234,25 @@ public class Player {
         }
     }
 
+    public void Panen(String idx) throws Exception{
+        int index = Integer.parseInt(idx.substring(1));
+        int row = index / 5;
+        int col = index % 5;
+
+        Kartu kartu = ladang.getKartu(row, col);
+        if (kartu == null){
+            throw new Exception("Invalid move");
+        }
+        if(deckAktif.isFull()){
+            throw new Exception("Deck aktif penuh");
+        }
+
+        if(!kartu.isReadyToHarvest()){
+            throw new Exception("Belum siap panen");
+        }
+
+        KartuProduk produk = new KartuProduk(Config.mapHewanTanamanKeProduk.get(kartu.getNama()));
+        ladang.removeKartu(row, col);
+        deckAktif.setKartu(deckAktif.getLengthKartu(), produk);
+    }
 }

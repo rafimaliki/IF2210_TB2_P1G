@@ -1,6 +1,6 @@
 package tb2.p1g.harvestmooncombat.Models;
 
-public class KartuProduk implements Kartu {
+public class KartuProduk extends Kartu {
     private String nama;
     private int hargaJual;
     private int beratTambah;

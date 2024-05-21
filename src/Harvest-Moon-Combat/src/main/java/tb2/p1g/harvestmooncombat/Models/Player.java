@@ -152,11 +152,25 @@ public class Player {
             Kartu kartu = deckAktif.getKartu(initIndex);
             deckAktif.removeKartu(initIndex);
 
-            if (ladang.getKartu(rowDest, colDest) != null){
+            if ((ladang.getKartu(rowDest, colDest) != null) && (!Config.listKartuItem.contains(kartu.getNama()))){
                 throw new Exception("Invalid move");
             }
 
-            ladang.addKartu(kartu, rowDest, colDest);
+            // Jika kartu item
+            if (Config.listKartuItem.contains(kartu.getNama())){
+                // Jika tujuan null atau kartu produk
+                if ((ladang.getKartu(rowDest, colDest) == null) || (Config.listKartuProduk.contains(ladang.getKartu(rowDest, colDest).getNama()))){
+                    throw new Exception("Invalid move");
+                }
+
+                // Jika tujuan kartu tanaman atau hewan
+                else {
+                    Kartu temp = ladang.getKartu(rowDest, colDest);
+                    temp.setItemAktif((KartuItem) kartu);
+                }
+            } else {
+                ladang.addKartu(kartu, rowDest, colDest);
+            }
         }
 
         // move kartu di ladang ke null (tidak bisa swap)

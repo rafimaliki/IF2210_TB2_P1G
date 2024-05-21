@@ -3,7 +3,7 @@ package tb2.p1g.harvestmooncombat.Models;
 import java.util.Map;
 import java.util.HashMap;
 
-public class KartuHewan implements Kartu {
+public class KartuHewan extends Kartu {
 
     private String nama;
     private int berat;

@@ -67,63 +67,6 @@ public class Player {
         this.gulden -= gulden;
     }
 
-    // TAHAPAN SHUFFLE DECK
-
-    // Get 4 kartu random dari deck non aktif
-    public List<Kartu> get4RandomCard(){
-        List<Kartu> kartuRandom = new ArrayList<>();
-        List<Integer> indexRandom = new ArrayList<>();
-        Random random = new Random();
-
-        //Ambil index kartu yang ada di list deck non aktif
-        for (int i = 0; i < 40 ; i++ ){
-            if (deckNonAktif.getKartu(i) != null){
-                indexRandom.add(i);
-            }
-        }
-
-        // Ambil 4 kartu acak dari deck non aktif
-        for (int i = 0; i < 4; i++) {
-            int index = random.nextInt(indexRandom.size());
-            int indexKartu = indexRandom.get(index);
-            kartuRandom.add(deckNonAktif.getKartu(indexKartu));
-            indexRandom.remove(index);
-            deckNonAktif.removeKartu(indexKartu);
-        }
-        return kartuRandom;
-    }
-
-    //add kartu ke deck non aktif
-    public void addKartuToDeckNonAktif(Kartu kartu){
-        deckNonAktif.setKartu(deckNonAktif.getLengthKartu(), kartu);
-    }
-
-    //add kartu ke deck aktif
-    public void addKartuToDeckAktif(Kartu kartu){
-        deckAktif.setKartu(deckAktif.getLengthKartu(), kartu);
-    }
-
-    //remove kartu dari deck aktif
-    public void removeKartuFromDeckAktif(int index){
-        deckAktif.removeKartu(index);
-    }
-
-    //Masukan 2 kartu ke dalam deck aktif
-    public void masukanKartuKeDeckAktif(Kartu kartu1, Kartu kartu2) throws Exception{
-        // Cek apakah deck aktif bisa menyimpan 2 kartu?
-        if (deckAktif.getJumlahSlotKosong() < 2){
-            throw new Exception("Deck aktif tidak bisa menyimpan 2 kartu");
-        }
-        deckAktif.setKartu(deckAktif.getLengthKartu(), kartu1);
-        deckAktif.setKartu(deckAktif.getLengthKartu(), kartu2);
-    }
-
-    //Masukan 2 kartu ke dalam deck non aktif
-    public void masukanKartuKeDeckNonAktif(Kartu kartu1, Kartu kartu2){
-        deckNonAktif.setKartu(deckNonAktif.getLengthKartu(), kartu1);
-        deckNonAktif.setKartu(deckNonAktif.getLengthKartu(), kartu2);
-    }
-
     //TAHAPAN AKSI BEBAS
 
     // param idxInit = lXX or dXX, parse into row/column

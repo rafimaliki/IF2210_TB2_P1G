@@ -29,6 +29,18 @@ public class ActiveDeck {
             cards.add(pane);
         }
     }
+    public void refreshDeck() {
+        for (int i = 0; i < cards.size(); i++) {
+            Pane pane = cards.get(i);
+            if (!pane.getChildren().isEmpty() && pane.getChildren().get(0) instanceof Card) {
+                Card card = (Card) pane.getChildren().get(0);
+                deckAktif.setKartu(Utility.getKartuObject(card.getCardName()), i);
+            }else{
+                deckAktif.setKartu(null,i);
+            }
+        }
+    }
+
 
     public List<Pane> getCards() {
         return cards;
@@ -50,21 +62,22 @@ public class ActiveDeck {
 
     public void addCard(String key, Card card,Integer i) {
         cards.get(Integer.parseInt(key.substring(1))).getChildren().add(card);
-        String card_name = card.getCardName();
-        deckAktif.setKartu(Utility.getKartuObject(card_name),i);
+        refreshDeck();
 
     }
 
+    public DeckAktif getDeckAktif() {
+        return deckAktif;
+    }
 
     public void addCard(Card card) {
         for (int i = 0; i < cards.size(); i++) {
             if (cards.get(i).getChildren().isEmpty()) {
                 cards.get(i).getChildren().add(card);
-                String nama_kartu = card.getCardName();
-                deckAktif.setKartu(Utility.getKartuObject(nama_kartu),i);
                 break;
             }
         }
+        refreshDeck();
         deckAktif.displayInfoDeck();
     }
 

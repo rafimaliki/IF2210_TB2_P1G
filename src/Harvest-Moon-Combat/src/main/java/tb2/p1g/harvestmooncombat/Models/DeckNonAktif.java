@@ -1,6 +1,8 @@
 package tb2.p1g.harvestmooncombat.Models;
 
 import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
 
 public class DeckNonAktif extends Deck {
     private int kartuSisa;
@@ -39,6 +41,27 @@ public class DeckNonAktif extends Deck {
                 Kartu kartu = new KartuItem(Config.listKartuItem.get(idxKartu));
                 this.setKartu(i, kartu);
             }
+        }
+    }
+
+    public List<Kartu> ambil4Kartu(){
+        List<Kartu> kartuRandom = new ArrayList<>();
+        Random random = new Random();
+        for (int i = 0; i < 4; i++){
+            int idx = random.nextInt(this.kartuSisa);
+            Kartu kartu = this.getKartu(idx);
+            kartuRandom.add(kartu);
+            this.removeKartu(idx);
+        }
+        this.kartuSisa -= 4;
+
+        return kartuRandom;
+    }
+
+    public void kembalikanKartu(List<Kartu> kartu, int banyak){
+        for (int i = 0; i < banyak; i++){
+            this.setKartu(this.kartuSisa, kartu.get(i));
+            this.kartuSisa++;
         }
     }
 }

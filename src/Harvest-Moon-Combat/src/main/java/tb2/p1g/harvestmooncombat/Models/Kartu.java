@@ -10,6 +10,7 @@ public abstract class Kartu {
         return this.nama;
     }
 
+
     public void setEfekItem(KartuItem item) throws Exception {}
 
     public boolean isReadyToHarvest(){

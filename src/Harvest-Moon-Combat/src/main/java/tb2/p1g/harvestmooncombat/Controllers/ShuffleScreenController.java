@@ -74,6 +74,7 @@ public class ShuffleScreenController {
         for (int i = 0; i < isClicked.size(); i++) {
             if (isClicked.get(i)) {
                 activeDeck.addCard((Card)cardShuffleList.get(i).getChildren().get(0));
+
             }
         }
     }

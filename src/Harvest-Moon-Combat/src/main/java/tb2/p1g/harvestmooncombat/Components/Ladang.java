@@ -8,6 +8,8 @@ import javafx.scene.Node;
 import tb2.p1g.harvestmooncombat.Components.Card;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import tb2.p1g.harvestmooncombat.Models.Ladang_Logic;
+import tb2.p1g.harvestmooncombat.Models.Utility;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,10 +23,13 @@ public class Ladang {
     private static final int numRows = 4;
     private static final int numCols = 5;
     private static final int numCards = Ladang.numRows * numCols;
+    private Ladang_Logic ladang;
+
+
 
     public Ladang(GridPane ladangGrid) {
         cards = new ArrayList<>(numCards);
-
+        ladang = new Ladang_Logic();
         for (int idx = 0; idx < numCards; idx++) {
             Pane pane = (Pane) ladangGrid.getChildren().get(idx);
             pane.setId("l" + idx);
@@ -37,8 +42,11 @@ public class Ladang {
         return cards;
     }
 
-    public void addCard(String key, Pane card) {
+    public void addCard(String key, Card card) {
         cards.get(Integer.parseInt(key.substring(1))).getChildren().add(card);
+        String card_name = card.getCardName();
+        ladang.addKartu(Utility.getKartuObject(card_name), Integer.parseInt(key.substring(1)) / numCols, Integer.parseInt(key.substring(1)) % numCols);
+        ladang.displayLadang();
     }
 
     public Pane getCard(String key){
@@ -51,11 +59,11 @@ public class Ladang {
         });
     }
 
-    public Map<String, Pane> saveCards() {
-        Map<String, Pane> savedCards = new HashMap<>();
+    public Map<String, Card> saveCards() {
+        Map<String, Card> savedCards = new HashMap<>();
         for (int i = 0; i < cards.size(); i++) {
             if (!cards.get(i).getChildren().isEmpty() && cards.get(i).getChildren().get(0) instanceof Pane){
-                Pane pane = (Pane) cards.get(i).getChildren().get(0);
+                Card pane = (Card) cards.get(i).getChildren().get(0);
                 savedCards.put("l" + i, pane);
             }
         }

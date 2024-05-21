@@ -4,12 +4,21 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Deck {
-    private List<Kartu> kartu;
+    protected List<Kartu> kartu;
 
     public Deck(int n){
         this.kartu = new ArrayList<>(n);
         for(int i = 0; i < n; i++){
             this.kartu.add(null);
+        }
+    }
+    public  void displayInfoDeck(){
+        int i = 0;
+        for (Kartu k : kartu){
+            i++;
+            if(k != null){
+                System.out.println("Deck Aktif id ke - " + i + " berisi " + k.getNama());
+            }
         }
     }
 

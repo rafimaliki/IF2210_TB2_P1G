@@ -15,7 +15,7 @@ public class Player {
         this.nama = nama;
         this.gulden = 0;
         this.deckAktif = new DeckAktif();
-        this.deckNonAktif = new DeckNonAktif();
+        this.deckNonAktif = new DeckNonAktif(40);
         this.ladang = new Ladang();
     }
 
@@ -218,5 +218,22 @@ public class Player {
         ladang.addKartu(kartu, row, col);
     }
 
+<<<<<<< HEAD
+=======
+    public void tumbuhkanTanaman(){
+        List<List<Kartu>> ladangContent = ladang.getLadang();
+        for (int i = 0; i < 4; i++){
+            for (int j = 0; j < 5; j++){
+                Kartu kartu = ladangContent.get(i).get(j);
+                if (kartu != null){
+                    if (Config.listKartuTanaman.contains(kartu.getNama())){
+                        KartuTanaman tanaman = (KartuTanaman) kartu;
+                        tanaman.grow();
+                    }
+                }
+            }
+        }
+    }
+>>>>>>> bccf7a6c0cf6dfd7adbe4cc9a91ac34975a6ac43
 
 }

@@ -80,11 +80,31 @@ public class Draggables {
                 }
 
                 if (node instanceof Pane sourcePane) {
+
+                    // swap card if from d to d
+
                     if (pane.getChildren().isEmpty()){
+                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'd') {
+                        }
+                        else {
                         pane.getChildren().add(sourcePane.getChildren().getFirst());
+                        }
+                    }
+                    else if (sourcePane.getId().charAt(0) == 'd' && pane.getId().charAt(0) == 'd' && pane.getChildren().getFirst() != sourcePane.getChildren().getFirst()){
+                        System.out.println("Swapping");
+                        Pane temp = new Pane();
+                        temp.getChildren().add(sourcePane.getChildren().getFirst());
+                        sourcePane.getChildren().clear();
+                        sourcePane.getChildren().add(pane.getChildren().getFirst());
+                        pane.getChildren().clear();
+                        pane.getChildren().add(temp.getChildren().getFirst());
                     }
                     else if (pane.getChildren().getFirst() != sourcePane.getChildren().getFirst()){
-                        sourcePane.getChildren().clear();
+                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'l') {
+                        }
+                        else {
+                            sourcePane.getChildren().clear();
+                        }
                     }
                     System.out.println("Source: " + sourcePane.getId());
                     System.out.println("Target: " + pane.getId());

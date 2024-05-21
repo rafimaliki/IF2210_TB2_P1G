@@ -54,13 +54,17 @@ public class KartuHewan extends Kartu {
         }
 
         if (namaItem.equals("ACCELERATE")){
-            this.berat += 5;
+            this.berat += 8;
         } else if (namaItem.equals("DELAY")){
             this.berat -= 5;
             if (this.berat < 0){
                 this.berat = 0;
             }
         }
+    }
+    //waktu next turn )?(
+    public void tambahBerat(){
+        this.berat = this.berat + (itemAktif.get("ACCELERATE") * 8) - (itemAktif.get("DELAY")*  5);
     }
 
     public boolean isReadyToHarvest(){

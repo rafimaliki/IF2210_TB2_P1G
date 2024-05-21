@@ -61,7 +61,10 @@ public class KartuTanaman extends Kartu {
         }
     }
 
+
+    //buat next turn?
     public void grow(){
-        this.umur++;
+        this.umur = this.umur + (itemAktif.get("ACCELERATE") * 2) - (itemAktif.get("DELAY")*  2) ;
+
     }
 }

@@ -125,4 +125,12 @@ public class Config {
         put("AYAM", "HERBIVORE");
         put("BERUANG", "HERBIVORE");
     }};
+    final static Map<String, String> mapTipeKartu = new HashMap<>(){{
+        put("ACCELERATE", "ACCELERATE");
+        put("DELAY", "DELAY");
+        put("INSTANT_HARVEST", "INSTANT_HARVEST");
+        put("DESTROY", "DESTROY");
+        put("PROTECT", "PROTECT");
+        put("TRAP", "TRAP");
+    }};
 }

@@ -218,8 +218,7 @@ public class Player {
         ladang.addKartu(kartu, row, col);
     }
 
-<<<<<<< HEAD
-=======
+
     public void tumbuhkanTanaman(){
         List<List<Kartu>> ladangContent = ladang.getLadang();
         for (int i = 0; i < 4; i++){
@@ -234,6 +233,5 @@ public class Player {
             }
         }
     }
->>>>>>> bccf7a6c0cf6dfd7adbe4cc9a91ac34975a6ac43
 
 }

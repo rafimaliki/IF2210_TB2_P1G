@@ -110,7 +110,73 @@ public class Player {
 
     //TAHAPAN AKSI BEBAS
 
-    //add kartu ke ladang
+    // param idxInit = lXX or dXX, parse into row/column
+    public void moveKartu(String idxInit, String idxDest) throws Exception {
+        String initLocation = idxInit.substring(0, 1);
+        int initIndex = Integer.parseInt(idxInit.substring(1));
+        String destLocation = idxDest.substring(0, 1);
+        int destIndex = Integer.parseInt(idxDest.substring(1));
 
+        if ((initLocation.equals("l")) && (destLocation.equals("d"))){
+            throw new Exception("Invalid move");
+        }
 
+        int rowInit = -1;
+        int colInit = -1;
+        int rowDest = -1;
+        int colDest = -1;
+
+        if (initLocation.equals("l")){
+            rowInit = initIndex / 5;
+            colInit = initIndex % 5;
+        } else {
+            colInit = initIndex;
+        }
+
+        if (destLocation.equals("l")){
+            rowDest = destIndex / 5;
+            colDest = destIndex % 5;
+        } else {
+            colDest = destIndex;
+        }
+
+        // swap kartu di deck aktif
+        if ((initLocation.equals("d")) && (destLocation.equals("d"))){
+            Kartu temp = deckAktif.getKartu(initIndex);
+            deckAktif.setKartu(initIndex, deckAktif.getKartu(destIndex));
+            deckAktif.setKartu(destIndex, temp);
+        }
+
+        // move kartu dari deck aktif ke ladang
+        else if ((initLocation.equals("d")) && (destLocation.equals("l"))){
+            Kartu kartu = deckAktif.getKartu(initIndex);
+            deckAktif.removeKartu(initIndex);
+
+            if (ladang.getKartu(rowDest, colDest) != null){
+                throw new Exception("Invalid move");
+            }
+
+            ladang.addKartu(kartu, rowDest, colDest);
+        }
+
+        // move kartu di ladang ke null (tidak bisa swap)
+        else {
+            if (ladang.getKartu(rowInit, colInit) == null){
+                throw new Exception("Invalid move");
+            }
+
+            Kartu temp = ladang.getKartu(rowInit, colInit);
+            ladang.removeKartu(rowInit, colInit);
+
+            if (ladang.getKartu(rowDest, colDest) != null){
+                throw new Exception("Invalid move");
+            }
+
+            ladang.addKartu(temp, rowDest, colDest);
+        }
+    }
+
+    public void addKartuToLadang(Kartu kartu, int row, int col){
+        ladang.addKartu(kartu, row, col);
+    }
 }

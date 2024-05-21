@@ -73,6 +73,7 @@ public class GameScreenController {
 
     @FXML
     protected void nextTurn() {
+        GameManager gm = GameManager.getInstance();
 
         turnNumber.setText(String.valueOf(Integer.parseInt(turnNumber.getText()) + 1));
 
@@ -98,9 +99,12 @@ public class GameScreenController {
             player1Name.setStyle("-fx-background-color: none;");
             player2Name.setStyle("-fx-background-color: #50C878;");
         }
-        GameManager.getInstance().nextTurn();
-        GameManager.getInstance().getCurrentPlayer().getLadang().displayLadang();
-        GameManager.getInstance().getCurrentPlayer().getDeckAktif().displayInfoDeck();
+        gm.nextTurn();
+        gm.getCurrentPlayer().getLadang().displayLadang();
+        gm.getCurrentPlayer().getDeckAktif().displayInfoDeck();
+
+        gm.getCurrentPlayer().getLadang().displayDataKartuLadang();
+
         shuffleDeck();
     }
 

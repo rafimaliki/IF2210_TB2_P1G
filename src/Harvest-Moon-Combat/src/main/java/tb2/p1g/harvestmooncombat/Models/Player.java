@@ -198,4 +198,7 @@ public class Player {
         ladang.removeKartu(row, col);
         deckAktif.setKartu(deckAktif.getLengthKartu(), produk);
     }
+    public void displayLadangData(){
+        getLadang().displayDataKartuLadang();
+    }
 }

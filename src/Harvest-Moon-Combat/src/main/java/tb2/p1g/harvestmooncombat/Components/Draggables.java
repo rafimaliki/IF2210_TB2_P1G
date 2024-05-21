@@ -121,7 +121,7 @@ public class Draggables {
                         activeDeck.refreshCards();
                         ladang.refreshLadang();
                     }catch (Exception e){
-                        System.out.println("Error!");
+                        System.out.println("Error! " + e.getMessage() );
 
                     }
 

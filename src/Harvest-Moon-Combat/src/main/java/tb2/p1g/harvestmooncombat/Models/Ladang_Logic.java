@@ -20,6 +20,20 @@ public class Ladang_Logic {
     public void setLadang(Kartu k,int i,int j){
         this.ladang.get(i).set(j,k);
     }
+    public  void displayDataKartuLadang(){
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 5; j++){
+                if(ladang.get(i).get(j) != null){
+                    List<String> data = ladang.get(i).get(j).getInformasi();
+                    for(String s :data){
+                        System.out.println(s);
+                    }
+
+                }
+
+            }
+        }
+    }
 
 
     public void displayLadang(){

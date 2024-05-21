@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import tb2.p1g.harvestmooncombat.Components.Draggables;
 
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.AnchorPane;
 import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 
 import java.util.HashMap;
@@ -24,6 +25,8 @@ import javafx.stage.Stage;
 
 
 public class GameScreenController {
+
+    @FXML private AnchorPane root;
 
     @FXML private GridPane activeDeckGrid;
     @FXML private GridPane ladangGrid;
@@ -92,7 +95,6 @@ public class GameScreenController {
             player1Name.setStyle("-fx-background-color: none;");
             player2Name.setStyle("-fx-background-color: #50C878;");
         }
-
         shuffleDeck();
     }
 

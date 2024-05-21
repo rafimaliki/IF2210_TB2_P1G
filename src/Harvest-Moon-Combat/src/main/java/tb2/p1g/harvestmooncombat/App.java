@@ -14,6 +14,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.util.Objects;
+import java.util.Random;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.util.Duration;
+
+
+
 
 
 
@@ -25,8 +37,10 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/GameScreen.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 600);
+        AnchorPane root = fxmlLoader.load();
+        Scene scene = new Scene(root, 600, 600);
 //        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/Styles/Cards.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/Styles/Bear.css")).toExternalForm());
         stage.setTitle("Harvest Moon Combat");
         stage.setResizable(false);
         stage.setScene(scene);
@@ -36,6 +50,91 @@ public class App extends Application {
         GameScreenController controller = fxmlLoader.getController(); // Change 'loader' to 'fxmlLoader'
         controller.setPrimaryStage(stage); // Change 'primaryStage' to 'stage'
         controller.shuffleDeck();
+        addRandomBearPane(root);
+    }
+
+    private void addRandomBearPane(AnchorPane root) {
+        Pane bear = new Pane();
+        bear.getStyleClass().add("bear-card");
+        bear.setPrefSize(100, 100); // Adjust the size as needed
+
+        root.getChildren().add(bear);
+
+//        movePaneRandomly(bear, root);
+        movePaneInSnakePattern(bear, root);
+    }
+
+    private void movePaneRandomly(Pane bear, AnchorPane root) {
+        Random random = new Random();
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(0), event -> {
+
+                    // get curr pos
+                    double x = bear.getLayoutX();
+                    double y = bear.getLayoutY();
+
+                    // move randomly on x and y axis by 5 pixel
+                    x += random.nextInt(11) - 5;
+                    y += random.nextInt(11) - 5;
+
+                    // check if the new position is within the root bounds
+                    if (x < 0) x = 0;
+                    if (y < 0) y = 0;
+                    if (x > root.getWidth() - bear.getWidth()) x = root.getWidth() - bear.getWidth();
+                    if (y > root.getHeight() - bear.getHeight()) y = root.getHeight() - bear.getHeight();
+
+                    bear.setLayoutX(x);
+                    bear.setLayoutY(y);
+                }),
+                new KeyFrame(Duration.seconds(0.1)) // Change position every 2 seconds
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    private void movePaneInSnakePattern(Pane bear, AnchorPane root) {
+        Random random = new Random();
+        final int[] direction = {0}; // 0: right, 1: down, 2: left, 3: up
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(0.1), event -> {
+                    double x = bear.getLayoutX();
+                    double y = bear.getLayoutY();
+
+                    // Move in the current direction
+                    switch (direction[0]) {
+                        case 0: // right
+                            x += 5;
+                            break;
+                        case 1: // down
+                            y += 5;
+                            break;
+                        case 2: // left
+                            x -= 5;
+                            break;
+                        case 3: // up
+                            y -= 5;
+                            break;
+                    }
+
+                    // Check if the new position is within the root bounds
+                    if (x < 10) x = 10;
+                    if (y < 90) y = 90;
+                    if (x > 360) x = 360;
+                    if (y > 450) y = 450;
+
+                    // Set the new position
+                    bear.setLayoutX(x);
+                    bear.setLayoutY(y);
+
+                    // Randomly change direction occasionally
+                    if (random.nextDouble() < 0.1) { // 10% chance to change direction
+                        direction[0] = (direction[0] + 1 + random.nextInt(3)) % 4;
+                    }
+                })
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 
     public static void main(String[] args) {

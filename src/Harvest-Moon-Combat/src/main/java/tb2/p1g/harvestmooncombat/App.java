@@ -31,6 +31,7 @@ public class App extends Application {
 
         GameScreenController controller = fxmlLoader.getController(); // Change 'loader' to 'fxmlLoader'
         controller.setPrimaryStage(stage); // Change 'primaryStage' to 'stage'
+        controller.shuffleDeck();
     }
 
     public static void main(String[] args) {

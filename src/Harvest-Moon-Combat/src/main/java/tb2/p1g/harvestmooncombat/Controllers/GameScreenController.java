@@ -15,6 +15,11 @@ import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+
 import javafx.stage.Stage;
 
 
@@ -52,12 +57,10 @@ public class GameScreenController {
         // set bg color for Ladanku
         ladangKuButton.setStyle("-fx-background-color: #50C878;");
         player1Name.setStyle("-fx-background-color: #50C878;");
-
-        shuffleDeck();
     }
 
     @FXML
-    protected void shuffleDeck() {
+    public void shuffleDeck() {
 //        draggables.getActiveDeck().shuffle();
         System.out.println("Open shuffle screen");
         ViewFactory.ShowShuffleScreen(this.primaryStage, draggables.getActiveDeck());

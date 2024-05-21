@@ -51,11 +51,11 @@ public class Ladang {
         });
     }
 
-    public Map<String, Pane> saveCards() {
-        Map<String, Pane> savedCards = new HashMap<>();
+    public Map<String, Card> saveCards() {
+        Map<String, Card> savedCards = new HashMap<>();
         for (int i = 0; i < cards.size(); i++) {
             if (!cards.get(i).getChildren().isEmpty() && cards.get(i).getChildren().get(0) instanceof Pane){
-                Pane pane = (Pane) cards.get(i).getChildren().get(0);
+                Card pane = (Card) cards.get(i).getChildren().get(0);
                 savedCards.put("l" + i, pane);
             }
         }

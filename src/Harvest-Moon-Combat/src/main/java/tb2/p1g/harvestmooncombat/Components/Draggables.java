@@ -35,14 +35,16 @@ public class Draggables {
         return ladang;
     }
 
-    public void loadActiveDeck(Map<String, Pane> playerActiveDeck) {
-        for (Map.Entry<String, Pane> entry : playerActiveDeck.entrySet()) {
-            activeDeck.addCard(entry.getKey(), entry.getValue());
+    public void loadActiveDeck(Map<String, Card> playerActiveDeck) {
+        int i = 0;
+        for (Map.Entry<String, Card> entry : playerActiveDeck.entrySet()) {
+            activeDeck.addCard(entry.getKey(), entry.getValue(),i);
+            i++;
         }
     }
 
-    public void loadLadang(Map<String, Pane> playerLadang) {
-        for (Map.Entry<String, Pane> entry : playerLadang.entrySet()) {
+    public void loadLadang(Map<String, Card> playerLadang) {
+        for (Map.Entry<String, Card> entry : playerLadang.entrySet()) {
             ladang.addCard(entry.getKey(), entry.getValue());
         }
     }

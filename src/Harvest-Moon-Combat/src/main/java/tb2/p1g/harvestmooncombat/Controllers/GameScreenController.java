@@ -10,6 +10,7 @@ import tb2.p1g.harvestmooncombat.Components.Draggables;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.AnchorPane;
 import tb2.p1g.harvestmooncombat.Views.ViewFactory;
+import tb2.p1g.harvestmooncombat.Components.Card;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,8 +46,8 @@ public class GameScreenController {
     private int playerTurn = 1;
     private int ladangShow = 1;
     // dan map ini bisa di bikin kelas sendiri
-    private Map<Integer, Map<String, Pane>> LadangSave = new HashMap<>(2);
-    private Map<Integer, Map<String, Pane>> ActiveDeckSave = new HashMap<>(2);
+    private Map<Integer, Map<String, Card>> LadangSave = new HashMap<>(2);
+    private Map<Integer, Map<String, Card>> ActiveDeckSave = new HashMap<>(2);
 
     @FXML
     public void initialize() {

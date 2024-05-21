@@ -234,4 +234,25 @@ public class Player {
         }
     }
 
+    public void Panen(String idx) throws Exception{
+        int index = Integer.parseInt(idx.substring(1));
+        int row = index / 5;
+        int col = index % 5;
+
+        Kartu kartu = ladang.getKartu(row, col);
+        if (kartu == null){
+            throw new Exception("Invalid move");
+        }
+        if(deckAktif.isFull()){
+            throw new Exception("Deck aktif penuh");
+        }
+
+        if(!kartu.isReadyToHarvest()){
+            throw new Exception("Belum siap panen");
+        }
+
+        KartuProduk produk = new KartuProduk(Config.mapHewanTanamanKeProduk.get(kartu.getNama()));
+        ladang.removeKartu(row, col);
+        deckAktif.setKartu(deckAktif.getLengthKartu(), produk);
+    }
 }

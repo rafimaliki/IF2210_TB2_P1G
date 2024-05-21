@@ -6,13 +6,16 @@ import java.util.ArrayList;
 
 public class GameManager {
     private boolean isRunning;
-    private int currentPlayerIdx;
+    public static int currentPlayerIdx;
+    private SeranganBeruang seranganBeruang;
+    private Thread seranganThread;
 
-    public List<Player> players = new ArrayList<Player>();
+    public static List<Player> players = new ArrayList<Player>();
 
     public GameManager() {
         this.isRunning = false;
-        this.currentPlayerIdx = 0;
+        currentPlayerIdx = 0;
+        this.seranganBeruang = null;
     }
 
     public void startGame(){
@@ -42,7 +45,18 @@ public class GameManager {
         }
     }
 
-    public void seranganBeruang(){
-        
+    public void seranganBeruang() {
+        seranganThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SeranganBeruang seranganBeruang = new SeranganBeruang();
+                seranganBeruang.generateAttackArea();
+                seranganBeruang.performAttack(players.get(currentPlayerIdx));
+            }
+        });
+
+        seranganThread.start();
     }
+
+
 }

@@ -29,6 +29,6 @@ public class CardDetailController {
     public void setCard(Card card){
         kartu = card;
         namaKartu.setText(kartu.getCardName());
-        cardSlot.getChildren().add(kartu);
+        cardSlot.getChildren().add(new Card(kartu.getCardName()));
     }
 }

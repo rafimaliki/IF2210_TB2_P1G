@@ -82,11 +82,9 @@ public class Card extends Pane {
     public Card(String cardName) {
 
         setPrefSize(70, 90);
-        Random random = new Random();
-        String randomCardName = cardNames.get(random.nextInt(cardNames.size()));
-        this.cardName = randomCardName;
-        String randomCardStyle = randomCardName + "-card";
-        String title = randomCardName.replace("_", " ");
+        this.cardName = cardName;
+        String randomCardStyle = cardName + "-card";
+        String title = cardName.replace("_", " ");
 
         getStyleClass().addAll("card", randomCardStyle);
 

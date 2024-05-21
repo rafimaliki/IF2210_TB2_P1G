@@ -12,6 +12,15 @@ public class Deck {
             this.kartu.add(null);
         }
     }
+    public  void displayInfoDeck(){
+        int i = 0;
+        for (Kartu k : kartu){
+            i++;
+            if(k != null){
+                System.out.println("Deck Aktif id ke - " + i + " berisi " + k.getNama());
+            }
+        }
+    }
 
     public void setKartu(Kartu kartu, int i){
         this.kartu.set(i, kartu);

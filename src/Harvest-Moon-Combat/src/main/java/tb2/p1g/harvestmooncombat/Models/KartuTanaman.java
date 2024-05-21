@@ -1,6 +1,8 @@
 package tb2.p1g.harvestmooncombat.Models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class KartuTanaman extends Kartu {
@@ -67,4 +69,24 @@ public class KartuTanaman extends Kartu {
         this.umur = this.umur + (itemAktif.get("ACCELERATE") * 2) - (itemAktif.get("DELAY")*  2) ;
 
     }
+
+    public List<String> getInformasi(){
+        List<String> informasi = new ArrayList<>();
+        informasi.add(this.nama);
+        int umurPanen = Config.mapUmurPanen.get(this.nama);
+        informasi.add("Umur: " + this.umur + " (" + umurPanen + ")");
+
+        String itemAktif = "Item aktif: ";
+        for (Map.Entry<String, Integer> entry : this.itemAktif.entrySet()){
+            if (entry.getValue() > 0){
+                itemAktif += entry.getKey() + " (" + entry.getValue() + ") ";
+            }
+        }
+        informasi.add(itemAktif);
+
+        return informasi;
+    }
 }
+
+
+

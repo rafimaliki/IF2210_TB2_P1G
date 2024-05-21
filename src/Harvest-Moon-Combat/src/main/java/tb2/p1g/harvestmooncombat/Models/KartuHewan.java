@@ -1,5 +1,7 @@
 package tb2.p1g.harvestmooncombat.Models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -69,5 +71,21 @@ public class KartuHewan extends Kartu {
 
     public boolean isReadyToHarvest(){
         return this.berat >= Config.mapBeratPanen.get(this.nama);
+    }
+
+    public List<String> getInformasi(){
+        List<String> informasi = new ArrayList<>();
+        informasi.add(this.nama);
+        int berat_harvest = Config.mapBeratPanen.get(this.nama);
+        informasi.add("Berat: " + this.berat + " (" + berat_harvest + ")");
+        //print map item aktif dengan format nama item (banyak item) dari item aktif
+        String itemAktif = "Item aktif: ";
+        for (Map.Entry<String, Integer> entry : this.itemAktif.entrySet()){
+            if (entry.getValue() > 0){
+                itemAktif += entry.getKey() + " (" + entry.getValue() + ") ";
+            }
+        }
+        informasi.add(itemAktif);
+        return informasi;
     }
 }

@@ -8,4 +8,5 @@ public abstract class Kartu {
     }
 
     public void setEfekItem(KartuItem item) throws Exception {}
+
 }

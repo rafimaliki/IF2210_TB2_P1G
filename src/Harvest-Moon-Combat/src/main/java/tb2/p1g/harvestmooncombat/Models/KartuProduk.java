@@ -1,5 +1,9 @@
 package tb2.p1g.harvestmooncombat.Models;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class KartuProduk extends Kartu {
     private String nama;
     private int hargaJual;
@@ -39,5 +43,14 @@ public class KartuProduk extends Kartu {
 
     public void setBeratTambah(int beratTambah){
         this.beratTambah = beratTambah;
+    }
+
+    public List<String> getInformasi(){
+        List<String> informasi = new ArrayList<>();
+        informasi.add(this.nama);
+        informasi.add("Harga Jual: " + this.hargaJual);
+        informasi.add("Berat Tambah: " + this.beratTambah);
+
+        return informasi;
     }
 }

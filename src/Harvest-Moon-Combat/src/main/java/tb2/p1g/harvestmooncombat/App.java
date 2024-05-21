@@ -22,7 +22,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        GameManager gameManager = new GameManager();
+        GameManager gameManager = GameManager.getInstance();
+        gameManager.startGame();
+
+
         System.out.println("Tes");
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/GameScreen.fxml"));
         AnchorPane root = fxmlLoader.load();

@@ -9,6 +9,7 @@ import tb2.p1g.harvestmooncombat.Components.Draggables;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.AnchorPane;
+import tb2.p1g.harvestmooncombat.Models.GameManager;
 import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 import tb2.p1g.harvestmooncombat.Components.Card;
 
@@ -72,6 +73,7 @@ public class GameScreenController {
 
     @FXML
     protected void nextTurn() {
+
         turnNumber.setText(String.valueOf(Integer.parseInt(turnNumber.getText()) + 1));
 
         ActiveDeckSave.put(playerTurn, draggables.getActiveDeck().saveCards());
@@ -96,6 +98,9 @@ public class GameScreenController {
             player1Name.setStyle("-fx-background-color: none;");
             player2Name.setStyle("-fx-background-color: #50C878;");
         }
+        GameManager.getInstance().nextTurn();
+        GameManager.getInstance().getCurrentPlayer().getLadang().displayLadang();
+        GameManager.getInstance().getCurrentPlayer().getDeckAktif().displayInfoDeck();
         shuffleDeck();
     }
 

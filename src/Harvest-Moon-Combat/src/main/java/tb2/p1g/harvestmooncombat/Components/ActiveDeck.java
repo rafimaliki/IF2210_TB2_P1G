@@ -7,7 +7,9 @@ import tb2.p1g.harvestmooncombat.Components.Card;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import tb2.p1g.harvestmooncombat.Models.DeckAktif;
+import tb2.p1g.harvestmooncombat.Models.GameManager;
 import tb2.p1g.harvestmooncombat.Models.Utility;
+import  tb2.p1g.harvestmooncombat.Models.Player;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,10 +19,8 @@ public class ActiveDeck {
 
     private final List<Pane> cards;
     private static final int numCards = 6;
-    private DeckAktif deckAktif;
 
     public ActiveDeck(GridPane activeDeckGrid) {
-        this.deckAktif = new DeckAktif();
         cards = new ArrayList<>(numCards);
         for (int i = 0; i < numCards; i++) {
             Pane pane = (Pane) activeDeckGrid.getChildren().get(i);
@@ -29,19 +29,6 @@ public class ActiveDeck {
             cards.add(pane);
         }
     }
-    public void refreshDeck() {
-        for (int i = 0; i < cards.size(); i++) {
-            Pane pane = cards.get(i);
-            if (!pane.getChildren().isEmpty() && pane.getChildren().get(0) instanceof Card) {
-                Card card = (Card) pane.getChildren().get(0);
-                deckAktif.setKartu(Utility.getKartuObject(card.getCardName()), i);
-            }else{
-                deckAktif.setKartu(null,i);
-            }
-        }
-    }
-
-
     public List<Pane> getCards() {
         return cards;
     }
@@ -62,23 +49,32 @@ public class ActiveDeck {
 
     public void addCard(String key, Card card,Integer i) {
         cards.get(Integer.parseInt(key.substring(1))).getChildren().add(card);
-        refreshDeck();
 
     }
 
-    public DeckAktif getDeckAktif() {
-        return deckAktif;
-    }
+
 
     public void addCard(Card card) {
         for (int i = 0; i < cards.size(); i++) {
             if (cards.get(i).getChildren().isEmpty()) {
                 cards.get(i).getChildren().add(card);
+                GameManager gm = GameManager.getInstance();
+                gm.getCurrentPlayer().getDeckAktif().setKartu(Utility.getKartuObject(card.getCardName()),i);
                 break;
             }
         }
-        refreshDeck();
-        deckAktif.displayInfoDeck();
+    }
+    public void refreshCards() {
+
+        clearCards();
+        DeckAktif deck_aktif = GameManager.getInstance().getCurrentPlayer().getDeckAktif();
+        for (int i = 0; i < cards.size(); i++) {
+            if (deck_aktif.getKartu(i) != null) {
+                Card card = new Card(deck_aktif.getKartu(i).getNama());
+                cards.get(i).getChildren().add(card);
+
+            }
+        }
     }
 
     public Map<String, Card> saveCards() {
@@ -90,6 +86,12 @@ public class ActiveDeck {
             }
         }
         return savedCards;
+    }
+    public Card getCardFromPane(Pane pane) {
+        if (!pane.getChildren().isEmpty() && pane.getChildren().get(0) instanceof Card) {
+            return (Card) pane.getChildren().get(0);
+        }
+        return null; // Or handle it appropriately if no Card is found
     }
 
     public void clearCards() {

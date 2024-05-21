@@ -8,6 +8,8 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
+import tb2.p1g.harvestmooncombat.Models.GameManager;
+import tb2.p1g.harvestmooncombat.Models.Player;
 import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 
 import javax.swing.text.View;
@@ -37,6 +39,7 @@ public class Draggables {
 
     public void loadActiveDeck(Map<String, Card> playerActiveDeck) {
         int i = 0;
+        System.out.println("Load Active deck");
         for (Map.Entry<String, Card> entry : playerActiveDeck.entrySet()) {
             activeDeck.addCard(entry.getKey(), entry.getValue(),i);
             i++;
@@ -44,6 +47,7 @@ public class Draggables {
     }
 
     public void loadLadang(Map<String, Card> playerLadang) {
+        System.out.println("Load Ladang");
         for (Map.Entry<String, Card> entry : playerLadang.entrySet()) {
             ladang.addCard(entry.getKey(), entry.getValue());
         }
@@ -86,41 +90,46 @@ public class Draggables {
 
                 if (node instanceof Pane sourcePane) {
 
-                    // swap card if from d to d
 
-                    if (pane.getChildren().isEmpty()){
-                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'd') {
-                        }
-                        else {
-                        pane.getChildren().add(sourcePane.getChildren().getFirst());
-                        }
-                    }
-                    else if (sourcePane.getId().charAt(0) == 'd' && pane.getId().charAt(0) == 'd' && pane.getChildren().getFirst() != sourcePane.getChildren().getFirst()){
-                        System.out.println("Swapping");
-                        Pane temp = new Pane();
-                        temp.getChildren().add(sourcePane.getChildren().getFirst());
-                        sourcePane.getChildren().clear();
-                        sourcePane.getChildren().add(pane.getChildren().getFirst());
-                        pane.getChildren().clear();
-                        pane.getChildren().add(temp.getChildren().getFirst());
-                    }
-                    else if (pane.getChildren().getFirst() != sourcePane.getChildren().getFirst()){
-                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'l') {
-                        }
-                        else {
-                            sourcePane.getChildren().clear();
-                        }
-                    }
+//                    if (pane.getChildren().isEmpty()){
+//                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'd') {
+//                        }
+//                        else {
+//                        pane.getChildren().add(sourcePane.getChildren().getFirst());
+//                        }
+//                    }
+//                    else if (sourcePane.getId().charAt(0) == 'd' && pane.getId().charAt(0) == 'd' && pane.getChildren().getFirst() != sourcePane.getChildren().getFirst()){
+//                        System.out.println("Swapping");
+//                        Pane temp = new Pane();
+//                        temp.getChildren().add(sourcePane.getChildren().getFirst());
+//                        sourcePane.getChildren().clear();
+//                        sourcePane.getChildren().add(pane.getChildren().getFirst());
+//                        pane.getChildren().clear();
+//                        pane.getChildren().add(temp.getChildren().getFirst());
+//                    }
+//                    else if (pane.getChildren().getFirst() != sourcePane.getChildren().getFirst()){
+//                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'l') {
+//                        }
+//                        else {
+//                            sourcePane.getChildren().clear();
+//                        }
+//                    }
                     System.out.println("Source: " + sourcePane.getId());
                     System.out.println("Target: " + pane.getId());
+                    try{
+                        GameManager.getInstance().getCurrentPlayer().moveKartu(sourcePane.getId(),pane.getId());
+                        activeDeck.refreshCards();
+                        ladang.refreshLadang();
+                    }catch (Exception e){
+                        System.out.println("Error!");
+
+                    }
+
                 }
             }
+
             event.setDropCompleted(true);
             event.consume();
-            activeDeck.refreshDeck();
-            ladang.refreshLadang();
-            activeDeck.getDeckAktif().displayInfoDeck();
-            ladang.getLadangLogic().displayLadang();
 
         });
 

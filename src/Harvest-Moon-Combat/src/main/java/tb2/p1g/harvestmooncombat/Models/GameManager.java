@@ -10,13 +10,25 @@ public class GameManager {
     private SeranganBeruang seranganBeruang;
     private Thread seranganThread;
 
+    private static GameManager instance;
+
     public static List<Player> players = new ArrayList<Player>();
 
-    public GameManager() {
+    private GameManager() {
         this.isRunning = false;
         currentPlayerIdx = 0;
         this.seranganBeruang = null;
     }
+    public static synchronized GameManager getInstance() {
+        if (instance == null) {
+            instance = new GameManager();
+        }
+        return instance;
+    }
+    public Player getCurrentPlayer(){
+        return players.get(currentPlayerIdx);
+    }
+
 
     public void startGame(){
         isRunning = true;
@@ -41,7 +53,7 @@ public class GameManager {
         Random random = new Random();
         int chance = random.nextInt(5);
         if (chance == 0){
-            seranganBeruang();
+//            seranganBeruang();
         }
     }
 

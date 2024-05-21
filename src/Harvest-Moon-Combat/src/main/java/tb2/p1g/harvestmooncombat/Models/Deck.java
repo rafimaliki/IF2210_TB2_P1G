@@ -47,4 +47,9 @@ public class Deck {
     public void setKartu(int index, Kartu kartu){
         this.kartu.set(index, kartu);
     }
+
+    public void tambahKartu(Kartu card){
+        int panjang = getLengthKartu();
+        setKartu(panjang, card);
+    }
 }

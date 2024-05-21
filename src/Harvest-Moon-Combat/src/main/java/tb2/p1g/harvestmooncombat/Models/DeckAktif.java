@@ -12,4 +12,8 @@ public class DeckAktif extends Deck {
     public boolean isFull(){
         return super.getLengthKartu() == 6;
     }
+
+    public void tambahKartu(Kartu kartu){
+        super.tambahKartu(kartu);
+    }
 }

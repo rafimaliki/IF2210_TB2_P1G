@@ -4,9 +4,18 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import tb2.p1g.harvestmooncombat.Controllers.GameScreenController;
 
 import java.io.IOException;
 //import java.util.Objects;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+
+
 
 public class App extends Application {
     @Override
@@ -19,6 +28,9 @@ public class App extends Application {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
+
+        GameScreenController controller = fxmlLoader.getController(); // Change 'loader' to 'fxmlLoader'
+        controller.setPrimaryStage(stage); // Change 'primaryStage' to 'stage'
     }
 
     public static void main(String[] args) {

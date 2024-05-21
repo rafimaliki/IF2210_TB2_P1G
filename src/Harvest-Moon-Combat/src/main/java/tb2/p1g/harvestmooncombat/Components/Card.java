@@ -39,11 +39,52 @@ public class Card extends Pane {
         add("strawberry_seeds");
     }};
 
+    private String cardName;
+
     public Card() {
 
         setPrefSize(70, 90);
         Random random = new Random();
         String randomCardName = cardNames.get(random.nextInt(cardNames.size()));
+        this.cardName = randomCardName;
+        String randomCardStyle = randomCardName + "-card";
+        String title = randomCardName.replace("_", " ");
+
+        getStyleClass().addAll("card", randomCardStyle);
+
+        if (title.length() < 12){
+            Label cardLabel = new Label(title);
+            cardLabel.getStyleClass().add("card-label");
+
+            StackPane stackPane = new StackPane(cardLabel);
+
+            stackPane.setAlignment(Pos.BOTTOM_CENTER);
+            stackPane.setPrefSize(70, 90);
+            stackPane.setPadding(new Insets(0, 0, 7, 0));
+
+            getChildren().add(stackPane);
+        } else {
+            Label cardLabel1 = new Label(title.split(" ")[0]);
+            cardLabel1.getStyleClass().add("card-label");
+
+            Label cardLabel2 = new Label(title.split(" ")[1]);
+            cardLabel2.getStyleClass().add("card-label");
+
+            VBox vbox = new VBox(cardLabel1, cardLabel2);
+
+            vbox.setAlignment(Pos.BOTTOM_CENTER);
+            vbox.setPrefSize(70, 90);
+
+            getChildren().add(vbox);
+        }
+    }
+
+    public Card(String cardName) {
+
+        setPrefSize(70, 90);
+        Random random = new Random();
+        String randomCardName = cardNames.get(random.nextInt(cardNames.size()));
+        this.cardName = randomCardName;
         String randomCardStyle = randomCardName + "-card";
         String title = randomCardName.replace("_", " ");
 
@@ -82,5 +123,9 @@ public class Card extends Pane {
 
     public int keyToIndex(String key){
         return Integer.parseInt(key.substring(1));
+    }
+
+    public String getCardName() {
+        return cardName;
     }
 }

@@ -4,9 +4,14 @@ module tb2.p1g.harvestmooncombat {
 
     requires com.dlsc.formsfx;
     requires java.desktop;
+    requires java.sql;
 
     opens tb2.p1g.harvestmooncombat to javafx.fxml;
     exports tb2.p1g.harvestmooncombat;
     exports tb2.p1g.harvestmooncombat.Controllers;
     opens tb2.p1g.harvestmooncombat.Controllers to javafx.fxml;
+    exports tb2.p1g.harvestmooncombat.Views;
+    opens tb2.p1g.harvestmooncombat.Views to javafx.fxml;
+    exports tb2.p1g.harvestmooncombat.Components;
+    opens tb2.p1g.harvestmooncombat.Components to javafx.fxml;
 }

@@ -8,10 +8,15 @@ import javafx.scene.control.Label;
 import tb2.p1g.harvestmooncombat.Components.Draggables;
 
 import javafx.scene.layout.Pane;
+import tb2.p1g.harvestmooncombat.Views.ViewFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
+
+import javafx.stage.Stage;
+
 
 public class GameScreenController {
 
@@ -19,6 +24,12 @@ public class GameScreenController {
     @FXML private GridPane ladangGrid;
     @FXML private Label turnNumber, player1Name, player2Name;
     @FXML private Button ladangKuButton, ladangLawanButton;
+
+    private Stage primaryStage;
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
 
     private Draggables draggables;
 
@@ -41,11 +52,15 @@ public class GameScreenController {
         // set bg color for Ladanku
         ladangKuButton.setStyle("-fx-background-color: #50C878;");
         player1Name.setStyle("-fx-background-color: #50C878;");
+
+        shuffleDeck();
     }
 
     @FXML
     protected void shuffleDeck() {
-        draggables.getActiveDeck().shuffle();
+//        draggables.getActiveDeck().shuffle();
+        System.out.println("Open shuffle screen");
+        ViewFactory.ShowShuffleScreen(this.primaryStage, draggables.getActiveDeck());
     }
 
     @FXML
@@ -74,6 +89,8 @@ public class GameScreenController {
             player1Name.setStyle("-fx-background-color: none;");
             player2Name.setStyle("-fx-background-color: #50C878;");
         }
+
+        shuffleDeck();
     }
 
     @FXML

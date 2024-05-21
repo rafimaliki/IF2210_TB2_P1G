@@ -30,12 +30,31 @@ public class ActiveDeck {
         return cards;
     }
 
+    public Integer countCard(){
+        Integer count = 0;
+        for (int i = 0; i < cards.size(); i++) {
+            if (!cards.get(i).getChildren().isEmpty()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public Pane getCard(String key){
         return cards.get(Integer.parseInt(key.substring(1)));
     }
 
     public void addCard(String key, Pane card) {
         cards.get(Integer.parseInt(key.substring(1))).getChildren().add(card);
+    }
+
+    public void addCard(Pane card) {
+        for (int i = 0; i < cards.size(); i++) {
+            if (cards.get(i).getChildren().isEmpty()) {
+                cards.get(i).getChildren().add(card);
+                break;
+            }
+        }
     }
 
     public Map<String, Pane> saveCards() {

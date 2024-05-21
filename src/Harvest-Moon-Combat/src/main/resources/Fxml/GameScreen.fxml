@@ -206,14 +206,13 @@
             </children>
         </AnchorPane>
         <Button alignment="CENTER" contentDisplay="CENTER" layoutX="470.0" layoutY="30.0" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#nextTurn" prefHeight="30.0" prefWidth="90.0" text="Next" />
-        <AnchorPane layoutX="488.0" layoutY="488.0" prefHeight="49.0" prefWidth="90.0" style="-fx-border-style: solid; -fx-border-width: 1; -fx-background-color: white;">
+        <AnchorPane layoutX="487.0" layoutY="507.0" prefHeight="49.0" prefWidth="90.0" style="-fx-border-style: solid; -fx-border-width: 1; -fx-background-color: white;">
             <children>
                 <Label layoutX="33.0" layoutY="7.0" text="Deck" />
                 <Label layoutX="46.0" layoutY="25.0" text="/40" />
                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="16.0" layoutY="25.0" prefHeight="17.0" prefWidth="27.0" text="12" />
             </children>
         </AnchorPane>
-        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="488.0" layoutY="548.0" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#shuffleDeck" prefHeight="30.0" prefWidth="90.0" text="Shuffle" />
         <AnchorPane layoutX="21.0" layoutY="15.0" prefHeight="62.0" prefWidth="171.0" styleClass="wood" stylesheets="@../Styles/Wood.css">
             <children>
                 <Label fx:id="player1Name" layoutX="19.0" layoutY="12.0" text="Player 1" textFill="WHITE">

@@ -9,7 +9,7 @@
 <AnchorPane prefHeight="277.0" prefWidth="453.0" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tb2.p1g.harvestmooncombat.Controllers.CardDetailController">
     <children>
         <Button layoutX="29.0" layoutY="24.0" maxWidth="112.0" minWidth="22.0" mnemonicParsing="false" onAction="#closeButton" prefHeight="21.0" prefWidth="70.0" text="KEMBALI" />
-          <Pane layoutX="354.0" layoutY="94.0" prefHeight="200.0" prefWidth="200.0" styleClass="card-slot" stylesheets="@../Styles/Cards.css" />
+          <Pane fx:id="cardSlot" layoutX="354.0" layoutY="94.0" prefHeight="200.0" prefWidth="200.0" styleClass="card-slot" stylesheets="@../Styles/Cards.css" />
       <Button layoutX="192.0" layoutY="229.0" maxWidth="112.0" minWidth="22.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="70.0" text="PANEN" />
       <Label fx:id="namaKartu" alignment="CENTER" contentDisplay="CENTER" layoutX="170.0" layoutY="23.0" text="NAMA KARTU" textAlignment="CENTER">
          <font>

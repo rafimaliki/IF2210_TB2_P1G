@@ -5,12 +5,14 @@ import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import tb2.p1g.harvestmooncombat.Components.Card;
 
 
 public class CardDetailController {
 
     @FXML Label namaKartu;
+    @FXML Pane cardSlot;
     Card kartu;
 
     @FXML
@@ -27,5 +29,6 @@ public class CardDetailController {
     public void setCard(Card card){
         kartu = card;
         namaKartu.setText(kartu.getCardName());
+        cardSlot.getChildren().add(kartu);
     }
 }

@@ -56,168 +56,168 @@
 }
 
 
-.bear-card {
+.BERUANG-card {
     -fx-background-image: url('../Images/Hewan/bear.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.chicken-card {
+.AYAM-card {
     -fx-background-image: url('../Images/Hewan/chicken.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.hiu_darat-card {
+.HIU_DARAT-card {
     -fx-background-image: url('../Images/Hewan/hiu_darat.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.horse-card {
+.KUDA-card {
     -fx-background-image: url('../Images/Hewan/horse.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.sheep-card {
+.DOMBA-card {
     -fx-background-image: url('../Images/Hewan/sheep.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.cow-card {
+.SAPI-card {
     -fx-background-image: url('../Images/Hewan/cow.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.accelerate-card {
+.ACCELERATE-card {
     -fx-background-image: url('../Images/Item/Accelerate.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.bear_trap-card {
+.TRAP-card {
     -fx-background-image: url('../Images/Item/bear_trap.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.delay-card {
+.DELAY-card {
     -fx-background-image: url('../Images/Item/Delay.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.destroy-card {
+.DESTROY-card {
     -fx-background-image: url('../Images/Item/Destroy.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.instant_harvest-card {
+.INSTANT_HARVEST-card {
     -fx-background-image: url('../Images/Item/Instant_Harvest.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.protect-card {
+.PROTECT-card {
     -fx-background-image: url('../Images/Item/Protect.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.corn-card {
+.JAGUNG-card {
     -fx-background-image: url('../Images/Produk/corn.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.daging_beruang-card {
+.DAGING_BERUANG-card {
     -fx-background-image: url('../Images/Produk/Daging_Beruang.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.daging_domba-card {
+.DAGING_DOMBA-card {
     -fx-background-image: url('../Images/Produk/Daging_Domba.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.daging_kuda-card {
+.DAGING_KUDA-card {
     -fx-background-image: url('../Images/Produk/Daging_Kuda.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.pumpkin-card {
+.LABU-card {
     -fx-background-image: url('../Images/Produk/pumpkin.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.shark_fin-card {
+.SIRIP_HIU-card {
     -fx-background-image: url('../Images/Produk/shark-fin.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.strawberry-card {
+.STROBERI-card {
     -fx-background-image: url('../Images/Produk/strawberry.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.susu-card {
+.SUSU-card {
     -fx-background-image: url('../Images/Produk/susu.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.telur-card {
+.TELUR-card {
     -fx-background-image: url('../Images/Produk/telur.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.corn_seeds-card {
+.BIJI_JAGUNG-card {
     -fx-background-image: url('../Images/Tanaman/corn_seeds.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.pumpkin_seeds-card {
+.BIJI_LABU-card {
     -fx-background-image: url('../Images/Tanaman/pumpkin_seeds.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-.strawberry_seeds-card {
+.BIJI_STROBERI-card {
     -fx-background-image: url('../Images/Tanaman/strawberry_seeds.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;

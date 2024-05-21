@@ -48,7 +48,7 @@ public class Draggables {
         pane.setOnDragDetected(event -> {
             if (!pane.getChildren().isEmpty()) {
 
-                System.out.println("Source: " + pane.getId());
+//                System.out.println("Source: " + pane.getId());
                 Dragboard db = pane.startDragAndDrop(TransferMode.ANY);
                 ClipboardContent content = new ClipboardContent();
 
@@ -86,11 +86,18 @@ public class Draggables {
                     else if (pane.getChildren().getFirst() != sourcePane.getChildren().getFirst()){
                         sourcePane.getChildren().clear();
                     }
+                    System.out.println("Source: " + sourcePane.getId());
                     System.out.println("Target: " + pane.getId());
                 }
             }
             event.setDropCompleted(true);
             event.consume();
+        });
+
+        pane.setOnMouseClicked(event -> {
+            if (!pane.getChildren().isEmpty()) {
+                System.out.println("Clicked: " + pane.getId());
+            }
         });
     }
 }

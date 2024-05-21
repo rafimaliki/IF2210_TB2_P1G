@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Deck {
-    private List<Kartu> kartu;
+    protected List<Kartu> kartu;
 
     public Deck(int n){
         this.kartu = new ArrayList<>(n);

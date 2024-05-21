@@ -88,6 +88,8 @@ public class Draggables {
                     }
                     System.out.println("Source: " + sourcePane.getId());
                     System.out.println("Target: " + pane.getId());
+
+
                 }
             }
             event.setDropCompleted(true);

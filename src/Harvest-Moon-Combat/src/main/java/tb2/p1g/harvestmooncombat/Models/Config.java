@@ -91,6 +91,18 @@ public class Config {
         put("BIJI_STROBERI", UMUR_PANEN_STROBERI);
     }};
 
+    final static Map<String, String> mapHewanTanamanKeProduk = new HashMap<>(){{
+        put("HIU_DARAT", "SIRIP_HIU");
+        put("SAPI", "SUSU");
+        put("DOMBA", "DAGING_DOMBA");
+        put("KUDA", "DAGING_KUDA");
+        put("AYAM", "TELUR");
+        put("BERUANG", "DAGING_BERUANG");
+        put("BIJI_JAGUNG", "JAGUNG");
+        put("BIJI_LABU", "LABU");
+        put("BIJI_STROBERI", "STROBERI");
+    }};
+
     // map produk String (nama) -> List<Integer (harga), Integer (berat_tambah)>
     final static Map<String, List<Integer>> mapProduk = new HashMap<>(){{
         put("SIRIP_HIU", Arrays.asList(HARGA_SIRIP_HIU, BERAT_TAMBAH_SIRIP_HIU));

@@ -16,6 +16,7 @@ public class KartuTanaman extends Kartu {
             put("ACCELERATE", 0);
             put("DELAY", 0);
             put("PROTECT", 0);
+            put("TRAP", 0);
         }};
     }
 
@@ -43,14 +44,21 @@ public class KartuTanaman extends Kartu {
         return this.umur >= Config.mapUmurPanen.get(this.nama);
     }
 
-    public void setItemAktif(KartuItem kartuItem) throws Exception {
+    public void setEfekItem(KartuItem kartuItem) throws Exception {
         String namaItem = kartuItem.getNama();
 
-        if ((!namaItem.equals("ACCELERATE")) && (!namaItem.equals("DELAY")) && (!namaItem.equals("PROTECT"))){
-            throw new Exception("Item tidak valid");
+        if ((namaItem.equals("ACCELERATE")) || (namaItem.equals("DELAY")) || (namaItem.equals("PROTECT")) || (namaItem.equals("TRAP"))){
+            this.itemAktif.put(kartuItem.getNama(), this.itemAktif.get(kartuItem.getNama()) + 1);
         }
 
-        this.itemAktif.put(kartuItem.getNama(), this.itemAktif.get(kartuItem.getNama()) + 1);
+        if (namaItem.equals("ACCELERATE")){
+            this.umur += 2;
+        } else if (namaItem.equals("DELAY")){
+            this.umur -= 2;
+            if (this.umur < 0){
+                this.umur = 0;
+            }
+        }
     }
 
     public void grow(){

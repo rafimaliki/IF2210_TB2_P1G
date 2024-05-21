@@ -18,6 +18,7 @@ public class KartuHewan extends Kartu {
             put("ACCELERATE", 0);
             put("DELAY", 0);
             put("PROTECT", 0);
+            put("TRAP", 0);
         }};
     }
 
@@ -45,14 +46,21 @@ public class KartuHewan extends Kartu {
         this.berat = berat;
     }
 
-    public void setItemAktif(KartuItem kartuItem) throws Exception {
+    public void setEfekItem(KartuItem kartuItem) throws Exception {
         String namaItem = kartuItem.getNama();
 
-        if ((!namaItem.equals("ACCELERATE")) && (!namaItem.equals("DELAY")) && (!namaItem.equals("PROTECT"))){
-            throw new Exception("Item tidak valid");
+        if ((namaItem.equals("ACCELERATE")) || (namaItem.equals("DELAY")) || (namaItem.equals("PROTECT")) || (namaItem.equals("TRAP"))){
+            this.itemAktif.put(kartuItem.getNama(), this.itemAktif.get(kartuItem.getNama()) + 1);
         }
 
-        this.itemAktif.put(kartuItem.getNama(), this.itemAktif.get(kartuItem.getNama()) + 1);
+        if (namaItem.equals("ACCELERATE")){
+            this.berat += 5;
+        } else if (namaItem.equals("DELAY")){
+            this.berat -= 5;
+            if (this.berat < 0){
+                this.berat = 0;
+            }
+        }
     }
 
     public boolean isReadyToHarvest(){

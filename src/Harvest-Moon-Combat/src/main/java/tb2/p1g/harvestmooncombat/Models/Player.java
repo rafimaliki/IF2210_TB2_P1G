@@ -165,8 +165,16 @@ public class Player {
 
                 // Jika tujuan kartu tanaman atau hewan
                 else {
-                    Kartu temp = ladang.getKartu(rowDest, colDest);
-                    temp.setItemAktif((KartuItem) kartu);
+                    Kartu kartuTujuan = ladang.getKartu(rowDest, colDest);
+                    String namaTujuan = kartuTujuan.getNama();
+
+                    if (kartu.getNama().equals("INSTANT_HARVEST")){
+                        KartuProduk produk = new KartuProduk(Config.mapHewanTanamanKeProduk.get(namaTujuan));
+                        ladang.removeKartu(rowDest, colDest);
+                        ladang.addKartu(produk, rowDest, colDest);
+                    }
+
+                    kartuTujuan.setEfekItem((KartuItem) kartu);
                 }
             } else {
                 ladang.addKartu(kartu, rowDest, colDest);

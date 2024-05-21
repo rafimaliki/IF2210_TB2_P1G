@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import tb2.p1g.harvestmooncombat.Controllers.GameScreenController;
+import tb2.p1g.harvestmooncombat.Models.GameManager;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -21,6 +22,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        GameManager gameManager = new GameManager();
+        System.out.println("Tes");
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/GameScreen.fxml"));
         AnchorPane root = fxmlLoader.load();
         Scene scene = new Scene(root, 600, 600);

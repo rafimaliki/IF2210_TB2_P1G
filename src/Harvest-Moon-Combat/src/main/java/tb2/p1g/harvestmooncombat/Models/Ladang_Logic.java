@@ -17,6 +17,10 @@ public class Ladang_Logic {
             ladang.add(content);
         }
     }
+    public void setLadang(Kartu k,int i,int j){
+        this.ladang.get(i).set(j,k);
+    }
+
 
     public void displayLadang(){
         for (int i = 0; i < 4; i++) {

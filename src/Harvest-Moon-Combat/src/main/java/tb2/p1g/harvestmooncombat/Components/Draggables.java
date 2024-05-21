@@ -118,7 +118,10 @@ public class Draggables {
             event.setDropCompleted(true);
             event.consume();
             activeDeck.refreshDeck();
+            ladang.refreshLadang();
             activeDeck.getDeckAktif().displayInfoDeck();
+            ladang.getLadangLogic().displayLadang();
+
         });
 
         pane.setOnMouseClicked(event -> {

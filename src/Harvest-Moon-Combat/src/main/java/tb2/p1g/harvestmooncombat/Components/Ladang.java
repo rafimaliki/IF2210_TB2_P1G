@@ -37,6 +37,19 @@ public class Ladang {
             cards.add(pane);
         }
     }
+    public void refreshLadang() {
+        for (int i = 0; i < numCards; i++) {
+            Pane pane = cards.get(i);
+            int row = i / numCols;
+            int col = i % numCols;
+            if (!pane.getChildren().isEmpty() && pane.getChildren().get(0) instanceof Card) {
+                Card card = (Card) pane.getChildren().get(0);
+                ladang.setLadang(Utility.getKartuObject(card.getCardName()), row, col);
+            } else {
+                ladang.setLadang(null, row, col);
+            }
+        }
+    }
 
     public List<Pane> getCards() {
         return cards;
@@ -47,6 +60,9 @@ public class Ladang {
         String card_name = card.getCardName();
         ladang.addKartu(Utility.getKartuObject(card_name), Integer.parseInt(key.substring(1)) / numCols, Integer.parseInt(key.substring(1)) % numCols);
         ladang.displayLadang();
+    }
+    public  Ladang_Logic getLadangLogic(){
+        return ladang;
     }
 
     public Pane getCard(String key){

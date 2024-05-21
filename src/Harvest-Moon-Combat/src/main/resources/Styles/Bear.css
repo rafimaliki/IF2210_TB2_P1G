@@ -1,5 +1,11 @@
-.bear-card {
+.bear {
     -fx-background-image: url('../Images/Hewan/bear.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+.angrybear {
+    -fx-background-image: url('../Images/Hewan/bearangry.png');
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
 }

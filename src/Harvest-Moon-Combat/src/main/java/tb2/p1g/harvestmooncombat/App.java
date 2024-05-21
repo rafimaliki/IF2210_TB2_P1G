@@ -18,6 +18,9 @@ import javafx.stage.Stage;
 
 
 public class App extends Application {
+
+    public static Stage PrimaryStage;
+
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -28,6 +31,7 @@ public class App extends Application {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
+        this.PrimaryStage = stage;
 
         GameScreenController controller = fxmlLoader.getController(); // Change 'loader' to 'fxmlLoader'
         controller.setPrimaryStage(stage); // Change 'primaryStage' to 'stage'

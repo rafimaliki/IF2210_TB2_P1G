@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -17,9 +16,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tb2.p1g.harvestmooncombat.Controllers.GameScreenController">
     <children>
-      <ImageView fitHeight="607.0" fitWidth="609.0" layoutX="-3.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="624.0" fitWidth="625.0" layoutX="-9.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/Other/Background1.jpeg" />
+            <Image url="@../Images/Other/Background3.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="600.0" fitWidth="600.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/Other/Layout.png" />
          </image>
       </ImageView>
         <GridPane fx:id="ladangGrid" alignment="CENTER" hgap="5.0" layoutX="21.0" layoutY="93.0" prefHeight="360.0" prefWidth="350.0" vgap="5.0">
@@ -72,7 +76,8 @@
                 <Pane prefHeight="200.0" prefWidth="200.0" styleClass="card_slot" stylesheets="@../Styles/Cards.css" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Pane>
+               </cursor>
+            </Pane>
                 <Pane prefHeight="200.0" prefWidth="200.0" styleClass="card_slot" stylesheets="@../Styles/Cards.css" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -161,7 +166,7 @@
                </cursor></Pane>
             </children>
         </GridPane>
-        <VBox alignment="CENTER" layoutX="452.0" layoutY="93.0" prefHeight="360.0" prefWidth="125.0" styleClass="wood">
+        <VBox alignment="CENTER" layoutX="452.0" layoutY="93.0" prefHeight="360.0" prefWidth="125.0" stylesheets="@../Styles/Wood.css">
             <children>
                 <Button fx:id="ladangKuButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#loadLadangKu" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Ladangku">
                     <VBox.margin>
@@ -194,10 +199,6 @@
                     </VBox.margin>
                 </Button>
             </children>
-         <stylesheets>
-            <URL value="@../Styles/Wood.css" />
-            <URL value="@../Styles/Wood.css" />
-         </stylesheets>
         </VBox>
         <AnchorPane layoutX="328.0" layoutY="15.0" prefHeight="60.0" prefWidth="60.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-radius: 30; -fx-background-color: white; -fx-background-radius: 30;">
             <children>
@@ -213,7 +214,7 @@
                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="16.0" layoutY="25.0" prefHeight="17.0" prefWidth="27.0" text="12" />
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="21.0" layoutY="15.0" prefHeight="62.0" prefWidth="171.0" styleClass="wood" stylesheets="@../Styles/Wood.css">
+        <AnchorPane layoutX="21.0" layoutY="15.0" prefHeight="62.0" prefWidth="171.0" stylesheets="@../Styles/Wood.css">
             <children>
                 <Label fx:id="player1Name" layoutX="19.0" layoutY="12.0" text="Player 1" textFill="WHITE">
                <font>
@@ -237,5 +238,6 @@
             </ImageView>
             </children>
         </AnchorPane>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="210.0" layoutY="30.0" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#toggleGridView" prefHeight="30.0" prefWidth="90.0" text="Toggle" />
     </children>
 </AnchorPane>

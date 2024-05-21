@@ -8,6 +8,9 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
+import tb2.p1g.harvestmooncombat.Views.ViewFactory;
+
+import javax.swing.text.View;
 import java.util.Map;
 
 
@@ -119,7 +122,9 @@ public class Draggables {
         pane.setOnMouseClicked(event -> {
             if (!pane.getChildren().isEmpty()) {
                 System.out.println("Clicked: " + pane.getId());
+                ViewFactory.ShowCardDetail((Card) pane.getChildren().getFirst());
             }
+
         });
     }
 }

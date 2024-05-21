@@ -2,3 +2,7 @@
     -fx-background-image: url('../Images/Other/Wood.jpg');
     -fx-background-size: cover;
 }
+
+.wood1 {
+    -fx-background-image: url('../Images/Other/WoodPanel.png');
+}

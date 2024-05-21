@@ -124,4 +124,17 @@ public class GameScreenController {
         ladangLawanButton.setStyle("-fx-background-color: #eee6e6;");
     }
 
+    @FXML
+    protected void toggleGridView() {
+        if (activeDeckGrid.isVisible()) {
+            activeDeckGrid.setVisible(false);
+            ladangGrid.setVisible(false);
+        } else {
+            activeDeckGrid.setVisible(true);
+            ladangGrid.setVisible(true);
+        }
+    }
+
+
+
 }

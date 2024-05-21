@@ -21,7 +21,7 @@ public class ActiveDeck {
         for (int i = 0; i < numCards; i++) {
             Pane pane = (Pane) activeDeckGrid.getChildren().get(i);
             pane.setId("d" + i);
-            pane.getStyleClass().addAll("card-slot");
+//            pane.getStyleClass().addAll("card-slot");
             cards.add(pane);
         }
     }

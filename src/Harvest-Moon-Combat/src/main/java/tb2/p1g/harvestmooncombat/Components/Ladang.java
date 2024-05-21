@@ -28,7 +28,7 @@ public class Ladang {
         for (int idx = 0; idx < numCards; idx++) {
             Pane pane = (Pane) ladangGrid.getChildren().get(idx);
             pane.setId("l" + idx);
-            pane.getStyleClass().addAll("card-slot");
+//            pane.getStyleClass().addAll("card-slot");
             cards.add(pane);
         }
     }

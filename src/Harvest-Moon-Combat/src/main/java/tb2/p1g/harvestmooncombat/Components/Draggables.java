@@ -53,7 +53,7 @@ public class Draggables {
         pane.setOnDragDetected(event -> {
             if (!pane.getChildren().isEmpty()) {
 
-//                System.out.println("Source: " + pane.getId());
+//              System.out.println("Source: " + pane.getId());
                 Dragboard db = pane.startDragAndDrop(TransferMode.ANY);
                 ClipboardContent content = new ClipboardContent();
 
@@ -117,6 +117,8 @@ public class Draggables {
             }
             event.setDropCompleted(true);
             event.consume();
+            activeDeck.refreshDeck();
+            activeDeck.getDeckAktif().displayInfoDeck();
         });
 
         pane.setOnMouseClicked(event -> {

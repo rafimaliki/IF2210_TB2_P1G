@@ -34,6 +34,46 @@ public class Config {
     final static int BERAT_TAMBAH_LABU = 10;
     final static int BERAT_TAMBAH_STROBERI = 5;
 
+    // list kartu hewan yang ada pada permainan
+    final static List<String> listKartuHewan = new ArrayList<>(){{
+        add("HIU_DARAT");
+        add("SAPI");
+        add("DOMBA");
+        add("KUDA");
+        add("AYAM");
+        add("BERUANG");
+    }};
+
+    // list kartu tanaman yang ada pada permainan
+    final static List<String> listKartuTanaman = new ArrayList<>(){{
+        add("BIJI_JAGUNG");
+        add("BIJI_LABU");
+        add("BIJI_STROBERI");
+    }};
+
+    // list kartu produk yang ada pada permainan
+    final static List<String> listKartuProduk = new ArrayList<>(){{
+        add("LABU");
+        add("JAGUNG");
+        add("STROBERI");
+        add("SUSU");
+        add("TELUR");
+        add("SIRIP_HIU");
+        add("DAGING_KUDA");
+        add("DAGING_DOMBA");
+        add("DAGING_BERUANG");
+    }};
+
+    // list kartu item yang ada pada permainan
+    final static List<String> listKartuItem = new ArrayList<>(){{
+        add("ACCELERATE");
+        add("DELAY");
+        add("INSTANT_HARVEST");
+        add("DESTROY");
+        add("PROTECT");
+        add("TRAP");
+    }};
+
     // map berat panen hewan String (nama) -> Integer (berat)
     final static Map<String, Integer> mapBeratPanen = new HashMap<>(){{
         put("HIU_DARAT", BERAT_PANEN_HIU_DARAT);
@@ -46,9 +86,21 @@ public class Config {
 
     // map umur panen tanaman String (nama) -> Integer (umur)
     final static Map<String, Integer> mapUmurPanen = new HashMap<>(){{
-        put("JAGUNG", UMUR_PANEN_JAGUNG);
-        put("LABU", UMUR_PANEN_LABU);
-        put("STROBERI", UMUR_PANEN_STROBERI);
+        put("BIJI_JAGUNG", UMUR_PANEN_JAGUNG);
+        put("BIJI_LABU", UMUR_PANEN_LABU);
+        put("BIJI_STROBERI", UMUR_PANEN_STROBERI);
+    }};
+
+    final static Map<String, String> mapHewanTanamanKeProduk = new HashMap<>(){{
+        put("HIU_DARAT", "SIRIP_HIU");
+        put("SAPI", "SUSU");
+        put("DOMBA", "DAGING_DOMBA");
+        put("KUDA", "DAGING_KUDA");
+        put("AYAM", "TELUR");
+        put("BERUANG", "DAGING_BERUANG");
+        put("BIJI_JAGUNG", "JAGUNG");
+        put("BIJI_LABU", "LABU");
+        put("BIJI_STROBERI", "STROBERI");
     }};
 
     // map produk String (nama) -> List<Integer (harga), Integer (berat_tambah)>
@@ -65,7 +117,7 @@ public class Config {
     }};
 
     // map tipe hewan String (nama) -> String (tipe)
-    final static Map<String, String> mapAnimalType = new HashMap<>(){{
+    final static Map<String, String> mapTipeHewan = new HashMap<>(){{
         put("HIU_DARAT", "CARNIVORE");
         put("SAPI", "HERBIVORE");
         put("DOMBA", "HERBIVORE");
@@ -73,6 +125,12 @@ public class Config {
         put("AYAM", "HERBIVORE");
         put("BERUANG", "HERBIVORE");
     }};
-
-
+    final static Map<String, String> mapTipeKartu = new HashMap<>(){{
+        put("ACCELERATE", "ACCELERATE");
+        put("DELAY", "DELAY");
+        put("INSTANT_HARVEST", "INSTANT_HARVEST");
+        put("DESTROY", "DESTROY");
+        put("PROTECT", "PROTECT");
+        put("TRAP", "TRAP");
+    }};
 }

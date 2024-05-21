@@ -36,14 +36,14 @@ public class Ladang {
         ladang.get(row).set(col, null);
     }
 
-    public void moveKartuDiLadang(int idxInit, int idxDest){
-        int rowInit = idxInit / this.ladang.size();
-        int colInit = idxInit % this.ladang.size();
-        int rowDest = idxInit / this.ladang.size();
-        int colDest = idxInit % this.ladang.size();
-
-        Kartu temp = ladang.get(rowInit).get(colInit);
-        ladang.get(rowDest).set(colDest, temp);
-        ladang.get(rowInit).set(colInit, null);
-    }
+//    public void moveKartuDiLadang(int idxInit, int idxDest){
+//        int rowInit = idxInit / this.ladang.size();
+//        int colInit = idxInit % this.ladang.size();
+//        int rowDest = idxInit / this.ladang.size();
+//        int colDest = idxInit % this.ladang.size();
+//
+//        Kartu temp = ladang.get(rowInit).get(colInit);
+//        ladang.get(rowDest).set(colDest, temp);
+//        ladang.get(rowInit).set(colInit, null);
+//    }
 }

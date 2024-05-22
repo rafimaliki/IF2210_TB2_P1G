@@ -74,6 +74,10 @@ public class GameScreenController {
     @FXML
     protected void nextTurn() {
         GameManager gm = GameManager.getInstance();
+        if(gm.isBearAttackInProgress()){
+            System.out.println("Bear is attacking, cannot end turn");
+            return;
+        }
 
         turnNumber.setText(String.valueOf(Integer.parseInt(turnNumber.getText()) + 1));
 

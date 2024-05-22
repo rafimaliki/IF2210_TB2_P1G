@@ -59,16 +59,17 @@ public class GameManager {
     }
 
     public void seranganBeruang() {
-        seranganThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                SeranganBeruang seranganBeruang = new SeranganBeruang();
-                seranganBeruang.generateAttackArea();
-                seranganBeruang.performAttack(players.get(currentPlayerIdx));
-            }
-        });
-
+        seranganBeruang = new SeranganBeruang(); // Membuat instans SeranganBeruang
+        seranganThread = new Thread(seranganBeruang);
         seranganThread.start();
+    }
+
+    public boolean isBearAttackInProgress() {
+        if (seranganBeruang != null) {
+            return seranganBeruang.isBearAttack();
+        }
+        System.out.println("Bear attack is not in progress");
+        return false;
     }
 
 

@@ -1,5 +1,6 @@
 package tb2.p1g.harvestmooncombat.Models;
 
+import java.sql.SQLOutput;
 import java.util.Random;
 
 
@@ -11,18 +12,22 @@ public class SeranganBeruang implements Runnable {
     private int startCol;
     private int endRow;
     private int endCol;
+    private volatile boolean bearAttack = false;
 
 
 
     public SeranganBeruang() {
+        generateAttackArea();
         Random random = new Random();
-        countdown = random.nextInt(30,61); // Menghasilkan angka antara 30 hingga 60 deti
+        countdown = random.nextInt(10,15); // Menghasilkan angka antara 30 hingga 60 deti
     }
 
     @Override
     public void run() {
+        bearAttack = true;
         while (countdown > 0) {
             System.out.println("Countdown: " + countdown);
+            System.out.println(bearAttack);
             countdown--;
             try {
                 Thread.sleep(1000); // Tidur selama 1 detik
@@ -30,8 +35,9 @@ public class SeranganBeruang implements Runnable {
                 e.printStackTrace();
             }
         }
-        Player player = GameManager.players.get(GameManager.currentPlayerIdx);
+        Player player = GameManager.getInstance().getCurrentPlayer();
         performAttack(player);
+        bearAttack = false;
     }
 
     public void performAttack(Player player) {
@@ -48,9 +54,11 @@ public class SeranganBeruang implements Runnable {
             for (int j = startCol; j <= endCol; j++) {
 
                 if (ladangPlayer.getKartu(i, j) != null) {
+                    System.out.println("Serangan beruang menghancurkan kartu " + ladangPlayer.getKartu(i, j).getNama() + " di posisi " + i + ", " + j);
                     ladangPlayer.getLadang().get(i).set(j, null);
                     ladangPlayer.displayLadang();
                 }
+                System.out.println("null" + i + " " + j);
             }
         }
 
@@ -89,6 +97,8 @@ public class SeranganBeruang implements Runnable {
 
         endRow = startRow + attackRows - 1;
         endCol = startCol + attackCols - 1;
+
+        System.out.println("Bear attack area: " + startRow + ", " + startCol + " to " + endRow + ", " + endCol);
     }
 
     public int getEndCol() {
@@ -105,5 +115,9 @@ public class SeranganBeruang implements Runnable {
 
     public int getStartRow() {
         return startRow;
+    }
+
+    public boolean isBearAttack() {
+        return bearAttack;
     }
 }

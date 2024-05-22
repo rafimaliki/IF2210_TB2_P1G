@@ -39,7 +39,7 @@ public class Draggables implements  Runnable {
     public void run() {
         while (true) {
             try {
-                Thread.sleep(200); // Pause for 1 second
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 // Handle the interrupted exception
                 System.out.println("Thread interrupted: " + e.getMessage());

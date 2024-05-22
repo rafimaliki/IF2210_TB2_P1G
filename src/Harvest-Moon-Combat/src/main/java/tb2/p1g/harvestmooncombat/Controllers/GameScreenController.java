@@ -120,11 +120,14 @@ public class GameScreenController {
     protected void loadLadangLawan(){
         if (ladangShow != playerTurn) return;
 
-        LadangSave.put(ladangShow, draggables.getLadang().saveCards());
-        draggables.getLadang().clearCards();
-
+        GameManager.getInstance().inverseLadang();
         ladangShow = playerTurn == 1 ? 2 : 1;
-        draggables.loadLadang(LadangSave.get(ladangShow));
+//        LadangSave.put(ladangShow, draggables.getLadang().saveCards());
+//        draggables.getLadang().clearCards();
+//        draggables.loadLadang(LadangSave.get(ladangShow));
+
+
+
 
         ladangKuButton.setStyle("-fx-background-color: #eee6e6;");
         ladangLawanButton.setStyle("-fx-background-color: #50C878;");
@@ -134,11 +137,12 @@ public class GameScreenController {
     protected void loadLadangKu(){
         if (ladangShow == playerTurn) return;
 
-        LadangSave.put(ladangShow, draggables.getLadang().saveCards());
-        draggables.getLadang().clearCards();
-
+        GameManager.getInstance().setLadang(GameManager.getInstance().getCurrentPlayer().getLadang());
+//        LadangSave.put(ladangShow, draggables.getLadang().saveCards());
+//        draggables.getLadang().clearCards();
+//
         ladangShow = playerTurn;
-        draggables.loadLadang(LadangSave.get(ladangShow));
+//        draggables.loadLadang(LadangSave.get(ladangShow));
 
         ladangKuButton.setStyle("-fx-background-color: #50C878;");
         ladangLawanButton.setStyle("-fx-background-color: #eee6e6;");

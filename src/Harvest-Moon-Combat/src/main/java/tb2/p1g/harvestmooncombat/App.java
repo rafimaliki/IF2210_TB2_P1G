@@ -41,7 +41,7 @@ public class App extends Application {
 
         GameScreenController controller = fxmlLoader.getController();
         controller.setPrimaryStage(stage);
-//        controller.shuffleDeck();
+        controller.shuffleDeck();
         addRandomBearPane(root);
     }
 

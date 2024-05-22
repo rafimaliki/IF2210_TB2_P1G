@@ -58,7 +58,7 @@ public class Ladang {
     }
     public  void refreshLadang(){
         clearCards();
-        Ladang_Logic ladang = GameManager.getInstance().getCurrentPlayer().getLadang();
+        Ladang_Logic ladang = GameManager.getInstance().getCurrentLadang();
         for (int i = 0; i <numCards ; i++) {
             int row = i / numCols;
             int col = i % numCols;

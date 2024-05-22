@@ -9,6 +9,8 @@ public class GameManager {
     public static int currentPlayerIdx;
     private SeranganBeruang seranganBeruang;
     private Thread seranganThread;
+    private  Ladang_Logic currentLadang;
+    private  DeckAktif currentDeck;
 
     private static GameManager instance;
 
@@ -18,6 +20,7 @@ public class GameManager {
         this.isRunning = false;
         currentPlayerIdx = 0;
         this.seranganBeruang = null;
+
     }
     public static synchronized GameManager getInstance() {
         if (instance == null) {
@@ -28,6 +31,22 @@ public class GameManager {
     public Player getCurrentPlayer(){
         return players.get(currentPlayerIdx);
     }
+    public  void inverseLadang(){
+        setLadang(players.get((currentPlayerIdx + 1) % 2).getLadang());
+    }
+    public void setDeckAktif(DeckAktif deckAktif){
+        currentDeck = deckAktif;
+    }
+    public  DeckAktif getDeckAktif(){
+        return currentDeck;
+    }
+    public  void setLadang(Ladang_Logic ladan){
+        currentLadang = ladan;
+    }
+    public Ladang_Logic getCurrentLadang(){
+        return currentLadang;
+    }
+
 
 
     public void startGame(){
@@ -36,6 +55,8 @@ public class GameManager {
         Player player2 = new Player("Player 2");
         players.add(player1);
         players.add(player2);
+        setLadang(getCurrentPlayer().getLadang());
+        setDeckAktif(getCurrentPlayer().getDeckAktif());
     }
 
     public void endGame(){
@@ -48,6 +69,8 @@ public class GameManager {
         Player player2 = players.get(1);
         player1.tumbuhkanTanaman();
         player2.tumbuhkanTanaman();
+        setLadang(getCurrentPlayer().getLadang());
+        setDeckAktif(getCurrentPlayer().getDeckAktif());
 
         // chance of bear attack
         Random random = new Random();

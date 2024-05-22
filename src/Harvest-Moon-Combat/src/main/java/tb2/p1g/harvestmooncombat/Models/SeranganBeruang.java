@@ -27,7 +27,6 @@ public class SeranganBeruang implements Runnable {
         bearAttack = true;
         while (countdown > 0) {
             System.out.println("Countdown: " + countdown);
-            System.out.println(bearAttack);
             countdown--;
             try {
                 Thread.sleep(1000); // Tidur selama 1 detik

@@ -77,6 +77,9 @@ public class GameScreenController {
         setButtonClicked("ladangKuButton");
         player1Name.setStyle("-fx-background-color: #50C878;");
         beruangBox.setVisible(false);
+
+        GameManager gm = GameManager.getInstance();
+        gm.setBeruangBox( beruangBox);
     }
 
     @FXML
@@ -205,7 +208,7 @@ public class GameScreenController {
         // get pixel of beruang box
 
         // set visibility true
-        beruangBox.setVisible(true);
+//        beruangBox.setVisible(true);
 
         int startX = 11;
         int startY = 87;

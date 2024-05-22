@@ -84,6 +84,17 @@ public class KartuTanaman extends Kartu {
 
         return informasi;
     }
+
+
+    public List<String> getEfekItem() {
+        List<String> efekItem = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : this.itemAktif.entrySet()){
+            if (entry.getValue() > 0){
+                efekItem.add(entry.getKey());
+            }
+        }
+        return efekItem;
+    }
 }
 
 

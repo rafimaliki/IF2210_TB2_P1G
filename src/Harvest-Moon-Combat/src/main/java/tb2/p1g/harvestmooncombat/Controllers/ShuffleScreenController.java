@@ -82,6 +82,8 @@ public class ShuffleScreenController {
 
             }
         }
+        GameManager gm = GameManager.getInstance();
+        gm.initBearAttack();
     }
 
     @FXML

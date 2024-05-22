@@ -17,6 +17,7 @@ public class SeranganBeruang implements Runnable {
     private static int endCol;
     private volatile boolean bearAttack = false;
     private Pane beruangBox;
+    private volatile boolean readyAttack = false;
 
 
 
@@ -30,6 +31,8 @@ public class SeranganBeruang implements Runnable {
     @Override
     public void run() {
         bearAttack = true;
+        this.beruangBox.setVisible(true);
+
         while (countdown > 0) {
             System.out.println("Countdown: " + countdown);
             countdown--;
@@ -80,7 +83,8 @@ public class SeranganBeruang implements Runnable {
             for (int j = startCol; j <= endCol; j++) {
                 Kartu kartu = ladang.getKartu(i, j);
                 if (kartu != null) {
-                    if (kartu.getNama().equals("TRAP")){
+                    if (kartu.getEfekItem().contains("TRAP")){
+
                         return true;
                     }
                 }
@@ -127,5 +131,17 @@ public class SeranganBeruang implements Runnable {
 
     public boolean isBearAttack() {
         return bearAttack;
+    }
+
+    public boolean isReadyAttack() {
+        return readyAttack;
+    }
+
+    public void setReadyAttack(boolean readyAttack) {
+        this.readyAttack = readyAttack;
+    }
+
+    public void setBeruangBox(Pane beruangBox) {
+        this.beruangBox = beruangBox;
     }
 }

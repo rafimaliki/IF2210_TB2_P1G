@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2aeb4bc6-1e6b-49aa-85d3-a910cebf6f42" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/src/Main.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Harvest-Moon-Combat/src/main/java/tb2/p1g/harvestmooncombat/Models/DeckAktif.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Harvest-Moon-Combat/src/main/java/tb2/p1g/harvestmooncombat/Models/DeckAktif.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Harvest-Moon-Combat/src/main/java/tb2/p1g/harvestmooncombat/Models/Muat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Harvest-Moon-Combat/src/main/java/tb2/p1g/harvestmooncombat/Models/Muat.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,10 +32,20 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/rafimaliki/IF2210_TB2_P1G.git&quot;,
-    &quot;accountId&quot;: &quot;6f2888c7-0a7c-4266-ad2c-622a541200a5&quot;
+    &quot;url&quot;: &quot;https://github.com/rafimaliki/IF2210_TB2_P1G&quot;,
+    &quot;accountId&quot;: &quot;9d86b81f-5658-4e2e-96c5-4c0defe4f4de&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/Harvest-Moon-Combat/src/main/java/tb2/p1g/harvestmooncombat/Models/Ladang_Logic.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
@@ -49,15 +60,20 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "onta",
     "go.import.settings.migrated": "true",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/coding/OOP/IF2210_TB2_P1G",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.stylelint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.stylelint": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.general",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Database",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -79,13 +95,43 @@
       <updated>1714808499229</updated>
       <workItem from="1714808500475" duration="122000" />
       <workItem from="1714808641938" duration="1106000" />
+      <workItem from="1715325025579" duration="32000" />
+      <workItem from="1715325231541" duration="14000" />
+      <workItem from="1715325301372" duration="25000" />
+      <workItem from="1715870589959" duration="11000" />
+      <workItem from="1716374036280" duration="1383000" />
+      <workItem from="1716375458558" duration="1553000" />
+      <workItem from="1716377049940" duration="1339000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="java-exception" />
+        <breakpoint enabled="true" type="javascript-exception" />
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

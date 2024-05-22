@@ -18,7 +18,7 @@
     <children>
       <ImageView fitHeight="624.0" fitWidth="625.0" layoutX="-9.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/Other/Background3.jpeg" />
+            <Image url="@../Images/Other/Panel.jpeg" />
          </image>
       </ImageView>
       <ImageView fitHeight="600.0" fitWidth="600.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
@@ -26,6 +26,7 @@
             <Image url="@../Images/Other/Layout.png" />
          </image>
       </ImageView>
+      <Pane fx:id="beruangBox" layoutX="11.0" layoutY="87.0" prefHeight="291.0" prefWidth="158.0" style="-fx-border-width: 5; -fx-border-style: solid; -fx-border-color: red;" />
         <GridPane fx:id="ladangGrid" alignment="CENTER" hgap="5.0" layoutX="21.0" layoutY="93.0" prefHeight="360.0" prefWidth="350.0" vgap="5.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" />
@@ -69,7 +70,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Pane>
-                <Pane prefHeight="200.0" prefWidth="200.0" styleClass="card_slot" stylesheets="@../Styles/Cards.css" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <Pane prefHeight="84.0" prefWidth="35.0" styleClass="card_slot" stylesheets="@../Styles/Cards.css" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Pane>

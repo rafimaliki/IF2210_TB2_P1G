@@ -24,6 +24,7 @@ public class Ladang_Logic {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 5; j++){
                 if(ladang.get(i).get(j) != null){
+                    System.out.println("i = " + i + " j = " + j);
                     List<String> data = ladang.get(i).get(j).getInformasi();
                     for(String s :data){
                         System.out.println(s);

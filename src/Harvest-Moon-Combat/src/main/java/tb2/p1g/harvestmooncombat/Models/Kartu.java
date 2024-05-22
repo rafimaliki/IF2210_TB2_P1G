@@ -20,4 +20,8 @@ public abstract class Kartu {
     public List<String> getInformasi(){
         return new ArrayList<>();
     }
-}
+
+    public List<String> getEfekItem(){
+        return new ArrayList<>();
+    }
+ }

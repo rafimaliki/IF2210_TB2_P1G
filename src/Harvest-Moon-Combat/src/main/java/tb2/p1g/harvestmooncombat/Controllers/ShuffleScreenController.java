@@ -81,7 +81,7 @@ public class ShuffleScreenController {
         // add selected card to activeDeck
         for (int i = 0; i < isClicked.size(); i++) {
             if (isClicked.get(i)) {
-                activeDeck.addCard((Card)cardShuffleList.get(i).getChildren().get(0));
+                gameManager.getCurrentPlayer().getDeckAktif().tambahKartu(this.randomKartu.get(i));
             } else {
                 returnKartu.add(randomKartu.get(i));
             }

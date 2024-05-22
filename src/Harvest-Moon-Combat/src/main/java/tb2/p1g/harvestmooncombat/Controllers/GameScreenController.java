@@ -126,12 +126,14 @@ public class GameScreenController {
     @FXML
     protected void ladangKuButtonAction(){
         if (ladangShow == playerTurn) return;
+        GameManager.getInstance().setLadang(GameManager.getInstance().getCurrentPlayer().getLadang());
+        GameManager.getInstance().setViewLawan();
 
-        LadangSave.put(ladangShow, draggables.getLadang().saveCards());
-        draggables.getLadang().clearCards();
-
+//        LadangSave.put(ladangShow, draggables.getLadang().saveCards());
+//        draggables.getLadang().clearCards();
+//
         ladangShow = playerTurn;
-        draggables.loadLadang(LadangSave.get(ladangShow));
+//        draggables.loadLadang(LadangSave.get(ladangShow));
 
         unclickButtons();
         setButtonClicked("ladangKuButton");

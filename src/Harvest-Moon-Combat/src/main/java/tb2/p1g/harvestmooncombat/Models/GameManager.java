@@ -12,6 +12,7 @@ public class GameManager {
     private  Ladang_Logic currentLadang;
     private  DeckAktif currentDeck;
     private boolean isViewLawan;
+    private int sumTurn;
 
     private static GameManager instance;
 
@@ -21,6 +22,7 @@ public class GameManager {
         this.isRunning = false;
         currentPlayerIdx = 0;
         this.seranganBeruang = null;
+        sumTurn = 0;
 
     }
     public static synchronized GameManager getInstance() {
@@ -59,6 +61,7 @@ public class GameManager {
         setLadang(getCurrentPlayer().getLadang());
         setDeckAktif(getCurrentPlayer().getDeckAktif());
         isViewLawan = false;
+        sumTurn = 1;
     }
     public void setViewLawan(){
         isViewLawan = !isViewLawan;
@@ -80,6 +83,7 @@ public class GameManager {
         setLadang(getCurrentPlayer().getLadang());
         setDeckAktif(getCurrentPlayer().getDeckAktif());
         isViewLawan = false;
+        sumTurn ++;
 
         // chance of bear attack
         Random random = new Random();
@@ -104,5 +108,12 @@ public class GameManager {
         return false;
     }
 
+    public int getSumTurn(){
+        return sumTurn;
+    }
+
+    public void setSumTurn(int sumTurn){
+        this.sumTurn = sumTurn;
+    }
 
 }

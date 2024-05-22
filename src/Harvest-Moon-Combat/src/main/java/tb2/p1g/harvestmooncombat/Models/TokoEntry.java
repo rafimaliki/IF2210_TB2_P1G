@@ -3,18 +3,24 @@ package tb2.p1g.harvestmooncombat.Models;
 public class TokoEntry {
     private KartuProduk kartu;
     private int kuantitas;
+    private int hargaSatuan;
 
     public TokoEntry(KartuProduk kartu){
         this.kartu = kartu;
         this.kuantitas = 1;
+        this.hargaSatuan = Config.mapProduk.get(kartu.getNama()).getFirst();
     }
 
     public KartuProduk getKartu(){
-        return kartu;
+        return this.kartu;
     }
 
     public int getKuantitas(){
-        return kuantitas;
+        return this.kuantitas;
+    }
+
+    public int getHargaSatuan(){
+        return this.hargaSatuan;
     }
 
     public void setKartu(KartuProduk kartu){
@@ -23,5 +29,9 @@ public class TokoEntry {
 
     public void setKuantitas(int kuantitas){
         this.kuantitas = kuantitas;
+    }
+
+    public void setHargaSatuan(int hargaSatuan){
+        this.hargaSatuan = hargaSatuan;
     }
 }

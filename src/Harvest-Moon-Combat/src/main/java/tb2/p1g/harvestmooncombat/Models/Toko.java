@@ -35,13 +35,12 @@ public class Toko {
         }
     }
 
-    public static KartuProduk subtractProduk(KartuProduk produk) throws Exception {
+    public static KartuProduk subtractProduk(String namaProduk) throws Exception {
         boolean found = false;
         int removeIdx = -1, i = 0;
-        KartuProduk kartu;
 
         for (TokoEntry currentProduk : produkToko){
-            if (currentProduk.getKartu().getNama().equals(produk.getNama())){
+            if (currentProduk.getKartu().getNama().equals(namaProduk)){
                 int newKuantitas = currentProduk.getKuantitas();
                 newKuantitas--;
                 if (newKuantitas == 0){
@@ -58,7 +57,7 @@ public class Toko {
         if (!found){
             throw (new Exception("Produk tidak ditemukan!"));
         } else {
-            kartu = new KartuProduk(produkToko.get(i).getKartu());
+            KartuProduk kartu = new KartuProduk(namaProduk);
 
             if (removeIdx != -1){
                 produkToko.remove(removeIdx);
@@ -68,7 +67,7 @@ public class Toko {
         }
     }
 
-    public KartuProduk subtractByIndex(int idx) throws Exception {
+    public static KartuProduk subtractByIndex(int idx) throws Exception {
         if ((idx < 0) || (idx >= produkToko.size())){
             throw (new Exception("Indeks tidak valid"));
         }
@@ -83,5 +82,15 @@ public class Toko {
         }
 
         return kartu;
+    }
+
+    public static int getHargaProduk(String namaProduk) throws Exception {
+        for (TokoEntry currentProduk : produkToko){
+            if (currentProduk.getKartu().getNama().equals(namaProduk)){
+                return currentProduk.getHargaSatuan();
+            }
+        }
+
+        throw new Exception("Produk tidak tersedia di toko ini");
     }
 }

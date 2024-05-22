@@ -25,6 +25,8 @@ import java.util.concurrent.TimeUnit;
 
 import javafx.stage.Stage;
 
+import javax.swing.text.View;
+
 
 public class GameScreenController {
 
@@ -35,12 +37,14 @@ public class GameScreenController {
     @FXML private Button ladangKuButton, ladangLawanButton, tokoButton, saveButton, loadButton, pluginButton;
 
     private Stage primaryStage;
-    private Draggables draggables;
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
 
+    private Draggables draggables;
+    private Thread refreshThread;
+    // variabel seharusnya di taro di kelas game state,
     private int playerTurn = 1;
     private int ladangShow = 1;
 
@@ -51,6 +55,10 @@ public class GameScreenController {
     @FXML
     public void initialize() {
         draggables = new Draggables(activeDeckGrid, ladangGrid);
+        refreshThread = new Thread(draggables);
+        refreshThread.start();
+
+
 
         LadangSave.put(1, new HashMap<>());
         LadangSave.put(2, new HashMap<>());
@@ -71,6 +79,10 @@ public class GameScreenController {
     @FXML
     protected void nextButtonAction() {
         GameManager gm = GameManager.getInstance();
+        if(gm.isBearAttackInProgress()){
+            System.out.println("Bear is attacking, cannot end turn");
+            return;
+        }
 
         turnNumber.setText(String.valueOf(Integer.parseInt(turnNumber.getText()) + 1));
 
@@ -106,6 +118,12 @@ public class GameScreenController {
     }
 
     @FXML
+    protected  void tokoButtonAction(){
+        System.out.println("Toko button clicked");
+        ViewFactory.ShowTokoScreen();
+    }
+
+    @FXML
     protected void ladangKuButtonAction(){
         if (ladangShow == playerTurn) return;
 
@@ -123,21 +141,32 @@ public class GameScreenController {
     protected void ladangLawanButtonAction(){
         if (ladangShow != playerTurn) return;
 
-        LadangSave.put(ladangShow, draggables.getLadang().saveCards());
-        draggables.getLadang().clearCards();
-
+        GameManager.getInstance().inverseLadang();
+        GameManager.getInstance().setViewLawan();
         ladangShow = playerTurn == 1 ? 2 : 1;
-        draggables.loadLadang(LadangSave.get(ladangShow));
+//        LadangSave.put(ladangShow, draggables.getLadang().saveCards());
+//        draggables.getLadang().clearCards();
+//        draggables.loadLadang(LadangSave.get(ladangShow));
+
+
+
 
         unclickButtons();
         setButtonClicked("ladangLawanButton");
     }
 
     @FXML
-    protected void tokoButtonAction(){
-        unclickButtons();
-        System.out.println("Beli button clicked");
-        ViewFactory.ShowTokoScreen();
+    protected void loadLadangKu(){
+        if (ladangShow == playerTurn) return;
+
+        LadangSave.put(ladangShow, draggables.getLadang().saveCards());
+        draggables.getLadang().clearCards();
+
+        ladangShow = playerTurn;
+        draggables.loadLadang(LadangSave.get(ladangShow));
+
+        ladangKuButton.setStyle("-fx-background-color: #50C878;");
+        ladangLawanButton.setStyle("-fx-background-color: #eee6e6;");
     }
 
     @FXML

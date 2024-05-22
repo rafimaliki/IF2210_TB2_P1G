@@ -9,6 +9,9 @@ public class GameManager {
     public static int currentPlayerIdx;
     private SeranganBeruang seranganBeruang;
     private Thread seranganThread;
+    private  Ladang_Logic currentLadang;
+    private  DeckAktif currentDeck;
+    private boolean isViewLawan;
 
     private static GameManager instance;
 
@@ -18,6 +21,7 @@ public class GameManager {
         this.isRunning = false;
         currentPlayerIdx = 0;
         this.seranganBeruang = null;
+
     }
     public static synchronized GameManager getInstance() {
         if (instance == null) {
@@ -28,6 +32,22 @@ public class GameManager {
     public Player getCurrentPlayer(){
         return players.get(currentPlayerIdx);
     }
+    public  void inverseLadang(){
+        setLadang(players.get((currentPlayerIdx + 1) % 2).getLadang());
+    }
+    public void setDeckAktif(DeckAktif deckAktif){
+        currentDeck = deckAktif;
+    }
+    public  DeckAktif getDeckAktif(){
+        return currentDeck;
+    }
+    public  void setLadang(Ladang_Logic ladan){
+        currentLadang = ladan;
+    }
+    public Ladang_Logic getCurrentLadang(){
+        return currentLadang;
+    }
+
 
 
     public void startGame(){
@@ -36,6 +56,15 @@ public class GameManager {
         Player player2 = new Player("Player 2");
         players.add(player1);
         players.add(player2);
+        setLadang(getCurrentPlayer().getLadang());
+        setDeckAktif(getCurrentPlayer().getDeckAktif());
+        isViewLawan = false;
+    }
+    public void setViewLawan(){
+        isViewLawan = !isViewLawan;
+    }
+    public boolean getViewLawan(){
+        return  isViewLawan;
     }
 
     public void endGame(){
@@ -48,26 +77,31 @@ public class GameManager {
         Player player2 = players.get(1);
         player1.tumbuhkanTanaman();
         player2.tumbuhkanTanaman();
+        setLadang(getCurrentPlayer().getLadang());
+        setDeckAktif(getCurrentPlayer().getDeckAktif());
+        isViewLawan = false;
 
         // chance of bear attack
         Random random = new Random();
         int chance = random.nextInt(5);
         if (chance == 0){
-//            seranganBeruang();
+            System.out.println("Serangan beruang!");
+            seranganBeruang();
         }
     }
 
     public void seranganBeruang() {
-        seranganThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                SeranganBeruang seranganBeruang = new SeranganBeruang();
-                seranganBeruang.generateAttackArea();
-                seranganBeruang.performAttack(players.get(currentPlayerIdx));
-            }
-        });
-
+        seranganBeruang = new SeranganBeruang(); // Membuat instans SeranganBeruang
+        seranganThread = new Thread(seranganBeruang);
         seranganThread.start();
+    }
+
+    public boolean isBearAttackInProgress() {
+        if (seranganBeruang != null) {
+            return seranganBeruang.isBearAttack();
+        }
+        System.out.println("Bear attack is not in progress");
+        return false;
     }
 
 

@@ -181,7 +181,6 @@ public class Draggables implements  Runnable {
                         Kartu invalid_kartu =  e.getKartu();
                         if(invalid_kartu != null){
                             GameManager.getInstance().getCurrentPlayer().undoKartu(invalid_kartu,sourcePane.getId());
-
                         }
                     }catch(Exception e){
                         System.out.println(e.getMessage());

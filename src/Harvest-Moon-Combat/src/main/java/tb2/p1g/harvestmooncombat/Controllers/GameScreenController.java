@@ -121,6 +121,7 @@ public class GameScreenController {
         if (ladangShow != playerTurn) return;
 
         GameManager.getInstance().inverseLadang();
+        GameManager.getInstance().setViewLawan();
         ladangShow = playerTurn == 1 ? 2 : 1;
 //        LadangSave.put(ladangShow, draggables.getLadang().saveCards());
 //        draggables.getLadang().clearCards();
@@ -138,6 +139,7 @@ public class GameScreenController {
         if (ladangShow == playerTurn) return;
 
         GameManager.getInstance().setLadang(GameManager.getInstance().getCurrentPlayer().getLadang());
+        GameManager.getInstance().setViewLawan();
 //        LadangSave.put(ladangShow, draggables.getLadang().saveCards());
 //        draggables.getLadang().clearCards();
 //

@@ -75,13 +75,21 @@ public class Player {
         int initIndex = Integer.parseInt(idxInit.substring(1));
         deckAktif.setKartu(initIndex, k);
     }
-
     // param idxInit = lXX or dXX, parse into row/column
     public void moveKartu(String idxInit, String idxDest) throws Exception {
         String initLocation = idxInit.substring(0, 1);
         int initIndex = Integer.parseInt(idxInit.substring(1));
         String destLocation = idxDest.substring(0, 1);
         int destIndex = Integer.parseInt(idxDest.substring(1));
+
+        Ladang_Logic prosesladang;
+        if(GameManager.getInstance().getViewLawan()){
+            System.out.println("Ladang lawan!");
+            prosesladang = GameManager.getInstance().getCurrentLadang();
+        }else{
+            System.out.println("Ladang pribadi");
+            prosesladang = ladang;
+        }
 
         if ((initLocation.equals("l")) && (destLocation.equals("d"))){
             throw new InvalidMoveExceptions("Invalid Move");
@@ -112,38 +120,62 @@ public class Player {
             deckAktif.setKartu(initIndex, deckAktif.getKartu(destIndex));
             deckAktif.setKartu(destIndex, temp);
         }
-
         // move kartu dari deck aktif ke ladang
         else if ((initLocation.equals("d")) && (destLocation.equals("l"))){
+
             Kartu kartu = deckAktif.getKartu(initIndex);
             deckAktif.removeKartu(initIndex);
 
-            if ((ladang.getKartu(rowDest, colDest) != null) && (!Config.listKartuItem.contains(kartu.getNama()))){
-                throw new InvalidMoveExceptions("Invalid Move");
+
+            if ((prosesladang.getKartu(rowDest, colDest) != null) && (!Config.listKartuItem.contains(kartu.getNama()))){
+                throw new InvalidMoveExceptions("Invalid Move",kartu);
             }
 
             // Jika kartu item
             if (Config.listKartuItem.contains(kartu.getNama())){
                 // Jika tujuan null atau kartu produk
-                if ((ladang.getKartu(rowDest, colDest) == null) || (Config.listKartuProduk.contains(ladang.getKartu(rowDest, colDest).getNama()))){
+                if ((prosesladang.getKartu(rowDest, colDest) == null) || (Config.listKartuProduk.contains(prosesladang.getKartu(rowDest, colDest).getNama()))){
                     throw new InvalidMoveExceptions("Invalid move: " + kartu.getNama() + " cannot be placed on an empty or product slot.", kartu);
                 }
 
                 // Jika tujuan kartu tanaman atau hewan
                 else {
-                    Kartu kartuTujuan = ladang.getKartu(rowDest, colDest);
-                    String namaTujuan = kartuTujuan.getNama();
+                    if(GameManager.getInstance().getViewLawan()){ // Ladang lawan
+                        Kartu kartuTujuan = prosesladang.getKartu(rowDest,colDest);
+                        if(kartu.getNama().equals("DELAY") || kartu.getNama().equals("DESTROY")){
+                            if(kartu.getNama().equals("DESTROY")){
+                                prosesladang.removeKartu(rowDest,colDest);
+                            }else{
+                                kartuTujuan.setEfekItem((KartuItem) kartu);
+                            }
 
-                    if (kartu.getNama().equals("INSTANT_HARVEST")){
-                        KartuProduk produk = new KartuProduk(Config.mapHewanTanamanKeProduk.get(namaTujuan));
-                        ladang.removeKartu(rowDest, colDest);
-                        ladang.addKartu(produk, rowDest, colDest);
+                        }else{
+                            throw new InvalidMoveExceptions("Gk bisa! bukan delay atau destroy",kartu);
+                        }
+                    }else{
+                        Kartu kartuTujuan = ladang.getKartu(rowDest, colDest);
+                        String namaTujuan = kartuTujuan.getNama();
+                        if(kartu.getNama().equals("DESTROY")){
+                            prosesladang.removeKartu(rowDest,colDest);
+                        }else{
+                            if (kartu.getNama().equals("INSTANT_HARVEST")){
+                                KartuProduk produk = new KartuProduk(Config.mapHewanTanamanKeProduk.get(namaTujuan));
+                                prosesladang.removeKartu(rowDest, colDest);
+                                prosesladang.addKartu(produk, rowDest, colDest);
+                            }
+                            kartuTujuan.setEfekItem((KartuItem) kartu);
+                        }
+
                     }
 
-                    kartuTujuan.setEfekItem((KartuItem) kartu);
+
+
                 }
             } else {
-                ladang.addKartu(kartu, rowDest, colDest);
+                if(GameManager.getInstance().getViewLawan()){
+                    throw new InvalidMoveExceptions("Tidak bisa menaro kartu selain item di ladang lawan",kartu);
+                }
+                prosesladang.addKartu(kartu, rowDest, colDest);
             }
         }
 

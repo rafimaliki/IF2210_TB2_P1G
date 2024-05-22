@@ -11,6 +11,7 @@ public class GameManager {
     private Thread seranganThread;
     private  Ladang_Logic currentLadang;
     private  DeckAktif currentDeck;
+    private boolean isViewLawan;
 
     private static GameManager instance;
 
@@ -57,6 +58,13 @@ public class GameManager {
         players.add(player2);
         setLadang(getCurrentPlayer().getLadang());
         setDeckAktif(getCurrentPlayer().getDeckAktif());
+        isViewLawan = false;
+    }
+    public void setViewLawan(){
+        isViewLawan = !isViewLawan;
+    }
+    public boolean getViewLawan(){
+        return  isViewLawan;
     }
 
     public void endGame(){
@@ -71,6 +79,7 @@ public class GameManager {
         player2.tumbuhkanTanaman();
         setLadang(getCurrentPlayer().getLadang());
         setDeckAktif(getCurrentPlayer().getDeckAktif());
+        isViewLawan = false;
 
         // chance of bear attack
         Random random = new Random();

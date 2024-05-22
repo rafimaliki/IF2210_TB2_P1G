@@ -261,6 +261,7 @@ public class Player {
         for (TokoEntry produkToko : Toko.produkToko){
             if (produkToko.getKartu().getNama().equals(namaKartuProduk)){
                 this.gulden += produkToko.getHargaSatuan();
+                this.deckAktif.removeKartu(idx);
             }
         }
     }

@@ -56,6 +56,7 @@ public class Deck {
         for (int i = 0; i < this.kartu.size(); i++){
             if (this.kartu.get(i) == null){
                 setKartu(card, i);
+                break;
             }
         }
     }

@@ -52,6 +52,7 @@ public class GameManager {
 
     public void startGame(){
         isRunning = true;
+        Toko toko = new Toko();
         Player player1 = new Player("Player 1");
         Player player2 = new Player("Player 2");
         players.add(player1);

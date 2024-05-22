@@ -13,6 +13,7 @@ import tb2.p1g.harvestmooncombat.Components.Card;
 import tb2.p1g.harvestmooncombat.Controllers.TokoScreenController;
 import tb2.p1g.harvestmooncombat.Controllers.CardDetailController;
 import tb2.p1g.harvestmooncombat.Controllers.ShuffleScreenController;
+import tb2.p1g.harvestmooncombat.Models.GameManager;
 
 import java.util.Objects;
 
@@ -81,6 +82,7 @@ public class ViewFactory {
 
             TokoScreenController controller = fxmlLoader.getController();
 
+
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(App.PrimaryStage);
@@ -93,6 +95,9 @@ public class ViewFactory {
             scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
             scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Bear.css")).toExternalForm());
             stage.setScene(scene);
+
+            controller.setMoney(GameManager.getInstance().getCurrentPlayer().getGulden());
+
 
             stage.setOnShown(event -> {
                 stage.setX(App.PrimaryStage.getX() + App.PrimaryStage.getWidth() / 2 - stage.getWidth() / 2);

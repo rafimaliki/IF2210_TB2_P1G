@@ -73,7 +73,7 @@ public class Ladang_Logic {
 //        int colDest = idxInit % this.ladang.size();
 //
 //        Kartu temp = ladang.get(rowInit).get(colInit);
-//        ladang.get(rowDest).set(colDest, temp);
+//        ladang.get(rowDest).set(colD  est, temp);
 //        ladang.get(rowInit).set(colInit, null);
 //    }
 }

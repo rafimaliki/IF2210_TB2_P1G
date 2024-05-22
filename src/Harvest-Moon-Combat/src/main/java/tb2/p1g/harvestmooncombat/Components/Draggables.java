@@ -1,5 +1,6 @@
 package tb2.p1g.harvestmooncombat.Components;
 
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.image.Image;
@@ -21,7 +22,7 @@ import javax.swing.text.View;
 import java.util.Map;
 
 
-public class Draggables {
+public class Draggables implements  Runnable {
 
     private static ActiveDeck activeDeck;
     private static Ladang ladang;
@@ -34,10 +35,27 @@ public class Draggables {
         for (Pane pane : ladang.getCards()) {Draggables.setupDragAndDrop(pane);}
     }
 
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                Thread.sleep(200); // Pause for 1 second
+            } catch (InterruptedException e) {
+                // Handle the interrupted exception
+                System.out.println("Thread interrupted: " + e.getMessage());
+                Thread.currentThread().interrupt(); // Restore the interrupt status
+                break;
+            }
+            Platform.runLater(this::refresh);
+        }
+    }
+
     public  void refresh(){
         activeDeck.refreshCards();
         ladang.refreshLadang();
     }
+
+
     public ActiveDeck getActiveDeck() {
         return activeDeck;
     }
@@ -105,31 +123,29 @@ public class Draggables {
                 }
 
                 if (node instanceof Pane sourcePane) {
-
-
-                    if (pane.getChildren().isEmpty()){
-                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'd') {
-                        }
-                        else {
-                        pane.getChildren().add(sourcePane.getChildren().getFirst());
-                        }
-                    }
-                    else if (sourcePane.getId().charAt(0) == 'd' && pane.getId().charAt(0) == 'd' && pane.getChildren().getFirst() != sourcePane.getChildren().getFirst()){
-                        System.out.println("Swapping");
-                        Pane temp = new Pane();
-                        temp.getChildren().add(sourcePane.getChildren().getFirst());
-                        sourcePane.getChildren().clear();
-                        sourcePane.getChildren().add(pane.getChildren().getFirst());
-                        pane.getChildren().clear();
-                        pane.getChildren().add(temp.getChildren().getFirst());
-                    }
-                    else if (pane.getChildren().getFirst() != sourcePane.getChildren().getFirst()){
-                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'l') {
-                        }
-                        else {
-                            sourcePane.getChildren().clear();
-                        }
-                    }
+//                    if (pane.getChildren().isEmpty()){
+//                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'd') {
+//                        }
+//                        else {
+//                        pane.getChildren().add(sourcePane.getChildren().getFirst());
+//                        }
+//                    }
+//                    else if (sourcePane.getId().charAt(0) == 'd' && pane.getId().charAt(0) == 'd' && pane.getChildren().getFirst() != sourcePane.getChildren().getFirst()){
+//                        System.out.println("Swapping");
+//                        Pane temp = new Pane();
+//                        temp.getChildren().add(sourcePane.getChildren().getFirst());
+//                        sourcePane.getChildren().clear();
+//                        sourcePane.getChildren().add(pane.getChildren().getFirst());
+//                        pane.getChildren().clear();
+//                        pane.getChildren().add(temp.getChildren().getFirst());
+//                    }
+//                    else if (pane.getChildren().getFirst() != sourcePane.getChildren().getFirst()){
+//                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'l') {
+//                        }
+//                        else {
+//                            sourcePane.getChildren().clear();
+//                        }
+//                    }
 
 //                    if (pane.getChildren().isEmpty()){
 //                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'd') {
@@ -170,10 +186,11 @@ public class Draggables {
                     }catch(Exception e){
                         System.out.println(e.getMessage());
                     }
-                    activeDeck.refreshCards();
-                    ladang.refreshLadang();
+
 
                 }
+
+
             }
 
             event.setDropCompleted(true);

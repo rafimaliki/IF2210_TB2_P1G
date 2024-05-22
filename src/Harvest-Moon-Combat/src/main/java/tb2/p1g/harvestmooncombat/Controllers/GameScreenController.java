@@ -42,7 +42,7 @@ public class GameScreenController {
     }
 
     private Draggables draggables;
-
+    private Thread refreshThread;
     // variabel seharusnya di taro di kelas game state,
     private int playerTurn = 1;
     private int ladangShow = 1;
@@ -53,6 +53,10 @@ public class GameScreenController {
     @FXML
     public void initialize() {
         draggables = new Draggables(activeDeckGrid, ladangGrid);
+        refreshThread = new Thread(draggables);
+        refreshThread.start();
+
+
 
         LadangSave.put(1, new HashMap<>());
         LadangSave.put(2, new HashMap<>());

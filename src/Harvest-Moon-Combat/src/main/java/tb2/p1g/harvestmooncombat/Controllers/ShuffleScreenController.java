@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 import tb2.p1g.harvestmooncombat.Components.ActiveDeck;
 import tb2.p1g.harvestmooncombat.Components.Card;
+import tb2.p1g.harvestmooncombat.Models.GameManager;
+import tb2.p1g.harvestmooncombat.Models.Kartu;
 
 public class ShuffleScreenController {
 
@@ -89,6 +91,9 @@ public class ShuffleScreenController {
         for (int i = 0; i < isClicked.size(); i++){
            isClicked.set(i, false);
         }
+
+        GameManager gameManager = GameManager.getInstance();
+        List<Kartu> randomCard = gameManager.getCurrentPlayer().getDeckNonAktif().ambil4Kartu();
 
         for (Pane pane : cardShuffleList) {
             pane.getChildren().clear();

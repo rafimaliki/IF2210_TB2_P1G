@@ -48,9 +48,16 @@ public class Deck {
         this.kartu.set(index, kartu);
     }
 
-    public void tambahKartu(Kartu card){
-        int panjang = getLengthKartu();
-        setKartu(panjang, card);
+    public void tambahKartu(Kartu card) throws Exception{
+        if (this.getLengthKartu() == 6){
+            throw new Exception("Deck kamu full!");
+        }
+
+        for (int i = 0; i < this.kartu.size(); i++){
+            if (this.kartu.get(i) == null){
+                setKartu(card, i);
+            }
+        }
     }
 
     public void printDeck(){

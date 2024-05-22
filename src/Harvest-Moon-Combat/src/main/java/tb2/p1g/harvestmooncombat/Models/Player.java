@@ -237,7 +237,50 @@ public class Player {
         ladang.removeKartu(row, col);
         deckAktif.setKartu(deckAktif.getLengthKartu(), produk);
     }
+
     public void displayLadangData(){
         getLadang().displayDataKartuLadang();
+    }
+
+    public void jual(String deckIdx) throws Exception {
+        int idx = Integer.parseInt(deckIdx.substring(1));
+
+        Kartu kartu = this.deckAktif.kartu.get(idx);
+        if (kartu == null){
+            throw new Exception("Slot itu kosong banh");
+        }
+
+        String namaKartuProduk = kartu.getNama();
+
+        if (!Config.listKartuProduk.contains(namaKartuProduk)){
+            throw new Exception("Kartu ini bukan kartu produk!");
+        }
+
+        Toko.addProduk(new KartuProduk(namaKartuProduk));
+
+        for (TokoEntry produkToko : Toko.produkToko){
+            if (produkToko.getKartu().getNama().equals(namaKartuProduk)){
+                this.gulden += produkToko.getHargaSatuan();
+            }
+        }
+    }
+
+    public void beli(String namaKartuProduk) throws Exception {
+        if (!Config.listKartuProduk.contains(namaKartuProduk)){
+            throw new Exception("Lah ini ga ada di toko saya, kamu colong dari toko siapa?");
+        }
+
+        if (this.deckAktif.getJumlahSlotKosong() == 0){
+            throw new Exception("Deck aktif kamu penuh, tidak bisa membeli!");
+        }
+
+        int hargaProduk = Toko.getHargaProduk(namaKartuProduk);
+        if (this.gulden < hargaProduk){
+            throw new Exception("Uang kamu tidak cukup!");
+        }
+
+        this.gulden -= hargaProduk;
+        KartuProduk produkPembelian = Toko.subtractProduk(namaKartuProduk);
+        this.deckAktif.tambahKartu(produkPembelian);
     }
 }

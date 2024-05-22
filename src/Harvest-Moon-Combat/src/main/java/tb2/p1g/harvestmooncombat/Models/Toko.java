@@ -4,9 +4,21 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Toko {
-    public static List<TokoEntry> produkToko;
+    public static List<TokoEntry> produkToko = new ArrayList<>();
 
     public Toko() {}
+
+    public static void displayToko(){
+        for(TokoEntry currentProduk : produkToko){
+            if(currentProduk != null){
+                System.out.println(currentProduk.getKartu().getNama());
+                System.out.println(currentProduk.getKuantitas());
+                System.out.println(currentProduk.getHargaSatuan());
+
+            }
+
+        }
+    }
 
     public TokoEntry getProdukToko(int idx) throws Exception {
         if ((idx >= produkToko.size()) || (idx < 0)){

@@ -14,7 +14,7 @@ public class GameManager {
     private  Ladang_Logic currentLadang;
     private  DeckAktif currentDeck;
     private boolean isViewLawan;
-
+    private Pane beruangBox;
 
     private static GameManager instance;
 
@@ -55,6 +55,7 @@ public class GameManager {
 
     public void startGame(){
         isRunning = true;
+        Toko toko = new Toko();
         Player player1 = new Player("Player 1");
         Player player2 = new Player("Player 2");
         players.add(player1);
@@ -85,12 +86,16 @@ public class GameManager {
         isViewLawan = false;
 
         // chance of bear attack
+
+    }
+
+    public void initBearAttack() {
         Random random = new Random();
 //        int chance = random.nextInt(5);
         int chance = 0;
         if (chance == 0){
             System.out.println("Serangan beruang!");
-            seranganBeruang(beruangBox);
+            seranganBeruang(this.beruangBox);
         }
     }
 
@@ -106,6 +111,16 @@ public class GameManager {
         }
         System.out.println("Bear attack is not in progress");
         return false;
+    }
+
+    public void setReadyAttack(boolean readyAttack) {
+        if (seranganBeruang != null) {
+            seranganBeruang.setReadyAttack(readyAttack);
+        }
+    }
+
+    public void setBeruangBox(Pane beruangBox) {
+        this.beruangBox = beruangBox;
     }
 
 

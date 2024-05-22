@@ -104,7 +104,7 @@ public class Config {
     }};
 
     // map produk String (nama) -> List<Integer (harga), Integer (berat_tambah)>
-    final static Map<String, List<Integer>> mapProduk = new HashMap<>(){{
+    public final static Map<String, List<Integer>> mapProduk = new HashMap<>(){{
         put("SIRIP_HIU", Arrays.asList(HARGA_SIRIP_HIU, BERAT_TAMBAH_SIRIP_HIU));
         put("SUSU", Arrays.asList(HARGA_SUSU, BERAT_TAMBAH_SUSU));
         put("DAGING_DOMBA", Arrays.asList(HARGA_DAGING_DOMBA, BERAT_TAMBAH_DAGING_DOMBA));

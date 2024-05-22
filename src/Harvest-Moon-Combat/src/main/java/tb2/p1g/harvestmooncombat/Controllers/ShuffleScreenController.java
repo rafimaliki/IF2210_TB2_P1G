@@ -72,7 +72,6 @@ public class ShuffleScreenController {
         List<Kartu> returnKartu = new ArrayList<>();
 
         maxClicked = 6-activeDeck.countCard();
-        if (maxClicked > 2) maxClicked = 2;
         if (countClicked != maxClicked) return;
 
         Stage stage = (Stage) ((javafx.scene.Node) (event.getSource())).getScene().getWindow();

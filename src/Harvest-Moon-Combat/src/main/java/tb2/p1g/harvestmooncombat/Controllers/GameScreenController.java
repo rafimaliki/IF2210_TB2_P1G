@@ -29,26 +29,24 @@ import javafx.stage.Stage;
 public class GameScreenController {
 
     @FXML private AnchorPane root;
+    @FXML private GridPane activeDeckGrid, ladangGrid;
 
-    @FXML private GridPane activeDeckGrid;
-    @FXML private GridPane ladangGrid;
     @FXML private Label turnNumber, player1Name, player2Name;
-    @FXML private Button ladangKuButton, ladangLawanButton;
+    @FXML private Button ladangKuButton, ladangLawanButton, tokoButton, saveButton, loadButton, pluginButton;
 
     private Stage primaryStage;
+    private Draggables draggables;
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
 
-    private Draggables draggables;
-
-    // variabel seharusnya di taro di kelas game state,
     private int playerTurn = 1;
     private int ladangShow = 1;
-    // dan map ini bisa di bikin kelas sendiri
+
     private Map<Integer, Map<String, Card>> LadangSave = new HashMap<>(2);
     private Map<Integer, Map<String, Card>> ActiveDeckSave = new HashMap<>(2);
+    private final Map<String, Button> buttonList = new HashMap<>();
 
     @FXML
     public void initialize() {
@@ -59,20 +57,19 @@ public class GameScreenController {
         ActiveDeckSave.put(1, new HashMap<>());
         ActiveDeckSave.put(2, new HashMap<>());
 
-        // set bg color for Ladanku
-        ladangKuButton.setStyle("-fx-background-color: #50C878;");
+        buttonList.put("ladangKuButton", ladangKuButton);
+        buttonList.put("ladangLawanButton", ladangLawanButton);
+        buttonList.put("tokoButton", tokoButton);
+        buttonList.put("saveButton", saveButton);
+        buttonList.put("loadButton", loadButton);
+        buttonList.put("pluginButton", pluginButton);
+
+        setButtonClicked("ladangKuButton");
         player1Name.setStyle("-fx-background-color: #50C878;");
     }
 
     @FXML
-    public void shuffleDeck() {
-//        draggables.getActiveDeck().shuffle();
-        System.out.println("Open shuffle screen");
-        ViewFactory.ShowShuffleScreen(this.primaryStage, draggables.getActiveDeck());
-    }
-
-    @FXML
-    protected void nextTurn() {
+    protected void nextButtonAction() {
         GameManager gm = GameManager.getInstance();
 
         turnNumber.setText(String.valueOf(Integer.parseInt(turnNumber.getText()) + 1));
@@ -105,25 +102,11 @@ public class GameScreenController {
 
         gm.getCurrentPlayer().getLadang().displayDataKartuLadang();
 
-        shuffleDeck();
+        ViewFactory.ShowShuffleScreen(this.primaryStage, draggables.getActiveDeck());
     }
 
     @FXML
-    protected void loadLadangLawan(){
-        if (ladangShow != playerTurn) return;
-
-        LadangSave.put(ladangShow, draggables.getLadang().saveCards());
-        draggables.getLadang().clearCards();
-
-        ladangShow = playerTurn == 1 ? 2 : 1;
-        draggables.loadLadang(LadangSave.get(ladangShow));
-
-        ladangKuButton.setStyle("-fx-background-color: #eee6e6;");
-        ladangLawanButton.setStyle("-fx-background-color: #50C878;");
-    }
-
-    @FXML
-    protected void loadLadangKu(){
+    protected void ladangKuButtonAction(){
         if (ladangShow == playerTurn) return;
 
         LadangSave.put(ladangShow, draggables.getLadang().saveCards());
@@ -132,25 +115,54 @@ public class GameScreenController {
         ladangShow = playerTurn;
         draggables.loadLadang(LadangSave.get(ladangShow));
 
-        ladangKuButton.setStyle("-fx-background-color: #50C878;");
-        ladangLawanButton.setStyle("-fx-background-color: #eee6e6;");
+        unclickButtons();
+        setButtonClicked("ladangKuButton");
     }
 
     @FXML
-    protected void toggleGridView() {
-        if (activeDeckGrid.isVisible()) {
-            activeDeckGrid.setVisible(false);
-            ladangGrid.setVisible(false);
-        } else {
-            activeDeckGrid.setVisible(true);
-            ladangGrid.setVisible(true);
+    protected void ladangLawanButtonAction(){
+        if (ladangShow != playerTurn) return;
+
+        LadangSave.put(ladangShow, draggables.getLadang().saveCards());
+        draggables.getLadang().clearCards();
+
+        ladangShow = playerTurn == 1 ? 2 : 1;
+        draggables.loadLadang(LadangSave.get(ladangShow));
+
+        unclickButtons();
+        setButtonClicked("ladangLawanButton");
+    }
+
+    @FXML
+    protected void tokoButtonAction(){
+        unclickButtons();
+        System.out.println("Beli button clicked");
+        ViewFactory.ShowTokoScreen();
+    }
+
+    @FXML
+    protected void saveButtonAction(){
+        System.out.println("Save button clicked");
+    }
+
+    @FXML
+    protected void loadButtonAction(){
+        System.out.println("Load button clicked");
+    }
+
+    @FXML
+    protected void pluginButtonAction(){
+        System.out.println("Plugin button clicked");
+    }
+
+    protected void unclickButtons() {
+        for (Button button : buttonList.values()) {
+            button.setStyle("-fx-background-color: #eee6e6;");
         }
     }
 
-    @FXML
-    protected void beliButtonAction(){
-        System.out.println("Beli button clicked");
-        ViewFactory.ShowBeliScreen();
+    protected void setButtonClicked(String buttonName) {
+        unclickButtons();
+        buttonList.get(buttonName).setStyle("-fx-background-color: #50C878;");
     }
-
 }

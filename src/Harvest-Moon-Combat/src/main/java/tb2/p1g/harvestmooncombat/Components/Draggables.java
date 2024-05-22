@@ -44,7 +44,7 @@ public class Draggables {
         int i = 0;
         System.out.println("Load Active deck");
         for (Map.Entry<String, Card> entry : playerActiveDeck.entrySet()) {
-            activeDeck.addCard(entry.getKey(), entry.getValue(),i);
+            activeDeck.addCard(entry.getKey(), entry.getValue());
             i++;
         }
     }
@@ -100,7 +100,6 @@ public class Draggables {
 
                 if (node instanceof Pane sourcePane) {
 
-<<<<<<< HEAD
                     if (pane.getChildren().isEmpty()){
                         if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'd') {
                         }
@@ -124,7 +123,6 @@ public class Draggables {
                             sourcePane.getChildren().clear();
                         }
                     }
-=======
 
 //                    if (pane.getChildren().isEmpty()){
 //                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'd') {
@@ -149,7 +147,6 @@ public class Draggables {
 //                            sourcePane.getChildren().clear();
 //                        }
 //                    }
->>>>>>> 09e18a8e8022604e51c11f3c33fcf522d0a81717
                     System.out.println("Source: " + sourcePane.getId());
                     System.out.println("Target: " + pane.getId());
                     try{

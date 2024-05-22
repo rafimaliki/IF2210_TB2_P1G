@@ -47,12 +47,10 @@ public class ActiveDeck {
         return cards.get(Integer.parseInt(key.substring(1)));
     }
 
-    public void addCard(String key, Card card,Integer i) {
+    public void addCard(String key, Card card) {
         cards.get(Integer.parseInt(key.substring(1))).getChildren().add(card);
 
     }
-
-
 
     public void addCard(Card card) {
         for (int i = 0; i < cards.size(); i++) {

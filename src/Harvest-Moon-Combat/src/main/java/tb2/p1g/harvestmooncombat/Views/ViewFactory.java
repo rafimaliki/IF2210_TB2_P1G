@@ -7,14 +7,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import tb2.p1g.harvestmooncombat.App;
-import tb2.p1g.harvestmooncombat.Components.Draggables;
 
 import tb2.p1g.harvestmooncombat.Components.ActiveDeck;
 import tb2.p1g.harvestmooncombat.Components.Card;
-import tb2.p1g.harvestmooncombat.Controllers.BeliScreenController;
+import tb2.p1g.harvestmooncombat.Controllers.TokoScreenController;
 import tb2.p1g.harvestmooncombat.Controllers.CardDetailController;
 import tb2.p1g.harvestmooncombat.Controllers.ShuffleScreenController;
-import tb2.p1g.harvestmooncombat.App;
 
 import java.util.Objects;
 
@@ -76,13 +74,12 @@ public class ViewFactory {
         }
     }
 
-    public static void ShowBeliScreen() {
+    public static void ShowTokoScreen() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/BeliScreen.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/TokoScreen.fxml"));
             Parent root = fxmlLoader.load();
 
-            BeliScreenController controller = fxmlLoader.getController();
-
+            TokoScreenController controller = fxmlLoader.getController();
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -90,7 +87,11 @@ public class ViewFactory {
             stage.initStyle(StageStyle.TRANSPARENT);
 
             Scene scene = new Scene(root);
+//            scene.setFill(null);
+            stage.setScene(scene);
+
             scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Bear.css")).toExternalForm());
             stage.setScene(scene);
 
             stage.setOnShown(event -> {

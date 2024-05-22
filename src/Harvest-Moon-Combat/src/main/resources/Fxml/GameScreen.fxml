@@ -168,37 +168,32 @@
         </GridPane>
         <VBox alignment="CENTER" layoutX="452.0" layoutY="93.0" prefHeight="360.0" prefWidth="125.0" stylesheets="@../Styles/Wood.css">
             <children>
-                <Button fx:id="ladangKuButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#loadLadangKu" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Ladangku">
+                <Button fx:id="ladangKuButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#ladangKuButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Ladangku">
                     <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                     </VBox.margin>
                 </Button>
-                <Button fx:id="ladangLawanButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#loadLadangLawan" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Ladang Lawan">
+                <Button fx:id="ladangLawanButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#ladangLawanButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Ladang Lawan">
                     <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                     </VBox.margin>
                 </Button>
-                <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#beliButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Beli">
+                <Button fx:id="tokoButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#tokoButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Toko">
                     <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                     </VBox.margin>
                 </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Jual">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-                <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Save State">
+                <Button fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Save State">
                     <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                     </VBox.margin>
                 </Button>
-                <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-: ;" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Load State">
+                <Button fx:id="loadButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#loadButtonAction" prefHeight="30.0" prefWidth="100.0" style="-: ;" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Load State">
                     <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                     </VBox.margin>
                 </Button>
-                <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Load Plugin">
+                <Button fx:id="pluginButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#pluginButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Load Plugin">
                     <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                     </VBox.margin>
@@ -211,7 +206,7 @@
                 <Label fx:id="turnNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="30.0" prefHeight="17.0" prefWidth="42.0" text="1" />
             </children>
         </AnchorPane>
-        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="470.0" layoutY="30.0" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#nextTurn" prefHeight="30.0" prefWidth="90.0" text="Next" />
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="470.0" layoutY="30.0" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#nextButtonAction" prefHeight="30.0" prefWidth="90.0" text="Next" />
         <AnchorPane layoutX="487.0" layoutY="507.0" prefHeight="49.0" prefWidth="90.0" style="-fx-border-style: solid; -fx-border-width: 1; -fx-background-color: white;">
             <children>
                 <Label layoutX="33.0" layoutY="7.0" text="Deck" />
@@ -243,6 +238,5 @@
             </ImageView>
             </children>
         </AnchorPane>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="210.0" layoutY="30.0" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#toggleGridView" prefHeight="30.0" prefWidth="90.0" text="Toggle" />
     </children>
 </AnchorPane>

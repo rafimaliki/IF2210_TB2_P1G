@@ -1,5 +1,7 @@
 package tb2.p1g.harvestmooncombat.Models;
 
+import javafx.scene.layout.Pane;
+
 import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ public class GameManager {
     private  Ladang_Logic currentLadang;
     private  DeckAktif currentDeck;
     private boolean isViewLawan;
+
 
     private static GameManager instance;
 
@@ -71,7 +74,7 @@ public class GameManager {
         isRunning = false;
     }
 
-    public void nextTurn(){
+    public void nextTurn(Pane beruangBox){
         currentPlayerIdx = (currentPlayerIdx + 1) % 2;
         Player player1 = players.get(0);
         Player player2 = players.get(1);
@@ -83,15 +86,16 @@ public class GameManager {
 
         // chance of bear attack
         Random random = new Random();
-        int chance = random.nextInt(5);
+//        int chance = random.nextInt(5);
+        int chance = 0;
         if (chance == 0){
             System.out.println("Serangan beruang!");
-            seranganBeruang();
+            seranganBeruang(beruangBox);
         }
     }
 
-    public void seranganBeruang() {
-        seranganBeruang = new SeranganBeruang(); // Membuat instans SeranganBeruang
+    public void seranganBeruang(Pane beruangBox) {
+        seranganBeruang = new SeranganBeruang(beruangBox); // Membuat instans SeranganBeruang
         seranganThread = new Thread(seranganBeruang);
         seranganThread.start();
     }

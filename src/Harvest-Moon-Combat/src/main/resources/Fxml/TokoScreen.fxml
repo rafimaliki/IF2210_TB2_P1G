@@ -199,6 +199,6 @@
             <Image url="@../Images/Other/GoldCoin.png" />
          </image>
       </ImageView>
-      <Label layoutX="426.0" layoutY="260.0" text="100" textFill="WHITE" />
+      <Label fx:id="Tes" layoutX="426.0" layoutY="260.0" text="100" textFill="WHITE" />
     </children>
 </AnchorPane>

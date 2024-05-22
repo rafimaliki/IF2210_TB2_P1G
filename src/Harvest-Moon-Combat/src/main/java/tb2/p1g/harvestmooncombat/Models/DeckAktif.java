@@ -13,7 +13,7 @@ public class DeckAktif extends Deck {
         return super.getLengthKartu() == 6;
     }
 
-    public void tambahKartu(Kartu kartu){
+    public void tambahKartu(Kartu kartu) throws Exception {
         super.tambahKartu(kartu);
     }
 }

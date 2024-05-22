@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import tb2.p1g.harvestmooncombat.Models.GameManager;
 import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 import tb2.p1g.harvestmooncombat.Components.Card;
+import tb2.p1g.harvestmooncombat.Models.SeranganBeruang;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +33,7 @@ public class GameScreenController {
 
     @FXML private AnchorPane root;
     @FXML private GridPane activeDeckGrid, ladangGrid;
+    @FXML private Pane beruangBox;
 
     @FXML private Label turnNumber, player1Name, player2Name;
     @FXML private Button ladangKuButton, ladangLawanButton, tokoButton, saveButton, loadButton, pluginButton;
@@ -74,6 +76,7 @@ public class GameScreenController {
 
         setButtonClicked("ladangKuButton");
         player1Name.setStyle("-fx-background-color: #50C878;");
+        beruangBox.setVisible(false);
     }
 
     @FXML
@@ -108,13 +111,14 @@ public class GameScreenController {
             player1Name.setStyle("-fx-background-color: none;");
             player2Name.setStyle("-fx-background-color: #50C878;");
         }
-        gm.nextTurn();
+        gm.nextTurn(beruangBox);
         gm.getCurrentPlayer().getLadang().displayLadang();
         gm.getCurrentPlayer().getDeckAktif().displayInfoDeck();
 
         gm.getCurrentPlayer().getLadang().displayDataKartuLadang();
 
         ViewFactory.ShowShuffleScreen(this.primaryStage, draggables.getActiveDeck());
+        seranganBeruangUI();
     }
 
     @FXML
@@ -195,5 +199,41 @@ public class GameScreenController {
     protected void setButtonClicked(String buttonName) {
         unclickButtons();
         buttonList.get(buttonName).setStyle("-fx-background-color: #50C878;");
+    }
+
+    protected void seranganBeruangUI(){
+        // get pixel of beruang box
+
+        // set visibility true
+        beruangBox.setVisible(true);
+
+        int startX = 11;
+        int startY = 87;
+
+        int beruangBoxX = (int) beruangBox.getLayoutX();
+        int beruangBoxY = (int) beruangBox.getLayoutY();
+
+        int startRow = SeranganBeruang.getStartRow();
+        int startCol = SeranganBeruang.getStartCol();
+        int endRow = SeranganBeruang.getEndRow();
+        int endCol = SeranganBeruang.getEndCol();
+
+        boolean isHorizontal;
+
+        if (endRow-startRow == 1){
+            isHorizontal = true;
+        } else {
+            isHorizontal = false;
+        }
+
+        if (isHorizontal){
+            beruangBox.setPrefWidth(237);
+            beruangBox.setPrefHeight(201);
+        } else {
+            beruangBox.setPrefWidth(160);
+            beruangBox.setPrefHeight(291);
+        }
+        beruangBox.setLayoutX(startX + startCol * 80-5);
+        beruangBox.setLayoutY(startY + startRow * 100-5);
     }
 }

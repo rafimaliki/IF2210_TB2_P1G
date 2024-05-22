@@ -47,7 +47,7 @@ public class TokoScreenController {
 
          // setup player gold
          // belum implementasi
-        AngryBear.addRandomBear(root);
+//        AngryBear.addRandomBear(root);
 
     }
 

@@ -47,25 +47,28 @@ public class ViewFactory {
         }
     }
 
-    public static void ShowCardDetail(Card card) {
+    public static void ShowCardDetail(String slotIndex) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/CardDetailScreen.fxml"));
             Parent root = fxmlLoader.load();
 
             CardDetailController controller = fxmlLoader.getController();
-            controller.setCard(card);
+            controller.setCard(slotIndex);
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(App.PrimaryStage);
             stage.initStyle(StageStyle.TRANSPARENT);
 
+
             Scene scene = new Scene(root);
+            scene.setFill(null);
+            scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
             stage.setScene(scene);
 
             stage.setOnShown(event -> {
                 stage.setX(App.PrimaryStage.getX() + App.PrimaryStage.getWidth() / 2 - stage.getWidth() / 2);
-                stage.setY(App.PrimaryStage.getY() + App.PrimaryStage.getHeight() / 2 - stage.getHeight() / 2);
+                stage.setY(App.PrimaryStage.getY() + App.PrimaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
             });
 
             stage.show();

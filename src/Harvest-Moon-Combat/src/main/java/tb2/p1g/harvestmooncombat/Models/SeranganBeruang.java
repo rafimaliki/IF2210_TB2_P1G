@@ -3,20 +3,25 @@ package tb2.p1g.harvestmooncombat.Models;
 import java.sql.SQLOutput;
 import java.util.Random;
 
+import javafx.scene.layout.Pane;
+import tb2.p1g.harvestmooncombat.Controllers.GameScreenController;
+
 
 public class SeranganBeruang implements Runnable {
     private int countdown;
     private static final int rows = 4;
     private static final int cols = 5;
-    private int startRow;
-    private int startCol;
-    private int endRow;
-    private int endCol;
+    private static int startRow;
+    private static int startCol;
+    private static int endRow;
+    private static int endCol;
     private volatile boolean bearAttack = false;
+    private Pane beruangBox;
 
 
 
-    public SeranganBeruang() {
+    public SeranganBeruang(Pane beruangBox) {
+        this.beruangBox = beruangBox;
         generateAttackArea();
         Random random = new Random();
         countdown = random.nextInt(10,15); // Menghasilkan angka antara 30 hingga 60 deti
@@ -60,6 +65,10 @@ public class SeranganBeruang implements Runnable {
                 System.out.println("null" + i + " " + j);
             }
         }
+//
+//        GameScreenController.getBeruangBox().setVisible(false);
+            this.beruangBox.setVisible(false);
+
 
 
 
@@ -100,20 +109,20 @@ public class SeranganBeruang implements Runnable {
         System.out.println("Bear attack area: " + startRow + ", " + startCol + " to " + endRow + ", " + endCol);
     }
 
-    public int getEndCol() {
-        return endCol;
+    public static int getEndCol() {
+        return SeranganBeruang.endCol;
     }
 
-    public int getEndRow() {
-        return endRow;
+    public static int getEndRow() {
+        return SeranganBeruang.endRow;
     }
 
-    public int getStartCol() {
-        return startCol;
+    public static int getStartCol() {
+        return SeranganBeruang.startCol;
     }
 
-    public int getStartRow() {
-        return startRow;
+    public static int getStartRow() {
+        return SeranganBeruang.startRow;
     }
 
     public boolean isBearAttack() {

@@ -24,4 +24,5 @@ public abstract class Kartu {
     public List<String> getEfekItem(){
         return new ArrayList<>();
     }
+
  }

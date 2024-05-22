@@ -89,7 +89,7 @@ public class KartuHewan extends Kartu {
         return informasi;
     }
 
-    public List<String> getEfeckItem(){
+    public List<String> getEfekItem(){
         List<String> efekItem = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : this.itemAktif.entrySet()){
             if (entry.getValue() > 0){
@@ -98,4 +98,5 @@ public class KartuHewan extends Kartu {
         }
         return efekItem;
     }
+
 }

@@ -32,6 +32,35 @@ public class SeranganBeruang implements Runnable {
     public void run() {
         bearAttack = true;
         this.beruangBox.setVisible(true);
+        int startX = 11;
+        int startY = 87;
+
+        int beruangBoxX = (int) beruangBox.getLayoutX();
+        int beruangBoxY = (int) beruangBox.getLayoutY();
+
+        int startRow = SeranganBeruang.getStartRow();
+        int startCol = SeranganBeruang.getStartCol();
+        int endRow = SeranganBeruang.getEndRow();
+        int endCol = SeranganBeruang.getEndCol();
+
+        boolean isHorizontal;
+
+        if (endRow-startRow == 1){
+            isHorizontal = true;
+        } else {
+            isHorizontal = false;
+        }
+
+        if (isHorizontal){
+            beruangBox.setPrefWidth(237);
+            beruangBox.setPrefHeight(201);
+        } else {
+            beruangBox.setPrefWidth(160);
+            beruangBox.setPrefHeight(291);
+        }
+        System.out.println("start col, start row: " + startCol + ", " + startRow);
+        beruangBox.setLayoutX(startX + startCol * 80-5);
+        beruangBox.setLayoutY(startY + startRow * 100-5);
 
         while (countdown > 0) {
             System.out.println("Countdown: " + countdown);
@@ -83,8 +112,33 @@ public class SeranganBeruang implements Runnable {
             for (int j = startCol; j <= endCol; j++) {
                 Kartu kartu = ladang.getKartu(i, j);
                 if (kartu != null) {
-                    if (kartu.getEfekItem().contains("TRAP")){
 
+                    if (kartu.getEfekItem().contains("TRAP")) {
+                        System.out.println("Serangan beruang terhenti oleh trap card" + i + " " + j);
+                        //simpan kartu beruang di ladang player
+                        //cari ladang kosong di area trap jika tidak ada iterasi seluruh ladang
+                        boolean flag = false;
+                        for (int k = startRow; k <= endRow; k++) {
+                            for (int l = startCol; l <= endCol; l++) {
+                                if (ladang.getKartu(k, l) == null) {
+                                    System.out.println("BERUANG MENINGGAL " + k + " " + l);
+                                    ladang.getLadang().get(k).set(l, new KartuHewan("BERUANG"));
+                                    flag = true;
+                                    return true;
+                                }
+                            }
+                        }
+                        if (!flag){
+                            for (int k = 0; k < ladang.getLadang().size(); k++) {
+                                for (int l = 0; l < ladang.getLadang().get(k).size(); l++) {
+                                    if (ladang.getKartu(k, l) == null) {
+                                        System.out.println("BERUANG MENINGGAL " + k + " " + l);
+                                        ladang.getLadang().get(k).set(l, new KartuHewan("BERUANG"));
+                                        break;
+                                    }
+                                }
+                            }
+                        }
                         return true;
                     }
                 }

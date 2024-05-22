@@ -14,6 +14,10 @@ public class DeckAktif extends Deck {
     }
 
     public void tambahKartu(Kartu kartu){
-        super.tambahKartu(kartu);
+        try{
+            super.tambahKartu(kartu);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }

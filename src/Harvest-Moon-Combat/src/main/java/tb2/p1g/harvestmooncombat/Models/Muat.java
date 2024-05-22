@@ -6,22 +6,15 @@ import java.io.FileReader;
 import java.util.Map;
 
 public class Muat {
-    private Player player1;
     private int current_turn;
     private int jumlah_item_shop;
     Map<String, Integer> item_shop;
-    private int gulden_player1;
-    private int gulden_player2;
-    private int jumlah_deck_nonaktif_player1;
-    private int jumlah_deck_nonaktif_player2;
-    private int jumlah_deck_aktif_player1;
-    private int jumlah_deck_aktif_player2;
-    private DeckAktif deck_aktif_player1;
-    private DeckAktif deck_aktif_player2;
-    private int jumlah_kartu_ladang_player1;
-    private int jumlah_kartu_ladang_player2;
-    private Ladang_Logic ladang_player1;
-    private Ladang_Logic ladang_player2;
+    private Player player1;
+    private Player player2;
+    private DeckNonAktif deckNonAktif_Player1;
+    private DeckNonAktif deckNonAktif_Player2;
+    private DeckAktif deckAktif_Player1;
+    private DeckAktif getDeckAktif_Player2;
 
     public boolean tryReadFile(String path) {
         // Cek apakah file ada
@@ -53,8 +46,26 @@ public class Muat {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
+    public void loadPlayer(String path, int player) {
+        try {
+            // Baca file
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+            String line = reader.readLine();
+            int gulden = Integer.parseInt(line);
+            line = reader.readLine();
+            int kartuSisa = Integer.parseInt(line);
+            line = reader.readLine();
+            int jumlah_deck_aktif = Integer.parseInt(line);
+            for (int i = 0; i < jumlah_deck_aktif; i++){
+                line = reader.readLine();
+
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 }

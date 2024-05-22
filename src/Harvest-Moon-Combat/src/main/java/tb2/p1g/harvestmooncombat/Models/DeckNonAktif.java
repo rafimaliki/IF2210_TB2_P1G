@@ -10,6 +10,7 @@ public class DeckNonAktif extends Deck {
     public DeckNonAktif(int kartuSisa){
         super(40);
         this.kartuSisa = kartuSisa;
+        this.randomize();
     }
 
     public int getKartuSisa(){
@@ -47,20 +48,70 @@ public class DeckNonAktif extends Deck {
     public List<Kartu> ambil4Kartu(){
         List<Kartu> kartuRandom = new ArrayList<>();
         Random random = new Random();
+        boolean valid = false;
         for (int i = 0; i < 4; i++){
+            System.out.println(i);
             int idx = random.nextInt(this.kartuSisa);
-            Kartu kartu = this.getKartu(idx);
-            kartuRandom.add(kartu);
-            this.removeKartu(idx);
+            if (!valid){
+                for (String nama : Config.listKartuHewan){
+                    if (this.getKartu(idx).getNama().equals(nama)) {
+                        kartuRandom.add(new KartuHewan(this.getKartu(idx).getNama()));
+                        this.kartu.remove(idx);
+                        valid = true;
+                        break;
+                    }
+                }
+            }
+            if (!valid){
+                for (String nama : Config.listKartuTanaman){
+                    if (this.getKartu(idx).getNama().equals(nama)) {
+                        kartuRandom.add(new KartuTanaman(this.getKartu(idx).getNama()));
+                        this.kartu.remove(idx);
+                        valid = true;
+                        break;
+                    }
+                }
+            }
+            if (!valid){
+                for (String nama : Config.listKartuProduk){
+                    if (this.getKartu(idx).getNama().equals(nama)) {
+                        kartuRandom.add(new KartuProduk(this.getKartu(idx).getNama()));
+                        this.kartu.remove(idx);
+                        valid = true;
+                        break;
+                    }
+                }
+            }
+            if (!valid){
+                for (String nama : Config.listKartuItem) {
+                    if (this.getKartu(idx).getNama().equals(nama)) {
+                        kartuRandom.add(new KartuItem(this.getKartu(idx).getNama()));
+                        this.kartu.remove(idx);
+                        valid = true;
+                        break;
+                    }
+                }
+            }
+            valid = false;
+            this.kartuSisa--;
         }
-        this.kartuSisa -= 4;
+
+        for (int i = 0; i < 4; i++){
+            this.kartu.add(null);
+        }
+
+        for (Kartu kartu : kartuRandom){
+            System.out.println("Nama: " + kartu.getNama());
+        }
+
+        System.out.println(kartuRandom.size());
 
         return kartuRandom;
     }
 
     public void kembalikanKartu(List<Kartu> kartu, int banyak){
         for (int i = 0; i < banyak; i++){
-            this.setKartu(this.kartuSisa, kartu.get(i));
+            this.kartu.set(this.kartuSisa, kartu.get(i));
             this.kartuSisa++;
         }
     }

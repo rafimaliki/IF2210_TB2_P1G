@@ -1,5 +1,7 @@
 package tb2.p1g.harvestmooncombat.Models;
 
+import javafx.scene.layout.Pane;
+
 import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ public class GameManager {
     private  Ladang_Logic currentLadang;
     private  DeckAktif currentDeck;
     private boolean isViewLawan;
+    private Pane beruangBox;
     private int sumTurn;
 
     private static GameManager instance;
@@ -54,6 +57,7 @@ public class GameManager {
 
     public void startGame(){
         isRunning = true;
+        Toko toko = new Toko();
         Player player1 = new Player("Player 1");
         Player player2 = new Player("Player 2");
         players.add(player1);
@@ -74,7 +78,7 @@ public class GameManager {
         isRunning = false;
     }
 
-    public void nextTurn(){
+    public void nextTurn(Pane beruangBox){
         currentPlayerIdx = (currentPlayerIdx + 1) % 2;
         Player player1 = players.get(0);
         Player player2 = players.get(1);
@@ -86,16 +90,21 @@ public class GameManager {
         sumTurn ++;
 
         // chance of bear attack
+
+    }
+
+    public void initBearAttack() {
         Random random = new Random();
-        int chance = random.nextInt(5);
+//        int chance = random.nextInt(5);
+        int chance = 0;
         if (chance == 0){
             System.out.println("Serangan beruang!");
-            seranganBeruang();
+            seranganBeruang(this.beruangBox);
         }
     }
 
-    public void seranganBeruang() {
-        seranganBeruang = new SeranganBeruang(); // Membuat instans SeranganBeruang
+    public void seranganBeruang(Pane beruangBox) {
+        seranganBeruang = new SeranganBeruang(beruangBox); // Membuat instans SeranganBeruang
         seranganThread = new Thread(seranganBeruang);
         seranganThread.start();
     }
@@ -106,6 +115,16 @@ public class GameManager {
         }
         System.out.println("Bear attack is not in progress");
         return false;
+    }
+
+    public void setReadyAttack(boolean readyAttack) {
+        if (seranganBeruang != null) {
+            seranganBeruang.setReadyAttack(readyAttack);
+        }
+    }
+
+    public void setBeruangBox(Pane beruangBox) {
+        this.beruangBox = beruangBox;
     }
 
     public int getSumTurn(){

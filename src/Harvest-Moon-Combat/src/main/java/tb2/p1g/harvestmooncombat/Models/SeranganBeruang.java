@@ -3,20 +3,26 @@ package tb2.p1g.harvestmooncombat.Models;
 import java.sql.SQLOutput;
 import java.util.Random;
 
+import javafx.scene.layout.Pane;
+import tb2.p1g.harvestmooncombat.Controllers.GameScreenController;
+
 
 public class SeranganBeruang implements Runnable {
     private int countdown;
     private static final int rows = 4;
     private static final int cols = 5;
-    private int startRow;
-    private int startCol;
-    private int endRow;
-    private int endCol;
+    private static int startRow;
+    private static int startCol;
+    private static int endRow;
+    private static int endCol;
     private volatile boolean bearAttack = false;
+    private Pane beruangBox;
+    private volatile boolean readyAttack = false;
 
 
 
-    public SeranganBeruang() {
+    public SeranganBeruang(Pane beruangBox) {
+        this.beruangBox = beruangBox;
         generateAttackArea();
         Random random = new Random();
         countdown = random.nextInt(10,15); // Menghasilkan angka antara 30 hingga 60 deti
@@ -25,6 +31,37 @@ public class SeranganBeruang implements Runnable {
     @Override
     public void run() {
         bearAttack = true;
+        this.beruangBox.setVisible(true);
+        int startX = 11;
+        int startY = 87;
+
+        int beruangBoxX = (int) beruangBox.getLayoutX();
+        int beruangBoxY = (int) beruangBox.getLayoutY();
+
+        int startRow = SeranganBeruang.getStartRow();
+        int startCol = SeranganBeruang.getStartCol();
+        int endRow = SeranganBeruang.getEndRow();
+        int endCol = SeranganBeruang.getEndCol();
+
+        boolean isHorizontal;
+
+        if (endRow-startRow == 1){
+            isHorizontal = true;
+        } else {
+            isHorizontal = false;
+        }
+
+        if (isHorizontal){
+            beruangBox.setPrefWidth(237);
+            beruangBox.setPrefHeight(201);
+        } else {
+            beruangBox.setPrefWidth(160);
+            beruangBox.setPrefHeight(291);
+        }
+        System.out.println("start col, start row: " + startCol + ", " + startRow);
+        beruangBox.setLayoutX(startX + startCol * 80-5);
+        beruangBox.setLayoutY(startY + startRow * 100-5);
+
         while (countdown > 0) {
             System.out.println("Countdown: " + countdown);
             countdown--;
@@ -60,6 +97,10 @@ public class SeranganBeruang implements Runnable {
                 System.out.println("null" + i + " " + j);
             }
         }
+//
+//        GameScreenController.getBeruangBox().setVisible(false);
+            this.beruangBox.setVisible(false);
+
 
 
 
@@ -71,7 +112,33 @@ public class SeranganBeruang implements Runnable {
             for (int j = startCol; j <= endCol; j++) {
                 Kartu kartu = ladang.getKartu(i, j);
                 if (kartu != null) {
-                    if (kartu.getNama().equals("TRAP")){
+
+                    if (kartu.getEfekItem().contains("TRAP")) {
+                        System.out.println("Serangan beruang terhenti oleh trap card" + i + " " + j);
+                        //simpan kartu beruang di ladang player
+                        //cari ladang kosong di area trap jika tidak ada iterasi seluruh ladang
+                        boolean flag = false;
+                        for (int k = startRow; k <= endRow; k++) {
+                            for (int l = startCol; l <= endCol; l++) {
+                                if (ladang.getKartu(k, l) == null) {
+                                    System.out.println("BERUANG MENINGGAL " + k + " " + l);
+                                    ladang.getLadang().get(k).set(l, new KartuHewan("BERUANG"));
+                                    flag = true;
+                                    return true;
+                                }
+                            }
+                        }
+                        if (!flag){
+                            for (int k = 0; k < ladang.getLadang().size(); k++) {
+                                for (int l = 0; l < ladang.getLadang().get(k).size(); l++) {
+                                    if (ladang.getKartu(k, l) == null) {
+                                        System.out.println("BERUANG MENINGGAL " + k + " " + l);
+                                        ladang.getLadang().get(k).set(l, new KartuHewan("BERUANG"));
+                                        break;
+                                    }
+                                }
+                            }
+                        }
                         return true;
                     }
                 }
@@ -100,23 +167,35 @@ public class SeranganBeruang implements Runnable {
         System.out.println("Bear attack area: " + startRow + ", " + startCol + " to " + endRow + ", " + endCol);
     }
 
-    public int getEndCol() {
-        return endCol;
+    public static int getEndCol() {
+        return SeranganBeruang.endCol;
     }
 
-    public int getEndRow() {
-        return endRow;
+    public static int getEndRow() {
+        return SeranganBeruang.endRow;
     }
 
-    public int getStartCol() {
-        return startCol;
+    public static int getStartCol() {
+        return SeranganBeruang.startCol;
     }
 
-    public int getStartRow() {
-        return startRow;
+    public static int getStartRow() {
+        return SeranganBeruang.startRow;
     }
 
     public boolean isBearAttack() {
         return bearAttack;
+    }
+
+    public boolean isReadyAttack() {
+        return readyAttack;
+    }
+
+    public void setReadyAttack(boolean readyAttack) {
+        this.readyAttack = readyAttack;
+    }
+
+    public void setBeruangBox(Pane beruangBox) {
+        this.beruangBox = beruangBox;
     }
 }

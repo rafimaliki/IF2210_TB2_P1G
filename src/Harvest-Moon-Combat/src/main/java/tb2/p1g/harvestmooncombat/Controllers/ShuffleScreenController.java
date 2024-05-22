@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 import tb2.p1g.harvestmooncombat.Components.ActiveDeck;
 import tb2.p1g.harvestmooncombat.Components.Card;
+import tb2.p1g.harvestmooncombat.Models.GameManager;
+import tb2.p1g.harvestmooncombat.Models.Kartu;
 
 public class ShuffleScreenController {
 
@@ -22,6 +24,7 @@ public class ShuffleScreenController {
 
     List<Pane> cardShuffleList = new ArrayList<>();
     List<Boolean> isClicked = new ArrayList<>();
+    List<Kartu> randomKartu = new ArrayList<>();
     Integer countClicked = 0;
     Integer maxClicked = 0;
 
@@ -38,7 +41,7 @@ public class ShuffleScreenController {
                 isClicked.add(false);
                 pane.setOnMouseClicked(event -> {
                     maxClicked = 6-activeDeck.countCard();
-                    if (maxClicked > 2) maxClicked = 2;
+                    if (maxClicked > 4) maxClicked = 4;
                     if (isClicked.get(Integer.parseInt(pane.getId()))) {
                         pane.setStyle("-fx-background-color: #FFFFFF;");
                         isClicked.set(Integer.parseInt(pane.getId()), false);
@@ -56,8 +59,8 @@ public class ShuffleScreenController {
                 });
             }
 
-            handleShuffleButtonAction();
         }
+        handleShuffleButtonAction();
 
         countClicked = 0;
     }
@@ -65,9 +68,11 @@ public class ShuffleScreenController {
     @FXML
     private void handleConfirmationButtonAction(ActionEvent event) {
 //        System.out.println(activeDeck);
+        GameManager gameManager = GameManager.getInstance();
+        List<Kartu> returnKartu = new ArrayList<>();
 
         maxClicked = 6-activeDeck.countCard();
-        if (maxClicked > 2) maxClicked = 2;
+        if (maxClicked > 4) maxClicked = 4;
         if (countClicked != maxClicked) return;
 
         Stage stage = (Stage) ((javafx.scene.Node) (event.getSource())).getScene().getWindow();
@@ -77,23 +82,29 @@ public class ShuffleScreenController {
         for (int i = 0; i < isClicked.size(); i++) {
             if (isClicked.get(i)) {
                 activeDeck.addCard((Card)cardShuffleList.get(i).getChildren().get(0));
-
+            } else {
+                returnKartu.add(randomKartu.get(i));
             }
         }
+        gameManager.getCurrentPlayer().getDeckNonAktif().kembalikanKartu(returnKartu, returnKartu.size());
     }
 
     @FXML
     private void handleShuffleButtonAction() {
-//        System.out.println("Shuffle button clicked");
+//
+        GameManager gameManager = GameManager.getInstance();
+        System.out.println("panggil");
 
-        for (int i = 0; i < isClicked.size(); i++){
-           isClicked.set(i, false);
-        }
+        gameManager.getCurrentPlayer().getDeckNonAktif().kembalikanKartu(this.randomKartu, this.randomKartu.size());
+        System.out.println("sisa kartu: " + gameManager.getCurrentPlayer().getDeckNonAktif().getKartuSisa());
+        this.randomKartu = gameManager.getCurrentPlayer().getDeckNonAktif().ambil4Kartu();
 
+        int counter = 0;
         for (Pane pane : cardShuffleList) {
             pane.getChildren().clear();
-            pane.getChildren().add(new Card());
             pane.setStyle("-fx-background-color: #FFFFFF;");
+            pane.getChildren().add(new Card(randomKartu.get(counter).getNama()));
+            counter++;
         }
 
         countClicked = 0;

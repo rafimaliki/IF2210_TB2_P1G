@@ -24,6 +24,7 @@ public class Ladang_Logic {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 5; j++){
                 if(ladang.get(i).get(j) != null){
+                    System.out.println("i = " + i + " j = " + j);
                     List<String> data = ladang.get(i).get(j).getInformasi();
                     for(String s :data){
                         System.out.println(s);
@@ -73,7 +74,7 @@ public class Ladang_Logic {
 //        int colDest = idxInit % this.ladang.size();
 //
 //        Kartu temp = ladang.get(rowInit).get(colInit);
-//        ladang.get(rowDest).set(colDest, temp);
+//        ladang.get(rowDest).set(colD  est, temp);
 //        ladang.get(rowInit).set(colInit, null);
 //    }
 }

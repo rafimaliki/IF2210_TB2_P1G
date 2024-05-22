@@ -9,14 +9,14 @@ public class Player {
     private int gulden;
     private DeckAktif deckAktif;
     private DeckNonAktif deckNonAktif;
-    private Ladang ladang;
+    private Ladang_Logic ladang;
 
     public Player(String nama){
         this.nama = nama;
         this.gulden = 0;
         this.deckAktif = new DeckAktif();
-        this.deckNonAktif = new DeckNonAktif();
-        this.ladang = new Ladang();
+        this.deckNonAktif = new DeckNonAktif(40);
+        this.ladang = new Ladang_Logic();
     }
 
     public String getNama(){
@@ -35,7 +35,7 @@ public class Player {
         return this.deckNonAktif;
     }
 
-    public Ladang getLadang(){
+    public Ladang_Logic getLadang(){
         return this.ladang;
     }
 
@@ -55,7 +55,7 @@ public class Player {
         this.deckNonAktif = deckNonAktif;
     }
 
-    public void setLadang(Ladang ladang){
+    public void setLadang(Ladang_Logic ladang){
         this.ladang = ladang;
     }
 
@@ -65,47 +65,6 @@ public class Player {
 
     public void reduceGulden(int gulden){
         this.gulden -= gulden;
-    }
-
-    // TAHAPAN SHUFFLE DECK
-
-    // Get 4 kartu random dari deck non aktif
-    public List<Kartu> get4RandomCard(){
-        List<Kartu> kartuRandom = new ArrayList<>();
-        List<Integer> indexRandom = new ArrayList<>();
-        Random random = new Random();
-
-        //Ambil index kartu yang ada di list deck non aktif
-        for (int i = 0; i < 40 ; i++ ){
-            if (deckNonAktif.getKartu(i) != null){
-                indexRandom.add(i);
-            }
-        }
-
-        // Ambil 4 kartu acak dari deck non aktif
-        for (int i = 0; i < 4; i++) {
-            int index = random.nextInt(indexRandom.size());
-            int indexKartu = indexRandom.get(index);
-            kartuRandom.add(deckNonAktif.getKartu(indexKartu));
-            indexRandom.remove(index);
-            deckNonAktif.removeKartu(indexKartu);
-        }
-        return kartuRandom;
-    }
-
-    //add kartu ke deck non aktif
-    public void addKartuToDeckNonAktif(Kartu kartu){
-        deckNonAktif.setKartu(deckNonAktif.getLengthKartu(), kartu);
-    }
-
-    //add kartu ke deck aktif
-    public void addKartuToDeckAktif(Kartu kartu){
-        deckAktif.setKartu(deckAktif.getLengthKartu(), kartu);
-    }
-
-    //remove kartu dari deck aktif
-    public void removeKartuFromDeckAktif(int index){
-        deckAktif.removeKartu(index);
     }
 
     //TAHAPAN AKSI BEBAS
@@ -200,5 +159,46 @@ public class Player {
 
     public void addKartuToLadang(Kartu kartu, int row, int col){
         ladang.addKartu(kartu, row, col);
+    }
+
+
+    public void tumbuhkanTanaman(){
+        List<List<Kartu>> ladangContent = ladang.getLadang();
+        for (int i = 0; i < 4; i++){
+            for (int j = 0; j < 5; j++){
+                Kartu kartu = ladangContent.get(i).get(j);
+                if (kartu != null){
+                    if (Config.listKartuTanaman.contains(kartu.getNama())){
+                        KartuTanaman tanaman = (KartuTanaman) kartu;
+                        tanaman.grow();
+                    }
+                }
+            }
+        }
+    }
+
+    public void Panen(String idx) throws Exception{
+        int index = Integer.parseInt(idx.substring(1));
+        int row = index / 5;
+        int col = index % 5;
+
+        Kartu kartu = ladang.getKartu(row, col);
+        if (kartu == null){
+            throw new Exception("Invalid move");
+        }
+        if(deckAktif.isFull()){
+            throw new Exception("Deck aktif penuh");
+        }
+
+        if(!kartu.isReadyToHarvest()){
+            throw new Exception("Belum siap panen");
+        }
+
+        KartuProduk produk = new KartuProduk(Config.mapHewanTanamanKeProduk.get(kartu.getNama()));
+        ladang.removeKartu(row, col);
+        deckAktif.setKartu(deckAktif.getLengthKartu(), produk);
+    }
+    public void displayLadangData(){
+        getLadang().displayDataKartuLadang();
     }
 }

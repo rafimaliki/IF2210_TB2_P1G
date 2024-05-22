@@ -9,7 +9,9 @@ import tb2.p1g.harvestmooncombat.Components.Draggables;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.AnchorPane;
+import tb2.p1g.harvestmooncombat.Models.GameManager;
 import tb2.p1g.harvestmooncombat.Views.ViewFactory;
+import tb2.p1g.harvestmooncombat.Components.Card;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,8 +47,8 @@ public class GameScreenController {
     private int playerTurn = 1;
     private int ladangShow = 1;
     // dan map ini bisa di bikin kelas sendiri
-    private Map<Integer, Map<String, Pane>> LadangSave = new HashMap<>(2);
-    private Map<Integer, Map<String, Pane>> ActiveDeckSave = new HashMap<>(2);
+    private Map<Integer, Map<String, Card>> LadangSave = new HashMap<>(2);
+    private Map<Integer, Map<String, Card>> ActiveDeckSave = new HashMap<>(2);
 
     @FXML
     public void initialize() {
@@ -71,6 +73,8 @@ public class GameScreenController {
 
     @FXML
     protected void nextTurn() {
+        GameManager gm = GameManager.getInstance();
+
         turnNumber.setText(String.valueOf(Integer.parseInt(turnNumber.getText()) + 1));
 
         ActiveDeckSave.put(playerTurn, draggables.getActiveDeck().saveCards());
@@ -95,7 +99,13 @@ public class GameScreenController {
             player1Name.setStyle("-fx-background-color: none;");
             player2Name.setStyle("-fx-background-color: #50C878;");
         }
-  shuffleDeck();
+        gm.nextTurn();
+        gm.getCurrentPlayer().getLadang().displayLadang();
+        gm.getCurrentPlayer().getDeckAktif().displayInfoDeck();
+
+        gm.getCurrentPlayer().getLadang().displayDataKartuLadang();
+
+        shuffleDeck();
     }
 
     @FXML

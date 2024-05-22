@@ -8,6 +8,9 @@ import javafx.scene.Node;
 import tb2.p1g.harvestmooncombat.Components.Card;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import tb2.p1g.harvestmooncombat.Models.GameManager;
+import tb2.p1g.harvestmooncombat.Models.Ladang_Logic;
+import tb2.p1g.harvestmooncombat.Models.Utility;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,9 +25,10 @@ public class Ladang {
     private static final int numCols = 5;
     private static final int numCards = Ladang.numRows * numCols;
 
+
+
     public Ladang(GridPane ladangGrid) {
         cards = new ArrayList<>(numCards);
-
         for (int idx = 0; idx < numCards; idx++) {
             Pane pane = (Pane) ladangGrid.getChildren().get(idx);
             pane.setId("l" + idx);
@@ -33,13 +37,15 @@ public class Ladang {
         }
     }
 
+
     public List<Pane> getCards() {
         return cards;
     }
 
-    public void addCard(String key, Pane card) {
+    public void addCard(String key, Card card) {
         cards.get(Integer.parseInt(key.substring(1))).getChildren().add(card);
     }
+
 
     public Pane getCard(String key){
         return cards.get(Integer.parseInt(key.substring(1)));
@@ -50,12 +56,25 @@ public class Ladang {
             pane.getChildren().clear();
         });
     }
+    public  void refreshLadang(){
+        clearCards();
+        Ladang_Logic ladang = GameManager.getInstance().getCurrentPlayer().getLadang();
+        for (int i = 0; i <numCards ; i++) {
+            int row = i / numCols;
+            int col = i % numCols;
+            if(ladang.getKartu(row,col) != null){
+                Card card = new Card(ladang.getKartu(row,col).getNama());
+                cards.get(i).getChildren().add(card);
+            }
+        }
 
-    public Map<String, Pane> saveCards() {
-        Map<String, Pane> savedCards = new HashMap<>();
+    }
+
+    public Map<String, Card> saveCards() {
+        Map<String, Card> savedCards = new HashMap<>();
         for (int i = 0; i < cards.size(); i++) {
             if (!cards.get(i).getChildren().isEmpty() && cards.get(i).getChildren().get(0) instanceof Pane){
-                Pane pane = (Pane) cards.get(i).getChildren().get(0);
+                Card pane = (Card) cards.get(i).getChildren().get(0);
                 savedCards.put("l" + i, pane);
             }
         }

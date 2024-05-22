@@ -11,6 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 import javafx.scene.paint.Color;
+import tb2.p1g.harvestmooncombat.Models.GameManager;
+import tb2.p1g.harvestmooncombat.Models.Player;
 import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 
 import javax.swing.text.View;
@@ -38,14 +40,18 @@ public class Draggables {
         return ladang;
     }
 
-    public void loadActiveDeck(Map<String, Pane> playerActiveDeck) {
-        for (Map.Entry<String, Pane> entry : playerActiveDeck.entrySet()) {
-            activeDeck.addCard(entry.getKey(), entry.getValue());
+    public void loadActiveDeck(Map<String, Card> playerActiveDeck) {
+        int i = 0;
+        System.out.println("Load Active deck");
+        for (Map.Entry<String, Card> entry : playerActiveDeck.entrySet()) {
+            activeDeck.addCard(entry.getKey(), entry.getValue(),i);
+            i++;
         }
     }
 
-    public void loadLadang(Map<String, Pane> playerLadang) {
-        for (Map.Entry<String, Pane> entry : playerLadang.entrySet()) {
+    public void loadLadang(Map<String, Card> playerLadang) {
+        System.out.println("Load Ladang");
+        for (Map.Entry<String, Card> entry : playerLadang.entrySet()) {
             ladang.addCard(entry.getKey(), entry.getValue());
         }
     }
@@ -54,7 +60,7 @@ public class Draggables {
         pane.setOnDragDetected(event -> {
             if (!pane.getChildren().isEmpty()) {
 
-//                System.out.println("Source: " + pane.getId());
+//              System.out.println("Source: " + pane.getId());
                 Dragboard db = pane.startDragAndDrop(TransferMode.ANY);
                 ClipboardContent content = new ClipboardContent();
 
@@ -94,6 +100,7 @@ public class Draggables {
 
                 if (node instanceof Pane sourcePane) {
 
+<<<<<<< HEAD
                     if (pane.getChildren().isEmpty()){
                         if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'd') {
                         }
@@ -117,12 +124,49 @@ public class Draggables {
                             sourcePane.getChildren().clear();
                         }
                     }
+=======
+
+//                    if (pane.getChildren().isEmpty()){
+//                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'd') {
+//                        }
+//                        else {
+//                        pane.getChildren().add(sourcePane.getChildren().getFirst());
+//                        }
+//                    }
+//                    else if (sourcePane.getId().charAt(0) == 'd' && pane.getId().charAt(0) == 'd' && pane.getChildren().getFirst() != sourcePane.getChildren().getFirst()){
+//                        System.out.println("Swapping");
+//                        Pane temp = new Pane();
+//                        temp.getChildren().add(sourcePane.getChildren().getFirst());
+//                        sourcePane.getChildren().clear();
+//                        sourcePane.getChildren().add(pane.getChildren().getFirst());
+//                        pane.getChildren().clear();
+//                        pane.getChildren().add(temp.getChildren().getFirst());
+//                    }
+//                    else if (pane.getChildren().getFirst() != sourcePane.getChildren().getFirst()){
+//                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'l') {
+//                        }
+//                        else {
+//                            sourcePane.getChildren().clear();
+//                        }
+//                    }
+>>>>>>> 09e18a8e8022604e51c11f3c33fcf522d0a81717
                     System.out.println("Source: " + sourcePane.getId());
                     System.out.println("Target: " + pane.getId());
+                    try{
+                        GameManager.getInstance().getCurrentPlayer().moveKartu(sourcePane.getId(),pane.getId());
+                        activeDeck.refreshCards();
+                        ladang.refreshLadang();
+                    }catch (Exception e){
+                        System.out.println("Error! " + e.getMessage() );
+
+                    }
+
                 }
             }
+
             event.setDropCompleted(true);
             event.consume();
+
         });
 
         pane.setOnMouseClicked(event -> {

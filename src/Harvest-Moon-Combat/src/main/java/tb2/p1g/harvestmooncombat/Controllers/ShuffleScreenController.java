@@ -41,7 +41,7 @@ public class ShuffleScreenController {
                 isClicked.add(false);
                 pane.setOnMouseClicked(event -> {
                     maxClicked = 6-activeDeck.countCard();
-                    if (maxClicked > 2) maxClicked = 2;
+                    if (maxClicked > 4) maxClicked = 4;
                     if (isClicked.get(Integer.parseInt(pane.getId()))) {
                         pane.setStyle("-fx-background-color: #FFFFFF;");
                         isClicked.set(Integer.parseInt(pane.getId()), false);
@@ -72,6 +72,7 @@ public class ShuffleScreenController {
         List<Kartu> returnKartu = new ArrayList<>();
 
         maxClicked = 6-activeDeck.countCard();
+        if (maxClicked > 4) maxClicked = 4;
         if (countClicked != maxClicked) return;
 
         Stage stage = (Stage) ((javafx.scene.Node) (event.getSource())).getScene().getWindow();

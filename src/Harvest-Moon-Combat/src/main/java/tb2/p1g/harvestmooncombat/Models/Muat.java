@@ -11,10 +11,6 @@ public class Muat {
     Map<String, Integer> item_shop;
     private Player player1;
     private Player player2;
-    private DeckNonAktif deckNonAktif_Player1;
-    private DeckNonAktif deckNonAktif_Player2;
-    private DeckAktif deckAktif_Player1;
-    private DeckAktif getDeckAktif_Player2;
 
     public boolean tryReadFile(String path) {
         // Cek apakah file ada

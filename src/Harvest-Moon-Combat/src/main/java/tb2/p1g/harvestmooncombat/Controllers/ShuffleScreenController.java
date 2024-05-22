@@ -24,6 +24,7 @@ public class ShuffleScreenController {
 
     List<Pane> cardShuffleList = new ArrayList<>();
     List<Boolean> isClicked = new ArrayList<>();
+    List<Kartu> randomKartu = new ArrayList<>();
     Integer countClicked = 0;
     Integer maxClicked = 0;
 
@@ -58,8 +59,8 @@ public class ShuffleScreenController {
                 });
             }
 
-            handleShuffleButtonAction();
         }
+        handleShuffleButtonAction();
 
         countClicked = 0;
     }
@@ -67,6 +68,8 @@ public class ShuffleScreenController {
     @FXML
     private void handleConfirmationButtonAction(ActionEvent event) {
 //        System.out.println(activeDeck);
+        GameManager gameManager = GameManager.getInstance();
+        List<Kartu> returnKartu = new ArrayList<>();
 
         maxClicked = 6-activeDeck.countCard();
         if (maxClicked > 2) maxClicked = 2;
@@ -79,26 +82,29 @@ public class ShuffleScreenController {
         for (int i = 0; i < isClicked.size(); i++) {
             if (isClicked.get(i)) {
                 activeDeck.addCard((Card)cardShuffleList.get(i).getChildren().get(0));
-
+            } else {
+                returnKartu.add(randomKartu.get(i));
             }
         }
+        gameManager.getCurrentPlayer().getDeckNonAktif().kembalikanKartu(returnKartu, returnKartu.size());
     }
 
     @FXML
     private void handleShuffleButtonAction() {
-//        System.out.println("Shuffle button clicked");
-
-        for (int i = 0; i < isClicked.size(); i++){
-           isClicked.set(i, false);
-        }
-
+//
         GameManager gameManager = GameManager.getInstance();
-        List<Kartu> randomCard = gameManager.getCurrentPlayer().getDeckNonAktif().ambil4Kartu();
+        System.out.println("panggil");
 
+        gameManager.getCurrentPlayer().getDeckNonAktif().kembalikanKartu(this.randomKartu, this.randomKartu.size());
+        System.out.println("sisa kartu: " + gameManager.getCurrentPlayer().getDeckNonAktif().getKartuSisa());
+        this.randomKartu = gameManager.getCurrentPlayer().getDeckNonAktif().ambil4Kartu();
+
+        int counter = 0;
         for (Pane pane : cardShuffleList) {
             pane.getChildren().clear();
-            pane.getChildren().add(new Card());
             pane.setStyle("-fx-background-color: #FFFFFF;");
+            pane.getChildren().add(new Card(randomKartu.get(counter).getNama()));
+            counter++;
         }
 
         countClicked = 0;

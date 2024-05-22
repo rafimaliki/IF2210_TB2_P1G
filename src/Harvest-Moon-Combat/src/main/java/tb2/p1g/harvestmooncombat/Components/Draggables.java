@@ -92,7 +92,7 @@ public class Draggables implements  Runnable {
                 db.setContent(content);
 
 
-//                Image snapshot = pane.getChildren().getFirst().snapshot(null, null);
+
 
                 SnapshotParameters snapshotParams = new SnapshotParameters();
                 snapshotParams.setFill(Color.TRANSPARENT);

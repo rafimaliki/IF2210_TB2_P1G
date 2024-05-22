@@ -2,6 +2,7 @@ package tb2.p1g.harvestmooncombat.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import tb2.p1g.harvestmooncombat.Components.Card;
 
 public class ShuffleScreenController {
 
+    @FXML AnchorPane container;
     @FXML GridPane cardShuffleGrid;
 
     List<Pane> cardShuffleList = new ArrayList<>();
@@ -27,6 +29,7 @@ public class ShuffleScreenController {
 
     public void initialize() {
         System.out.println("Shuffle screen loaded");
+//        container.setStyle("-fx-background-color: rgba(128, 128, 128, 0.2);");
 
         for (Node pane : cardShuffleGrid.getChildren()) {
             if (pane instanceof Pane) {

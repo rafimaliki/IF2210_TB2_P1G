@@ -21,19 +21,21 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        this.PrimaryStage = stage;
+
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/GameScreen.fxml"));
         AnchorPane root = fxmlLoader.load();
         Scene scene = new Scene(root, 600, 600);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/Styles/Bear.css")).toExternalForm());
+
         stage.setTitle("Harvest Moon Combat");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
-        this.PrimaryStage = stage;
 
         GameScreenController controller = fxmlLoader.getController();
         controller.setPrimaryStage(stage);
-        controller.shuffleDeck();
+//        controller.shuffleDeck();
         addRandomBearPane(root);
     }
 
@@ -83,7 +85,7 @@ public class App extends Application {
                     if (x < 10) x = 10;
                     if (y < 90) y = 90;
                     if (x > 360) x = 360;
-                    if (y > 450) y = 450;
+                    if (y > 400) y = 400;
 
                     // Set the new position
                     bear.setLayoutX(x);

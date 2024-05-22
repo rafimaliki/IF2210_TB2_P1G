@@ -11,9 +11,12 @@ import tb2.p1g.harvestmooncombat.Components.Draggables;
 
 import tb2.p1g.harvestmooncombat.Components.ActiveDeck;
 import tb2.p1g.harvestmooncombat.Components.Card;
+import tb2.p1g.harvestmooncombat.Controllers.BeliScreenController;
 import tb2.p1g.harvestmooncombat.Controllers.CardDetailController;
 import tb2.p1g.harvestmooncombat.Controllers.ShuffleScreenController;
 import tb2.p1g.harvestmooncombat.App;
+
+import java.util.Objects;
 
 
 public class ViewFactory {
@@ -32,11 +35,12 @@ public class ViewFactory {
             stage.initStyle(StageStyle.TRANSPARENT);
 
             Scene scene = new Scene(root);
+            scene.setFill(null);
             stage.setScene(scene);
 
             stage.setOnShown(event -> {
                 stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2 - stage.getWidth() / 2);
-                stage.setY(primaryStage.getY() + primaryStage.getHeight() / 2 - stage.getHeight() / 2);
+                stage.setY(primaryStage.getY() + primaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
             });
 
             stage.show();
@@ -64,6 +68,34 @@ public class ViewFactory {
             stage.setOnShown(event -> {
                 stage.setX(App.PrimaryStage.getX() + App.PrimaryStage.getWidth() / 2 - stage.getWidth() / 2);
                 stage.setY(App.PrimaryStage.getY() + App.PrimaryStage.getHeight() / 2 - stage.getHeight() / 2);
+            });
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void ShowBeliScreen() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/BeliScreen.fxml"));
+            Parent root = fxmlLoader.load();
+
+            BeliScreenController controller = fxmlLoader.getController();
+
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(App.PrimaryStage);
+            stage.initStyle(StageStyle.TRANSPARENT);
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
+            stage.setScene(scene);
+
+            stage.setOnShown(event -> {
+                stage.setX(App.PrimaryStage.getX() + App.PrimaryStage.getWidth() / 2 - stage.getWidth() / 2);
+                stage.setY(App.PrimaryStage.getY() + App.PrimaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
             });
 
             stage.show();

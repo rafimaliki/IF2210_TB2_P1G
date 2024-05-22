@@ -1,13 +1,16 @@
 package tb2.p1g.harvestmooncombat.Components;
 
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
+import javafx.scene.paint.Color;
 import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 
 import javax.swing.text.View;
@@ -58,7 +61,13 @@ public class Draggables {
                 content.putString(pane.getId());
                 db.setContent(content);
 
-                Image snapshot = pane.getChildren().getFirst().snapshot(null, null);
+
+//                Image snapshot = pane.getChildren().getFirst().snapshot(null, null);
+
+                SnapshotParameters snapshotParams = new SnapshotParameters();
+                snapshotParams.setFill(Color.TRANSPARENT);
+                WritableImage snapshot = pane.getChildren().getFirst().snapshot(snapshotParams, null);
+
                 db.setDragView(snapshot, pane.getWidth() / 2, pane.getHeight() / 2);
             }
             event.consume();
@@ -79,12 +88,11 @@ public class Draggables {
                 if (id.charAt(0) == 'd') {
                     node = activeDeck.getCard(id);
                 } else {
+
                     node = ladang.getCard(id);
                 }
 
                 if (node instanceof Pane sourcePane) {
-
-                    // swap card if from d to d
 
                     if (pane.getChildren().isEmpty()){
                         if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'd') {

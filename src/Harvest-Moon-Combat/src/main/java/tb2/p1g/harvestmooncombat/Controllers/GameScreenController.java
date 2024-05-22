@@ -95,7 +95,7 @@ public class GameScreenController {
             player1Name.setStyle("-fx-background-color: none;");
             player2Name.setStyle("-fx-background-color: #50C878;");
         }
-        shuffleDeck();
+  shuffleDeck();
     }
 
     @FXML
@@ -137,6 +137,10 @@ public class GameScreenController {
         }
     }
 
-
+    @FXML
+    protected void beliButtonAction(){
+        System.out.println("Beli button clicked");
+        ViewFactory.ShowBeliScreen();
+    }
 
 }

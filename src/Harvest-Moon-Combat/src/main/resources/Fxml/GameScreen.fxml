@@ -178,11 +178,16 @@
                         <Insets bottom="10.0" top="10.0" />
                     </VBox.margin>
                 </Button>
-                <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Toko">
+                <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#beliButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Beli">
                     <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                     </VBox.margin>
                 </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Jual">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
                 <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Save State">
                     <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />

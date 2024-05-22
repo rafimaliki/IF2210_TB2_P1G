@@ -1,5 +1,6 @@
 package tb2.p1g.harvestmooncombat.Models;
 
+import tb2.p1g.harvestmooncombat.Exceptions.InvalidMoveExceptions;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
@@ -69,6 +70,12 @@ public class Player {
 
     //TAHAPAN AKSI BEBAS
 
+    public void undoKartu(Kartu k,String idxInit){
+        System.out.println("Undo!");
+        int initIndex = Integer.parseInt(idxInit.substring(1));
+        deckAktif.setKartu(initIndex, k);
+    }
+
     // param idxInit = lXX or dXX, parse into row/column
     public void moveKartu(String idxInit, String idxDest) throws Exception {
         String initLocation = idxInit.substring(0, 1);
@@ -77,7 +84,7 @@ public class Player {
         int destIndex = Integer.parseInt(idxDest.substring(1));
 
         if ((initLocation.equals("l")) && (destLocation.equals("d"))){
-            throw new Exception("Invalid move");
+            throw new InvalidMoveExceptions("Invalid Move");
         }
 
         int rowInit = -1;
@@ -112,14 +119,14 @@ public class Player {
             deckAktif.removeKartu(initIndex);
 
             if ((ladang.getKartu(rowDest, colDest) != null) && (!Config.listKartuItem.contains(kartu.getNama()))){
-                throw new Exception("Invalid move");
+                throw new InvalidMoveExceptions("Invalid Move");
             }
 
             // Jika kartu item
             if (Config.listKartuItem.contains(kartu.getNama())){
                 // Jika tujuan null atau kartu produk
                 if ((ladang.getKartu(rowDest, colDest) == null) || (Config.listKartuProduk.contains(ladang.getKartu(rowDest, colDest).getNama()))){
-                    throw new Exception("Invalid move");
+                    throw new InvalidMoveExceptions("Invalid move: " + kartu.getNama() + " cannot be placed on an empty or product slot.", kartu);
                 }
 
                 // Jika tujuan kartu tanaman atau hewan
@@ -143,14 +150,14 @@ public class Player {
         // move kartu di ladang ke null (tidak bisa swap)
         else {
             if (ladang.getKartu(rowInit, colInit) == null){
-                throw new Exception("Invalid move");
+                throw new InvalidMoveExceptions("Invalid Move!");
             }
 
             Kartu temp = ladang.getKartu(rowInit, colInit);
             ladang.removeKartu(rowInit, colInit);
 
             if (ladang.getKartu(rowDest, colDest) != null){
-                throw new Exception("Invalid move");
+                throw new InvalidMoveExceptions("Invalid Move!");
             }
 
             ladang.addKartu(temp, rowDest, colDest);

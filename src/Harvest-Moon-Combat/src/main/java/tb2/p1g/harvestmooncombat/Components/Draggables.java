@@ -12,8 +12,10 @@ import javafx.scene.layout.Pane;
 
 import javafx.scene.paint.Color;
 import tb2.p1g.harvestmooncombat.Models.GameManager;
+import tb2.p1g.harvestmooncombat.Models.Kartu;
 import tb2.p1g.harvestmooncombat.Models.Player;
 import tb2.p1g.harvestmooncombat.Views.ViewFactory;
+import  tb2.p1g.harvestmooncombat.Exceptions.InvalidMoveExceptions;
 
 import javax.swing.text.View;
 import java.util.Map;
@@ -32,6 +34,10 @@ public class Draggables {
         for (Pane pane : ladang.getCards()) {Draggables.setupDragAndDrop(pane);}
     }
 
+    public  void refresh(){
+        activeDeck.refreshCards();
+        ladang.refreshLadang();
+    }
     public ActiveDeck getActiveDeck() {
         return activeDeck;
     }
@@ -100,7 +106,7 @@ public class Draggables {
 
                 if (node instanceof Pane sourcePane) {
 
-<<<<<<< HEAD
+
                     if (pane.getChildren().isEmpty()){
                         if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'd') {
                         }
@@ -124,7 +130,6 @@ public class Draggables {
                             sourcePane.getChildren().clear();
                         }
                     }
-=======
 
 //                    if (pane.getChildren().isEmpty()){
 //                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'd') {
@@ -149,17 +154,24 @@ public class Draggables {
 //                            sourcePane.getChildren().clear();
 //                        }
 //                    }
->>>>>>> 09e18a8e8022604e51c11f3c33fcf522d0a81717
+
                     System.out.println("Source: " + sourcePane.getId());
                     System.out.println("Target: " + pane.getId());
                     try{
                         GameManager.getInstance().getCurrentPlayer().moveKartu(sourcePane.getId(),pane.getId());
-                        activeDeck.refreshCards();
-                        ladang.refreshLadang();
-                    }catch (Exception e){
-                        System.out.println("Error! " + e.getMessage() );
 
+                    }catch (InvalidMoveExceptions e){
+                        System.out.println("Error! " + e.getMessage() );
+                        Kartu invalid_kartu =  e.getKartu();
+                        if(invalid_kartu != null){
+                            GameManager.getInstance().getCurrentPlayer().undoKartu(invalid_kartu,sourcePane.getId());
+
+                        }
+                    }catch(Exception e){
+                        System.out.println(e.getMessage());
                     }
+                    activeDeck.refreshCards();
+                    ladang.refreshLadang();
 
                 }
             }

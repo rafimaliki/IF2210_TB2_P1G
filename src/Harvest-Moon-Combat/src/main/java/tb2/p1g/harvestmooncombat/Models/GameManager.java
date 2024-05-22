@@ -53,7 +53,8 @@ public class GameManager {
         Random random = new Random();
         int chance = random.nextInt(5);
         if (chance == 0){
-//            seranganBeruang();
+            System.out.println("Serangan beruang!");
+            seranganBeruang();
         }
     }
 

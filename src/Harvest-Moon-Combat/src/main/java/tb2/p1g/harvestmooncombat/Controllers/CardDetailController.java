@@ -17,6 +17,10 @@ public class CardDetailController {
 
     @FXML Label namaKartu, deskripsi, itemAktif;
     @FXML Pane cardSlot;
+    private int row;
+    private int col;
+    private  String slotIdx;
+
 
     @FXML
     public void initialize() {
@@ -31,8 +35,8 @@ public class CardDetailController {
 
     public void setCard(String slotIdx) {
 
-        int row, col;
         boolean deck;
+        this.slotIdx = slotIdx;
 
         if (slotIdx.charAt(0) == 'd') {
             row = 0;
@@ -69,5 +73,10 @@ public class CardDetailController {
 
     public void panenButtonAction(){
         System.out.println("Panen Button Clicked");
+        try{
+            GameManager.getInstance().getCurrentPlayer().Panen(this.slotIdx);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }

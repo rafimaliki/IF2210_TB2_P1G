@@ -3,6 +3,7 @@ package tb2.p1g.harvestmooncombat.Views;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -78,13 +79,13 @@ public class ViewFactory {
         }
     }
 
-    public static void ShowTokoScreen() {
+    public static void ShowTokoScreen(Label gp1, Label gp2) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/TokoScreen.fxml"));
             Parent root = fxmlLoader.load();
 
             TokoScreenController controller = fxmlLoader.getController();
-
+            controller.setGP(gp1, gp2);
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);

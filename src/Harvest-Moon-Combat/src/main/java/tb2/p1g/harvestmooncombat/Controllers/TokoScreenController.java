@@ -31,6 +31,8 @@ public class TokoScreenController {
     @FXML
     AnchorPane root;
 
+    Label GP1;
+    Label GP2;
     ActiveDeck activeDeck;
     TokoBuyUI tokoBuyUI;
     TokoSellButtonsUI tokoSellButtonsUI;
@@ -65,10 +67,16 @@ public class TokoScreenController {
         // AngryBear.addRandomBear(root);
 
     }
+    public void setGP(Label gp1,Label gp2){
+        this.GP1 = gp1;
+        this.GP2  = gp2;
+    }
 
     @FXML
     public void keluarButtonAction(ActionEvent event) {
         Stage stage = (Stage) ((javafx.scene.Node) (event.getSource())).getScene().getWindow();
+        GP1.setText(String.valueOf(GameManager.getInstance().getPlayerOne().getGulden()));
+        GP2.setText(String.valueOf(GameManager.getInstance().getPlayerTwo().getGulden()));
         stage.close();
     }
 }

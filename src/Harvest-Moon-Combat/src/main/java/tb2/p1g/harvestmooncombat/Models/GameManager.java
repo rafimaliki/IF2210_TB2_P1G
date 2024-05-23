@@ -16,16 +16,18 @@ public class GameManager {
     private boolean isViewLawan;
     private Pane beruangBox;
     private int turnNumber;
+    private Player winner;
 
     private static GameManager instance;
 
-    public static List<Player> players = new ArrayList<Player>();
+    private List<Player> players = new ArrayList<Player>();
 
     private GameManager() {
         this.isRunning = false;
         currentPlayerIdx = 0;
         this.seranganBeruang = null;
         this.turnNumber = 0;
+        this.winner = null;
 
     }
     public static synchronized GameManager getInstance() {
@@ -53,7 +55,12 @@ public class GameManager {
         return currentLadang;
     }
 
-
+    public  Player getPlayerOne(){
+        return this.players.getFirst();
+    }
+    public Player getPlayerTwo(){
+        return this.players.getLast();
+    }
 
     public void startGame(){
         isRunning = true;
@@ -88,6 +95,7 @@ public class GameManager {
                 winner = players.getLast();
             }
             System.out.println("Player " + winner.getNama() + " wins!");
+            this.winner = winner;
             this.endGame();
         }
     }

@@ -133,6 +133,7 @@ public class GameManager {
         }
     }
 
+    
     public void seranganBeruang(Pane beruangBox) {
         seranganBeruang = new SeranganBeruang(beruangBox); // Membuat instans SeranganBeruang
         seranganThread = new Thread(seranganBeruang);

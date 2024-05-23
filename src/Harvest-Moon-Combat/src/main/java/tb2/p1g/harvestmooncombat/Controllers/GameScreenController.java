@@ -10,6 +10,7 @@ import tb2.p1g.harvestmooncombat.Components.Draggables;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.AnchorPane;
 import tb2.p1g.harvestmooncombat.Models.GameManager;
+import tb2.p1g.harvestmooncombat.Models.KartuProduk;
 import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 import tb2.p1g.harvestmooncombat.Components.Card;
 import tb2.p1g.harvestmooncombat.Models.SeranganBeruang;
@@ -27,6 +28,9 @@ import java.util.concurrent.TimeUnit;
 import javafx.stage.Stage;
 
 import javax.swing.text.View;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.io.IOException;
 
 
 public class GameScreenController {
@@ -208,6 +212,17 @@ public class GameScreenController {
     @FXML
     protected void saveButtonAction(){
         System.out.println("Save button clicked");
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        // Write the object to a file
+        try {
+//            objectMapper.writeValue(new File("save.json"), GameManager.getInstance().getPlayerOne());
+            String jsonInString = objectMapper.writeValueAsString(new KartuProduk("LABU"));
+            System.out.println(jsonInString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         ViewFactory.ShowSaveScreen();
     }
 

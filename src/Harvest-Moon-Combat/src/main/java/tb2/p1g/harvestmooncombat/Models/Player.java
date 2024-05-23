@@ -95,7 +95,7 @@ public class Player {
         int initIndex = Integer.parseInt(idxInit.substring(1));
         String destLocation = idxDest.substring(0, 1);
         int destIndex = Integer.parseInt(idxDest.substring(1));
-
+        boolean beriMakan = false;
         Ladang_Logic prosesladang;
         if(GameManager.getInstance().getViewLawan()){
             System.out.println("Ladang lawan!");
@@ -141,12 +141,37 @@ public class Player {
             deckAktif.removeKartu(initIndex);
 
 
-            if ((prosesladang.getKartu(rowDest, colDest) != null) && (!Config.listKartuItem.contains(kartu.getNama()))){
+
+
+            Kartu dest = ladang.getKartu(rowDest,colDest);
+            //kasih makan dari deck ke ladang
+            if(Config.listKartuProduk.contains(kartu.getNama()) && dest != null && Config.listKartuHewan.contains(dest.getNama()) && !GameManager.getInstance().getViewLawan()){
+                KartuHewan k_hewan = (KartuHewan) dest;
+                KartuProduk k_produk = (KartuProduk) kartu;
+                //Karnivore herbivore atau omnivore
+                String tipe_dest = Config.mapTipeHewan.get(dest.getNama());
+                if(tipe_dest.equals("CARNIVORE")){
+                    if(Config.makananKarnivore.contains(k_produk.getNama())){
+                        k_hewan.tambahBerat(k_produk);
+                        beriMakan = true;
+                    }else{
+                        throw new InvalidMoveExceptions("Tipe makanan tidak sesuai!",kartu);
+                    }
+                }else {
+                    if(Config.makananHerbivore.contains(k_produk.getNama())){
+                        k_hewan.tambahBerat(k_produk);
+                        beriMakan = true;
+                    }else{
+                        throw new InvalidMoveExceptions("Tipe makanan tidak sesuai!",kartu);
+                    }
+                }
+            }
+            else if ((prosesladang.getKartu(rowDest, colDest) != null) && (!Config.listKartuItem.contains(kartu.getNama()))){
                 throw new InvalidMoveExceptions("Invalid Move",kartu);
             }
 
             // Jika kartu item
-            if (Config.listKartuItem.contains(kartu.getNama())){
+            else if (Config.listKartuItem.contains(kartu.getNama())){
                 // Jika tujuan null atau kartu produk
                 if ((prosesladang.getKartu(rowDest, colDest) == null) || (Config.listKartuProduk.contains(prosesladang.getKartu(rowDest, colDest).getNama()))){
                     throw new InvalidMoveExceptions("Invalid move: " + kartu.getNama() + " cannot be placed on an empty or product slot.", kartu);
@@ -181,15 +206,14 @@ public class Player {
                         }
 
                     }
-
-
-
                 }
             } else {
                 if(GameManager.getInstance().getViewLawan()){
                     throw new InvalidMoveExceptions("Tidak bisa menaro kartu selain item di ladang lawan",kartu);
                 }
-                prosesladang.addKartu(kartu, rowDest, colDest);
+                if(!beriMakan){
+                    prosesladang.addKartu(kartu, rowDest, colDest);
+                }
             }
         }
 

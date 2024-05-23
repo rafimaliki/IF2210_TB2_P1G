@@ -273,13 +273,40 @@ public class Player {
 
         KartuProduk produk = new KartuProduk(Config.mapHewanTanamanKeProduk.get(kartu.getNama()));
         ladang.removeKartu(row, col);
-        deckAktif.setKartu(deckAktif.getLengthKartu(), produk);
+        ladang.addKartu(produk,row,col);
     }
 
     public void displayLadangData(){
         getLadang().displayDataKartuLadang();
     }
+    public void Ambil(String idx) throws Exception {
+        int index = Integer.parseInt(idx.substring(1));
+        int row = index / 5;
+        int col = index % 5;
 
+        Kartu kartu = ladang.getKartu(row,col);
+        if(deckAktif.isFull()){
+            throw new InvalidMoveExceptions("Deck penuh! invalid");
+        }
+
+        KartuProduk produk = new KartuProduk(ladang.getKartu(row,col).getNama());
+        ladang.removeKartu(row, col);
+        for (int i = 0; i <6 ; i++) {
+            if(deckAktif.getKartu(i) == null){
+                deckAktif.setKartu(i, produk);
+                break;
+            }
+
+        }
+
+
+    }
+
+    /**
+     *
+     * @param deckIdx
+     * @throws Exception
+     */
     public void jual(String deckIdx) throws Exception {
         int idx = Integer.parseInt(deckIdx.substring(1));
 

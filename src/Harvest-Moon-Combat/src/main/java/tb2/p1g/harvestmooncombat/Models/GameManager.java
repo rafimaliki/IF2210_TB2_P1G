@@ -126,7 +126,7 @@ public class GameManager {
     public void initBearAttack() {
         Random random = new Random();
         int chance = random.nextInt(5);
-//        int chance = 0;
+        chance = 0;
         if (chance == 0){
             System.out.println("Serangan beruang!");
             seranganBeruang(this.beruangBox);

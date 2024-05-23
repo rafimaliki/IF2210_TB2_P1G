@@ -21,6 +21,7 @@ import java.util.Random;
 public class App extends Application {
 
     public static Stage PrimaryStage;
+    public static AnchorPane Root;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -33,7 +34,9 @@ public class App extends Application {
         System.out.println("Tes");
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/GameScreen.fxml"));
         AnchorPane root = fxmlLoader.load();
+        this.Root = root;
         Scene scene = new Scene(root, 600, 600);
+
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/Styles/Bear.css")).toExternalForm());
 
         stage.setTitle("Harvest Moon Combat");

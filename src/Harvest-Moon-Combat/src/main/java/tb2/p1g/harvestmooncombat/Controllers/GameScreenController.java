@@ -165,11 +165,8 @@ public class GameScreenController {
         GameManager.getInstance().setLadang(GameManager.getInstance().getCurrentPlayer().getLadang());
         GameManager.getInstance().setViewLawan();
 
-//        LadangSave.put(ladangShow, draggables.getLadang().saveCards());
-//        draggables.getLadang().clearCards();
-//
         ladangShow = playerTurn;
-//        draggables.loadLadang(LadangSave.get(ladangShow));
+
 
         unclickButtons();
         setButtonClicked("ladangKuButton");

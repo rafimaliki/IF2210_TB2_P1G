@@ -29,63 +29,54 @@ public class AngryBear {
 
     private static void movePaneInSnakePattern(Pane bear, AnchorPane root) {
         Random random = new Random();
-        final int[] direction = {0}; // 0: right, 1: down, 2: left, 3: up
+        final int[] direction = {0};
         final boolean[] angry = {false};
 
         Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(0.01), event -> {
-                    // 10% chance to change the bear's mood
-                    if (random.nextDouble() < 0.01) {
-                        angry[0] = !angry[0];
-                        bear.getStyleClass().removeAll("bear", "angrybear");
-                        bear.getStyleClass().add(angry[0] ? "angrybear" : "bear");
+            new KeyFrame(Duration.seconds(0.01), event -> {
 
-                        if (random.nextDouble() < 0.1 && bearCount < 100) {
-                            AngryBear.addRandomBear(root);
-                            System.out.println("Bear count: " + bearCount);
-                        }
-                    }
+                if (random.nextDouble() < 0.01) {
+                    angry[0] = !angry[0];
+                    bear.getStyleClass().removeAll("bear", "angrybear");
+                    bear.getStyleClass().add(angry[0] ? "angrybear" : "bear");
 
-                    double x = bear.getLayoutX();
-                    double y = bear.getLayoutY();
+//                    if (random.nextDouble() < 0.1 && bearCount < 100) {
+//                        AngryBear.addRandomBear(root);
+//                        System.out.println("Bear count: " + bearCount);
+//                    }
+                }
 
-                    // Move in the current direction
-                    switch (direction[0]) {
-                        case 0: // right
-                            x += 5;
-                            break;
-                        case 1: // down
-                            y += 5;
-                            break;
-                        case 2: // left
-                            x -= 5;
-                            break;
-                        case 3: // up
-                            y -= 5;
-                            break;
-                    }
+                double x = bear.getLayoutX();
+                double y = bear.getLayoutY();
 
-                    // Check if the new position is within the root bounds
-//                    if (x < 10) x = 10;
-//                    if (y < 90) y = 90;
-//                    if (x > 360) x = 360;
-//                    if (y > 400) y = 400;
+                // Move in the current direction
+                switch (direction[0]) {
+                    case 0: // right
+                        x += 5;
+                        break;
+                    case 1: // down
+                        y += 5;
+                        break;
+                    case 2: // left
+                        x -= 5;
+                        break;
+                    case 3: // up
+                        y -= 5;
+                        break;
+                }
 
-                    if (x < 0) x = 0;
-                    if (y < 0) y = 0;
-                    if (x > root.getWidth() - bear.getWidth()) x = root.getWidth() - bear.getWidth();
-                    if (y > root.getHeight() - bear.getHeight()) y = root.getHeight() - bear.getHeight();
-                    // Set the new position
-                    bear.setLayoutX(x);
-                    bear.setLayoutY(y);
+                if (x < 0) x = 0;
+                if (y < 0) y = 0;
+                if (x > root.getWidth() - bear.getWidth()) x = root.getWidth() - bear.getWidth();
+                if (y > root.getHeight() - bear.getHeight()) y = root.getHeight() - bear.getHeight();
 
-                    // Randomly change direction occasionally
-                    if (random.nextDouble() < 0.1) { // 10% chance to change direction
-                        direction[0] = (direction[0] + 1 + random.nextInt(3)) % 4;
-                    }
+                bear.setLayoutX(x);
+                bear.setLayoutY(y);
 
-//                    System.out.println("Bear at: " + x + ", " + y);
-                })
+                if (random.nextDouble() < 0.1) { // 10% chance to change direction
+                    direction[0] = (direction[0] + 1 + random.nextInt(3)) % 4;
+                }
+            })
         );
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();

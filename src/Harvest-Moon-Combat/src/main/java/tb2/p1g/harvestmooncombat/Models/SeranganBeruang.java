@@ -3,7 +3,16 @@ package tb2.p1g.harvestmooncombat.Models;
 import java.sql.SQLOutput;
 import java.util.Random;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
+import tb2.p1g.harvestmooncombat.App;
+import tb2.p1g.harvestmooncombat.Components.AngryBear;
 import tb2.p1g.harvestmooncombat.Controllers.GameScreenController;
 
 
@@ -31,36 +40,8 @@ public class SeranganBeruang implements Runnable {
     @Override
     public void run() {
         bearAttack = true;
-        this.beruangBox.setVisible(true);
-        int startX = 11;
-        int startY = 87;
 
-        int beruangBoxX = (int) beruangBox.getLayoutX();
-        int beruangBoxY = (int) beruangBox.getLayoutY();
-
-        int startRow = SeranganBeruang.getStartRow();
-        int startCol = SeranganBeruang.getStartCol();
-        int endRow = SeranganBeruang.getEndRow();
-        int endCol = SeranganBeruang.getEndCol();
-
-        boolean isHorizontal;
-
-        if (endRow-startRow == 1){
-            isHorizontal = true;
-        } else {
-            isHorizontal = false;
-        }
-
-        if (isHorizontal){
-            beruangBox.setPrefWidth(237);
-            beruangBox.setPrefHeight(201);
-        } else {
-            beruangBox.setPrefWidth(160);
-            beruangBox.setPrefHeight(291);
-        }
-        System.out.println("start col, start row: " + startCol + ", " + startRow);
-        beruangBox.setLayoutX(startX + startCol * 80-5);
-        beruangBox.setLayoutY(startY + startRow * 100-5);
+        spawnBox();
 
         while (countdown > 0) {
             System.out.println("Countdown: " + countdown);
@@ -198,5 +179,126 @@ public class SeranganBeruang implements Runnable {
 
     public void setBeruangBox(Pane beruangBox) {
         this.beruangBox = beruangBox;
+    }
+
+    public void spawnBox() {
+
+//        this.beruangBox.setVisible(true);
+        int startX = 11;
+        int startY = 87;
+
+        int beruangBoxX = (int) beruangBox.getLayoutX();
+        int beruangBoxY = (int) beruangBox.getLayoutY();
+
+        int startRow = SeranganBeruang.getStartRow();
+        int startCol = SeranganBeruang.getStartCol();
+        int endRow = SeranganBeruang.getEndRow();
+        int endCol = SeranganBeruang.getEndCol();
+
+        boolean isHorizontal;
+
+        if (endRow-startRow == 1){
+            isHorizontal = true;
+        } else {
+            isHorizontal = false;
+        }
+
+        if (isHorizontal){
+            beruangBox.setPrefWidth(230);
+            beruangBox.setPrefHeight(190);
+        } else {
+            beruangBox.setPrefWidth(150);
+            beruangBox.setPrefHeight(290);
+        }
+        System.out.println("start col, start row: " + startCol + ", " + startRow);
+        System.out.println(App.Root);
+
+        beruangBox.setLayoutX(startX + startCol * 80-5);
+        beruangBox.setLayoutY(startY + startRow * 100-5);
+
+        Platform.runLater(() -> {
+            new Thread(() -> runFireAnimation(App.Root)).start();
+        });
+
+    }
+
+    private void runFireAnimation(AnchorPane root) {
+        Platform.runLater(() -> {
+
+            Text bearAttackText = new Text("BEAR FRENZY!");
+            bearAttackText.setStyle("-fx-font-size: 48px; -fx-font-weight: bold; -fx-fill: red;");
+            bearAttackText.setLayoutX(root.getWidth() / 2- 150);
+            bearAttackText.setLayoutY(root.getHeight() / 2);
+            root.getChildren().add(bearAttackText);
+
+
+            Timeline blinkTimeline = new Timeline(
+                    new KeyFrame(Duration.ZERO, e -> bearAttackText.setVisible(true)),
+                    new KeyFrame(Duration.seconds(0.5), e -> bearAttackText.setVisible(false)),
+                    new KeyFrame(Duration.seconds(1), e -> bearAttackText.setVisible(true))
+            );
+            blinkTimeline.setCycleCount(Timeline.INDEFINITE);
+            blinkTimeline.play();
+
+            Timeline removeTextTimeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> {
+                blinkTimeline.stop();
+                root.getChildren().remove(bearAttackText);
+            }));
+
+            removeTextTimeline.play();
+
+            Timeline timeline = new Timeline();
+            double width = beruangBox.getPrefWidth();
+            double height = beruangBox.getPrefHeight();
+            double x = beruangBox.getLayoutX();
+            double y = beruangBox.getLayoutY();
+
+            Duration duration = Duration.seconds(this.countdown+1);
+            Duration interval = Duration.millis((this.countdown * 1000) / (2 * (this.beruangBox.getHeight() + this.beruangBox.getWidth()) / 25));
+            System.out.println(interval);
+
+            for (int i = 0; i < 10; i++){
+                AngryBear.addRandomBear(root);
+            }
+
+            for (int i = 0; i <= duration.toMillis() / interval.toMillis(); i++) {
+                double position = i * 25;
+
+                timeline.getKeyFrames().add(new KeyFrame(interval.multiply(i), e -> {
+                    Pane fire = new Pane();
+                    fire.setPrefSize(30, 30);
+                    fire.getStyleClass().add("fire");
+                    int offset = 15;
+                    if (position <= width) {
+                        fire.setLayoutX(x + position - offset);
+                        fire.setLayoutY(y - offset);
+                        System.out.println("top");
+                    } else if (position <= width + height) {
+                        fire.setLayoutX(x + width - offset);
+                        fire.setLayoutY(y + (position - width) - offset);
+                        System.out.println("right");
+                    } else if (position <= 2 * width + height) {
+                        fire.setLayoutX(x + width - (position - width - height) - offset);
+                        fire.setLayoutY(y + height - offset);
+                        System.out.println("bottom");
+                    } else if (position <= 2 * width + 2 * height) {
+                        fire.setLayoutX(x - offset);
+                        fire.setLayoutY(y + height - (position - 2 * width - height) - offset);
+                        System.out.println("left");
+                    }
+                    root.getChildren().add(fire);
+                }));
+            }
+
+            timeline.setOnFinished(e -> {
+                Platform.runLater(() -> {
+                    root.getChildren().removeIf(node -> node.getStyleClass().contains("fire"));
+                    root.getChildren().removeIf(node -> node.getStyleClass().contains("bear"));
+                    root.getChildren().removeIf(node -> node.getStyleClass().contains("angrybear"));
+                });
+            });
+
+            timeline.play();
+        });
     }
 }

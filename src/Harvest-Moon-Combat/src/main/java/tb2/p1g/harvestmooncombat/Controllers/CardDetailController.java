@@ -76,8 +76,10 @@ public class CardDetailController {
 
         if (Config.mapProduk.containsKey(kartu.getNama())){
             actionButton.setText("AMBIL");
+            action = "AMBIL";
         } else {
             actionButton.setText("PANEN");
+            action = "PANEN";
         }
 
         this.namaKartu.setText(deskripsiKartu.get(0));

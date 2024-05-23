@@ -9,3 +9,9 @@
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
 }
+
+.fire {
+    -fx-background-image: url('../Images/Other/fire.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}

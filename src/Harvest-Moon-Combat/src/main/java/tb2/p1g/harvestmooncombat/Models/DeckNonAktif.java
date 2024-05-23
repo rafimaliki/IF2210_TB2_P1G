@@ -48,51 +48,27 @@ public class DeckNonAktif extends Deck {
     public List<Kartu> ambil4Kartu(){
         List<Kartu> kartuRandom = new ArrayList<>();
         Random random = new Random();
-        boolean valid = false;
+
         for (int i = 0; i < 4; i++){
             System.out.println(i);
             int idx = random.nextInt(this.kartuSisa);
-            if (!valid){
-                for (String nama : Config.listKartuHewan){
-                    if (this.getKartu(idx).getNama().equals(nama)) {
-                        kartuRandom.add(new KartuHewan(this.getKartu(idx).getNama()));
-                        this.kartu.remove(idx);
-                        valid = true;
-                        break;
-                    }
-                }
+            if (Config.listKartuHewan.contains(this.getKartu(idx).getNama())) {
+                kartuRandom.add(new KartuHewan(this.getKartu(idx).getNama()));
+                this.kartu.remove(idx);
             }
-            if (!valid){
-                for (String nama : Config.listKartuTanaman){
-                    if (this.getKartu(idx).getNama().equals(nama)) {
-                        kartuRandom.add(new KartuTanaman(this.getKartu(idx).getNama()));
-                        this.kartu.remove(idx);
-                        valid = true;
-                        break;
-                    }
-                }
+            else if (Config.listKartuTanaman.contains(this.getKartu(idx).getNama())) {
+                kartuRandom.add(new KartuTanaman(this.getKartu(idx).getNama()));
+                this.kartu.remove(idx);
             }
-            if (!valid){
-                for (String nama : Config.listKartuProduk){
-                    if (this.getKartu(idx).getNama().equals(nama)) {
-                        kartuRandom.add(new KartuProduk(this.getKartu(idx).getNama()));
-                        this.kartu.remove(idx);
-                        valid = true;
-                        break;
-                    }
-                }
+            else if (Config.listKartuProduk.contains(this.getKartu(idx).getNama())) {
+                kartuRandom.add(new KartuProduk(this.getKartu(idx).getNama()));
+                this.kartu.remove(idx);
             }
-            if (!valid){
-                for (String nama : Config.listKartuItem) {
-                    if (this.getKartu(idx).getNama().equals(nama)) {
-                        kartuRandom.add(new KartuItem(this.getKartu(idx).getNama()));
-                        this.kartu.remove(idx);
-                        valid = true;
-                        break;
-                    }
-                }
+            else if (Config.listKartuItem.contains(this.getKartu(idx).getNama())) {
+                kartuRandom.add(new KartuItem(this.getKartu(idx).getNama()));
+                this.kartu.remove(idx);
             }
-            valid = false;
+
             this.kartuSisa--;
         }
 

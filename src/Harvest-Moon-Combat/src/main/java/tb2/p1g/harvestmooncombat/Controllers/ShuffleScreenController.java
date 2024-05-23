@@ -81,12 +81,13 @@ public class ShuffleScreenController {
         // add selected card to activeDeck
         for (int i = 0; i < isClicked.size(); i++) {
             if (isClicked.get(i)) {
-                activeDeck.addCard((Card)cardShuffleList.get(i).getChildren().get(0));
+                gameManager.getCurrentPlayer().getDeckAktif().tambahKartu(this.randomKartu.get(i));
             } else {
                 returnKartu.add(randomKartu.get(i));
             }
         }
         gameManager.getCurrentPlayer().getDeckNonAktif().kembalikanKartu(returnKartu, returnKartu.size());
+        gameManager.initBearAttack();
     }
 
     @FXML
@@ -107,6 +108,10 @@ public class ShuffleScreenController {
             counter++;
         }
 
+        for (int i = 0; i < 4; i++){
+            isClicked.set(i, false);
+        
+        }
         countClicked = 0;
     }
 

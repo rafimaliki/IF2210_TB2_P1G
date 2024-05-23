@@ -133,4 +133,18 @@ public class Config {
         put("PROTECT", "PROTECT");
         put("TRAP", "TRAP");
     }};
+    final static List<String> makananKarnivore= new ArrayList<>(){{
+        add("SUSU");
+        add("TELUR");
+        add("SIRIP_HIU");
+        add("DAGING_KUDA");
+        add("DAGING_DOMBA");
+        add("DAGING_BERUANG");
+    }};
+    final static List<String> makananHerbivore = new ArrayList<>(){{
+        add("LABU");
+        add("JAGUNG");
+        add("STROBERI");
+        add("SUSU");
+    }};
 }

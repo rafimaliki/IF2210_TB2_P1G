@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Muat {
+public class Muat implements MuatInterface {
     private int current_turn;
     private int jumlah_item_shop;
     Map<String, Integer> item_shop;

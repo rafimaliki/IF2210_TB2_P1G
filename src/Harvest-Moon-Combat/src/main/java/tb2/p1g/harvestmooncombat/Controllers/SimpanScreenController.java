@@ -38,6 +38,9 @@ public class SimpanScreenController {
         directoryChooser.setTitle("Select Folder");
 
         File selectedDirectory = directoryChooser.showDialog(App.PrimaryStage);
+        if (selectedDirectory == null) {
+            return;
+        }
 
         inputButton.setText(selectedDirectory.getName());
 
@@ -53,7 +56,7 @@ public class SimpanScreenController {
 
     @FXML
     public void muatButtonAction() {
-        System.out.println("Muat Button Clicked");
+        System.out.println("Simpan Button Clicked");
 
         if (comboBox.getValue() == null) {
             System.out.println("Format belum dipilih");
@@ -75,9 +78,6 @@ public class SimpanScreenController {
                 return;
             }
         }
-
-        Muat muat = new Muat(fileNames);
-        muat.loadGame();
     }
 
     @FXML

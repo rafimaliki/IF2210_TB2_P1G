@@ -39,6 +39,9 @@ public class MuatSceeenController {
 
         File selectedDirectory = directoryChooser.showDialog(App.PrimaryStage);
 
+        if (selectedDirectory == null) {
+            return;
+        }
         inputButton.setText(selectedDirectory.getName());
 
         File[] files = selectedDirectory.listFiles();

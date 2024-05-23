@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 
 import java.io.IOException;
 
@@ -47,6 +48,8 @@ public class MainScreenController {
             mainGameScene.getStylesheets().add(getClass().getResource("/Styles/Bear.css").toExternalForm());
             root = mainGameRoot;
             primaryStage.setScene(mainGameScene);
+
+            ViewFactory.ShowShuffleScreen();
         } catch (IOException e) {
             e.printStackTrace();
         }

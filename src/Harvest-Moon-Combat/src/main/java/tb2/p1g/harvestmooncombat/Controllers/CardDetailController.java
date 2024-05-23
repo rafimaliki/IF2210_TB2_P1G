@@ -1,12 +1,14 @@
 package tb2.p1g.harvestmooncombat.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import tb2.p1g.harvestmooncombat.Components.Card;
+import tb2.p1g.harvestmooncombat.Models.Config;
 import tb2.p1g.harvestmooncombat.Models.GameManager;
 import tb2.p1g.harvestmooncombat.Models.Kartu;
 import java.util.List;
@@ -17,6 +19,10 @@ public class CardDetailController {
 
     @FXML Label namaKartu, deskripsi, itemAktif;
     @FXML Pane cardSlot;
+    @FXML Button actionButton;
+
+    String action;
+
     private int row;
     private int col;
     private  String slotIdx;
@@ -58,11 +64,19 @@ public class CardDetailController {
 
         if (deck) {
             kartu = gameManager.getCurrentPlayer().getDeckAktif().getKartu(col);
+            actionButton.setVisible(false);
         } else {
             kartu = gameManager.getCurrentLadang().getKartu(row, col);
+            actionButton.setVisible(true);
         }
 
         List<String> deskripsiKartu = kartu.getInformasi();
+
+        if (Config.mapProduk.containsKey(kartu.getNama())){
+            actionButton.setText("AMBIL");
+        } else {
+            actionButton.setText("PANEN");
+        }
 
         this.namaKartu.setText(deskripsiKartu.get(0));
         this.deskripsi.setText(deskripsiKartu.get(1));
@@ -71,12 +85,17 @@ public class CardDetailController {
         this.cardSlot.getChildren().add(new Card(deskripsiKartu.get(0)));
     }
 
-    public void panenButtonAction(){
-        System.out.println("Panen Button Clicked");
-        try{
-            GameManager.getInstance().getCurrentPlayer().Panen(this.slotIdx);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+    public void actionButtonAction() {
+
+        if (action == "PANEN"){
+            System.out.println("Klik Panen: " + row + " " + col);
+            try {
+                GameManager.getInstance().getCurrentPlayer().Panen(this.slotIdx);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            System.out.println("Klik Ambil: "+ row + " " + col);
         }
     }
 }

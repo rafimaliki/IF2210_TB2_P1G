@@ -28,7 +28,7 @@
          </stylesheets>
       </Button>
           <Pane fx:id="cardSlot" layoutX="399.0" layoutY="248.0" prefHeight="94.0" prefWidth="70.0" stylesheets="@../Styles/Cards.css" />
-      <Button  onAction="#panenButtonAction" layoutX="265.0" layoutY="347.0" maxWidth="112.0" minWidth="22.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="70.0" text="PANEN" />
+      <Button fx:id="actionButton" layoutX="253.0" layoutY="347.0" maxWidth="133.0" minWidth="22.0" mnemonicParsing="false" onAction="#actionButtonAction" prefHeight="25.0" prefWidth="94.0" text="PANEN" />
       <Label fx:id="namaKartu" alignment="CENTER" contentDisplay="CENTER" layoutX="163.0" layoutY="194.0" prefHeight="71.0" prefWidth="274.0" text="NAMA KARTU" textAlignment="CENTER">
          <font>
             <Font name="MingLiU_HKSCS-ExtB" size="22.0" />

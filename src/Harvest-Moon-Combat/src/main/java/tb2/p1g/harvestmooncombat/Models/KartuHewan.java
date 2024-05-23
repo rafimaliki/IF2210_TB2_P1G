@@ -64,9 +64,9 @@ public class KartuHewan extends Kartu {
             }
         }
     }
-    //waktu next turn )?(
-    public void tambahBerat(){
-        this.berat = this.berat + (itemAktif.get("ACCELERATE") * 8) - (itemAktif.get("DELAY")*  5);
+
+    public void tambahBerat(KartuProduk produk){
+        this.berat = this.berat + produk.getBeratTambah();
     }
 
     public boolean isReadyToHarvest(){

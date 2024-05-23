@@ -287,6 +287,7 @@ public class SeranganBeruang implements Runnable {
                         System.out.println("left");
                     }
                     root.getChildren().add(fire);
+                    System.out.println(root.getChildren().size());
                 }));
             }
 

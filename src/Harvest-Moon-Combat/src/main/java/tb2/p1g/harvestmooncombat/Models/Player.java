@@ -5,7 +5,11 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
+
+
+
 public class Player {
+
     private String nama;
     private int gulden;
     private DeckAktif deckAktif;
@@ -72,8 +76,18 @@ public class Player {
 
     public void undoKartu(Kartu k,String idxInit){
         System.out.println("Undo!");
+        String initLocation = idxInit.substring(0,1);
         int initIndex = Integer.parseInt(idxInit.substring(1));
-        deckAktif.setKartu(initIndex, k);
+        if(initLocation.equals("l")){
+            int rowInit;
+            int colInit;
+            rowInit = initIndex / 5;
+            colInit = initIndex % 5;
+            ladang.setLadang(k,rowInit,colInit);
+        }else{
+            deckAktif.setKartu(initIndex, k);
+        }
+
     }
     // param idxInit = lXX or dXX, parse into row/column
     public void moveKartu(String idxInit, String idxDest) throws Exception {
@@ -182,17 +196,41 @@ public class Player {
         // move kartu di ladang ke null (tidak bisa swap)
         else {
             if (ladang.getKartu(rowInit, colInit) == null){
-                throw new InvalidMoveExceptions("Invalid Move!");
+                throw new InvalidMoveExceptions("Row ini col init null, invalid!");
             }
 
             Kartu temp = ladang.getKartu(rowInit, colInit);
+            Kartu dest = ladang.getKartu(rowDest,colDest);
             ladang.removeKartu(rowInit, colInit);
 
+            //Kartu valid ke kartu valid
             if (ladang.getKartu(rowDest, colDest) != null){
-                throw new InvalidMoveExceptions("Invalid Move!");
+                // kartu produk cuma bisa ke hewan
+                if(Config.listKartuProduk.contains(temp.getNama()) && Config.listKartuHewan.contains(dest.getNama())){
+                    KartuHewan k_hewan = (KartuHewan) dest;
+                    KartuProduk k_produk = (KartuProduk) temp;
+                    //Karnivore herbivore atau omnivore
+                    String tipe_dest = Config.mapTipeHewan.get(dest.getNama());
+                    if(tipe_dest.equals("CARNIVORE")){
+                        if(Config.makananKarnivore.contains(k_produk.getNama())){
+                            k_hewan.tambahBerat(k_produk);
+                        }else{
+                            throw new InvalidMoveExceptions("Tipe makanan tidak sesuai!",temp);
+                        }
+                    }else {
+                        if(Config.makananHerbivore.contains(k_produk.getNama())){
+                            k_hewan.tambahBerat(k_produk);
+                        }else{
+                            throw new InvalidMoveExceptions("Tipe makanan tidak sesuai!",temp);
+                        }
+                    }
+                }else{
+                    throw new InvalidMoveExceptions("Tujuan bukan hewan atau inisial bukan produk! gagal",temp);
+                }
+            }else{
+                ladang.addKartu(temp, rowDest, colDest);
             }
 
-            ladang.addKartu(temp, rowDest, colDest);
         }
     }
 

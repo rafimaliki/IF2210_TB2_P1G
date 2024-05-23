@@ -91,6 +91,12 @@ public class GameScreenController {
     @FXML
     protected void nextButtonAction() {
         GameManager gm = GameManager.getInstance();
+
+        if (!gm.getIsRunning()){
+            System.out.println("Game is not running");
+            return;
+        }
+
         if(gm.isBearAttackInProgress()){
             System.out.println("Bear is attacking, cannot end turn");
             return;

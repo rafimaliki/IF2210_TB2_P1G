@@ -88,13 +88,17 @@ public class GameManager {
 
     public void checkWin(){
         if (this.turnNumber == 20){
-            Player winner;
+            Player winner = null;
             if (players.get(0).getGulden() > players.get(1).getGulden()){
                 winner = players.getFirst();
-            } else {
+            } else if (players.get(0).getGulden() < players.get(1).getGulden()){
                 winner = players.getLast();
             }
-            System.out.println("Player " + winner.getNama() + " wins!");
+            if (winner != null){
+                System.out.println("Player " + winner.getNama() + " wins!");
+            } else {
+                System.out.println("Tidak ada yang menang");
+            }
             this.winner = winner;
             this.endGame();
         }
@@ -121,8 +125,8 @@ public class GameManager {
 
     public void initBearAttack() {
         Random random = new Random();
-//        int chance = random.nextInt(5);
-        int chance = 0;
+        int chance = random.nextInt(5);
+//        int chance = 0;
         if (chance == 0){
             System.out.println("Serangan beruang!");
             seranganBeruang(this.beruangBox);
@@ -163,5 +167,9 @@ public class GameManager {
 
     public List<Player> getPlayers(){
         return players;
+    }
+
+    public boolean getIsRunning(){
+        return isRunning;
     }
 }

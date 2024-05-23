@@ -126,7 +126,7 @@ public class GameManager {
     public void initBearAttack() {
         Random random = new Random();
         int chance = random.nextInt(5);
-        chance = 0;
+//        chance = 0;
         if (chance == -1){
             System.out.println("Serangan beruang!");
             seranganBeruang(this.beruangBox);
@@ -171,5 +171,9 @@ public class GameManager {
 
     public boolean getIsRunning(){
         return isRunning;
+    }
+
+    public Player getWinner(){
+        return winner;
     }
 }

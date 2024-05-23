@@ -212,7 +212,7 @@
             <children>
                 <Label layoutX="33.0" layoutY="7.0" text="Deck" />
                 <Label layoutX="46.0" layoutY="25.0" text="/40" />
-                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="16.0" layoutY="25.0" prefHeight="17.0" prefWidth="27.0" text="12" />
+                <Label fx:id="kartuSisa" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="16.0" layoutY="25.0" prefHeight="17.0" prefWidth="27.0" text="40" />
             </children>
         </AnchorPane>
         <AnchorPane layoutX="21.0" layoutY="15.0" prefHeight="62.0" prefWidth="171.0" stylesheets="@../Styles/Wood.css">
@@ -225,8 +225,8 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <Label fx:id = "GuldenPlayer1" layoutX="73.0" layoutY="12.0" text="3000" textFill="WHITE" />
-                <Label fx:id = "GuldenPlayer2" layoutX="73.0" layoutY="34.0" text="2000" textFill="WHITE" />
+                <Label fx:id="GuldenPlayer1" layoutX="73.0" layoutY="12.0" text="3000" textFill="WHITE" />
+                <Label fx:id="GuldenPlayer2" layoutX="73.0" layoutY="34.0" text="2000" textFill="WHITE" />
             <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="125.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/Other/GoldCoin.png" />

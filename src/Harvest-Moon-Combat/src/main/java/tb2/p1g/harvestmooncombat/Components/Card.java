@@ -66,7 +66,6 @@ public class Card extends Pane {
         } else {
             Label cardLabel1 = new Label(title.split(" ")[0]);
             cardLabel1.getStyleClass().add("card-label");
-
             Label cardLabel2 = new Label(title.split(" ")[1]);
             cardLabel2.getStyleClass().add("card-label");
 

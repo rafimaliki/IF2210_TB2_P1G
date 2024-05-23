@@ -47,12 +47,13 @@
 .card-label {
     -fx-font-size: 9px;
     -fx-text-fill: black;
-    -fx-background-color: rgb(234, 234, 234);
+    -fx-background-color: rgb(234, 234, 234, 0.5);
     -fx-padding: 0px 5px;
     /*-fx-background-radius: 15px;*/
     -fx-text-alignment: center;
     -fx-pref-width: 65px;
     -fx-alignment: center;
+    -fx-font-family: "MingLiU_HKSCS-ExtB";
 }
 
 

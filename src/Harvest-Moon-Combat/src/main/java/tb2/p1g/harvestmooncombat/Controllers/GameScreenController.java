@@ -91,6 +91,10 @@ public class GameScreenController {
     @FXML
     protected void nextButtonAction() {
         GameManager gm = GameManager.getInstance();
+        if(gm.isBearAttackInProgress()){
+            System.out.println("Bear is attacking, cannot end turn");
+            return;
+        }
 
         if (!gm.getIsRunning()){
             System.out.println("Game is not running");
@@ -127,12 +131,16 @@ public class GameScreenController {
             player2Name.setStyle("-fx-background-color: #50C878;");
         }
         gm.nextTurn(beruangBox);
-        gm.getCurrentPlayer().getLadang().displayLadang();
-        gm.getCurrentPlayer().getDeckAktif().displayInfoDeck();
 
-        gm.getCurrentPlayer().getLadang().displayDataKartuLadang();
-
-        ViewFactory.ShowShuffleScreen(this.primaryStage, draggables.getActiveDeck());
+        if (gm.getIsRunning()){
+            gm.getCurrentPlayer().getLadang().displayLadang();
+            gm.getCurrentPlayer().getDeckAktif().displayInfoDeck();
+            gm.getCurrentPlayer().getLadang().displayDataKartuLadang();
+            ViewFactory.ShowShuffleScreen();
+        } else {
+            ViewFactory.ShowEndScreen();
+            turnNumber.setText("END");
+        }
     }
 
     @FXML
@@ -210,6 +218,7 @@ public class GameScreenController {
     @FXML
     protected void pluginButtonAction(){
         System.out.println("Plugin button clicked");
+        ViewFactory.ShowPlugginScreen();
     }
 
     protected void unclickButtons() {

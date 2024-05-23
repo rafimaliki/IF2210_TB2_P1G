@@ -21,16 +21,16 @@ import java.util.Objects;
 
 public class ViewFactory {
 
-    public static void ShowShuffleScreen(Stage primaryStage, ActiveDeck activeDeck) {
+    public static void ShowShuffleScreen() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/ShuffleScreen.fxml"));
             Parent root = fxmlLoader.load();
 
             ShuffleScreenController controller = fxmlLoader.getController();
-            controller.setActiveDeck(activeDeck);
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
+            Stage primaryStage = App.PrimaryStage;
             stage.initOwner(primaryStage);
             stage.initStyle(StageStyle.TRANSPARENT);
 
@@ -148,6 +148,66 @@ public class ViewFactory {
     public static void ShowSaveScreen() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/SimpanScreen.fxml"));
+            Parent root = fxmlLoader.load();
+
+//            CardDetailController controller = fxmlLoader.getController();
+//
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(App.PrimaryStage);
+            stage.initStyle(StageStyle.TRANSPARENT);
+
+
+            Scene scene = new Scene(root);
+            scene.setFill(null);
+            scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
+            stage.setScene(scene);
+
+            stage.setOnShown(event -> {
+                stage.setX(App.PrimaryStage.getX() + App.PrimaryStage.getWidth() / 2 - stage.getWidth() / 2);
+                stage.setY(App.PrimaryStage.getY() + App.PrimaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
+            });
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void ShowPlugginScreen() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/PlugginScreen.fxml"));
+            Parent root = fxmlLoader.load();
+
+//            CardDetailController controller = fxmlLoader.getController();
+//
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(App.PrimaryStage);
+            stage.initStyle(StageStyle.TRANSPARENT);
+
+
+            Scene scene = new Scene(root);
+            scene.setFill(null);
+            scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
+            stage.setScene(scene);
+
+            stage.setOnShown(event -> {
+                stage.setX(App.PrimaryStage.getX() + App.PrimaryStage.getWidth() / 2 - stage.getWidth() / 2);
+                stage.setY(App.PrimaryStage.getY() + App.PrimaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
+            });
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void ShowEndScreen() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/EndScreen.fxml"));
             Parent root = fxmlLoader.load();
 
 //            CardDetailController controller = fxmlLoader.getController();

@@ -16,6 +16,7 @@ import tb2.p1g.harvestmooncombat.Models.MuatInterface;
 
 import tb2.p1g.harvestmooncombat.PluginLoader.PluginLoader;
 import tb2.p1g.harvestmooncombat.Components.AngryBear;
+import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 
 
 import java.io.File;
@@ -32,42 +33,39 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         this.PrimaryStage = stage;
-        String filepath = System.getProperty("user.dir") + "/src/main/java/tb2/p1g/harvestmooncombat/Plugins/";
-        File directory = new File(filepath);
-
-        // Check if the specified path points to a directory
-        if (directory.isDirectory()) {
-            // Get a list of all files in the directory
-            File[] files = directory.listFiles();
-
-            // Iterate over the files and print their names
-            if (files != null) {
-                for (File file : files) {
-                    System.out.println(file.getName());
-                }
-            }
-        } else {
-            System.out.println("Specified path is not a directory: " + filepath);
-        }
-        PluginLoader pluginLoader = new PluginLoader();
-        try{
-            pluginLoader.loadPlugins(filepath);
-            List<MuatInterface> muatplug = pluginLoader.getMuatPlugins();
-            List<SimpanInterface> simpanplug = pluginLoader.getSimpanPlugins();
-
-            for(MuatInterface mi : muatplug){
-                mi.loadGameState("Ini plugin");
-            }
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-
+//        String filepath = System.getProperty("user.dir") + "/src/main/java/tb2/p1g/harvestmooncombat/Plugins/";
+//        File directory = new File(filepath);
+//
+//        // Check if the specified path points to a directory
+//        if (directory.isDirectory()) {
+//            // Get a list of all files in the directory
+//            File[] files = directory.listFiles();
+//
+//            // Iterate over the files and print their names
+//            if (files != null) {
+//                for (File file : files) {
+//                    System.out.println(file.getName());
+//                }
+//            }
+//        } else {
+//            System.out.println("Specified path is not a directory: " + filepath);
+//        }
+//        PluginLoader pluginLoader = new PluginLoader();
+//        try{
+//            pluginLoader.loadPlugins(filepath);
+//            List<MuatInterface> muatplug = pluginLoader.getMuatPlugins();
+//            List<SimpanInterface> simpanplug = pluginLoader.getSimpanPlugins();
+//
+//            for(MuatInterface mi : muatplug){
+//                mi.loadGameState("Ini plugin");
+//            }
+//        }catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//
 
         GameManager gameManager = GameManager.getInstance();
         gameManager.startGame();
-
-
-
 
         System.out.println("Tes");
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/GameScreen.fxml"));
@@ -84,8 +82,7 @@ public class App extends Application {
 
         GameScreenController controller = fxmlLoader.getController();
         controller.setPrimaryStage(stage);
-//        controller.shuffleDeck();
-//        AngryBear.addRandomBear(root);
+        ViewFactory.ShowShuffleScreen();
     }
 
     public static void main(String[] args) {

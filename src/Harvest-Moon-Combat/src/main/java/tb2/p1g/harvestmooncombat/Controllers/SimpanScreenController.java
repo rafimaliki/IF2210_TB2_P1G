@@ -8,7 +8,6 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 import tb2.p1g.harvestmooncombat.App;
-import tb2.p1g.harvestmooncombat.Models.Muat;
 import tb2.p1g.harvestmooncombat.Models.Simpan;
 
 import java.io.File;
@@ -26,7 +25,7 @@ public class SimpanScreenController {
 
     @FXML
     public void initialize(){
-        System.out.println("Muat Screen Controller Initialized");
+        System.out.println("Simpan Screen Controller Initialized");
 
         // set comboBox items
         comboBox.getItems().addAll(".txt", ".json", ".xml", ".yaml");
@@ -62,7 +61,7 @@ public class SimpanScreenController {
     }
 
     @FXML
-    public void muatButtonAction() {
+    public void simpanButtonAction() {
         System.out.println("Simpan Button Clicked");
 
         if (comboBox.getValue() == null) {

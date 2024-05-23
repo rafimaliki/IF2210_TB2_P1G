@@ -2,6 +2,7 @@ package tb2.p1g.harvestmooncombat.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -12,6 +13,7 @@ import javafx.scene.layout.Pane;
 import java.util.List;
 import java.util.ArrayList;
 
+import tb2.p1g.harvestmooncombat.App;
 import tb2.p1g.harvestmooncombat.Components.ActiveDeck;
 import tb2.p1g.harvestmooncombat.Components.Card;
 import tb2.p1g.harvestmooncombat.Models.GameManager;
@@ -28,11 +30,8 @@ public class ShuffleScreenController {
     Integer countClicked = 0;
     Integer maxClicked = 0;
 
-    ActiveDeck activeDeck;
-
     public void initialize() {
         System.out.println("Shuffle screen loaded");
-//        container.setStyle("-fx-background-color: rgba(128, 128, 128, 0.2);");
 
         for (Node pane : cardShuffleGrid.getChildren()) {
             if (pane instanceof Pane) {
@@ -40,7 +39,7 @@ public class ShuffleScreenController {
                 pane.setId(""+(cardShuffleList.size()-1));
                 isClicked.add(false);
                 pane.setOnMouseClicked(event -> {
-                    maxClicked = 6-activeDeck.countCard();
+                    maxClicked = 6-GameManager.getInstance().getCurrentPlayer().getDeckAktif().getLengthKartu();
                     if (maxClicked > 4) maxClicked = 4;
                     if (isClicked.get(Integer.parseInt(pane.getId()))) {
                         pane.setStyle("-fx-background-color: #FFFFFF;");
@@ -71,7 +70,7 @@ public class ShuffleScreenController {
         GameManager gameManager = GameManager.getInstance();
         List<Kartu> returnKartu = new ArrayList<>();
 
-        maxClicked = 6-activeDeck.countCard();
+        maxClicked = 6-GameManager.getInstance().getCurrentPlayer().getDeckAktif().getLengthKartu();
         if (maxClicked > 4) maxClicked = 4;
         if (countClicked != maxClicked) return;
 
@@ -88,6 +87,8 @@ public class ShuffleScreenController {
         }
         gameManager.getCurrentPlayer().getDeckNonAktif().kembalikanKartu(returnKartu, returnKartu.size());
         gameManager.initBearAttack();
+
+        ((Label) App.Root.lookup("#kartuSisa")).setText(""+gameManager.getCurrentPlayer().getDeckNonAktif().getKartuSisa());
     }
 
     @FXML
@@ -113,9 +114,5 @@ public class ShuffleScreenController {
 
         }
         countClicked = 0;
-    }
-
-    public void setActiveDeck(ActiveDeck activeDeck) {
-        this.activeDeck = activeDeck;
     }
 }

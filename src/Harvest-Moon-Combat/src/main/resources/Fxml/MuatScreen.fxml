@@ -15,27 +15,27 @@
                 <URL value="@../Styles/Button.css" />
             </stylesheets>
         </Button>
-      <AnchorPane layoutX="104.0" layoutY="145.0" prefHeight="310.0" prefWidth="391.0" style="-fx-background-color: white; -fx-background-radius: 30;">
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="14.0" prefHeight="17.0" prefWidth="171.0" text="MUAT" textAlignment="CENTER">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Label>
-            <Label contentDisplay="CENTER" layoutX="16.0" layoutY="81.0" prefHeight="17.0" prefWidth="59.0" text="Format ">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label contentDisplay="CENTER" layoutX="16.0" layoutY="117.0" prefHeight="17.0" prefWidth="59.0" text="Folder " textAlignment="CENTER">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <ComboBox fx:id="comboBox" layoutX="75.0" layoutY="79.0" prefWidth="150.0" />
-            <Button fx:id="inputButton" layoutX="75.0" layoutY="115.0" mnemonicParsing="false" onAction="#inputButtonAction" prefHeight="25.0" prefWidth="150.0" text="Masukkan Folder" />
-            <Button layoutX="121.0" layoutY="246.0" mnemonicParsing="false" onAction="#muatButtonAction" prefHeight="25.0" prefWidth="150.0" text="Muat" />
-         </children>
-      </AnchorPane>
+        <AnchorPane layoutX="104.0" layoutY="145.0" prefHeight="310.0" prefWidth="391.0" style="-fx-background-color: white; -fx-background-radius: 30;">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="14.0" prefHeight="17.0" prefWidth="171.0" text="MUAT" textAlignment="CENTER">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Label>
+                <Label contentDisplay="CENTER" layoutX="16.0" layoutY="81.0" prefHeight="17.0" prefWidth="59.0" text="Format ">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label contentDisplay="CENTER" layoutX="16.0" layoutY="117.0" prefHeight="17.0" prefWidth="59.0" text="Folder " textAlignment="CENTER">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="comboBox" layoutX="75.0" layoutY="79.0" prefWidth="150.0" />
+                <Button fx:id="inputButton" layoutX="75.0" layoutY="115.0" mnemonicParsing="false" onAction="#inputButtonAction" prefHeight="25.0" prefWidth="150.0" text="Masukkan Folder" />
+                <Button layoutX="121.0" layoutY="246.0" mnemonicParsing="false" onAction="#muatButtonAction" prefHeight="25.0" prefWidth="150.0" text="Muat" />
+            </children>
+        </AnchorPane>
     </children>
 </AnchorPane>

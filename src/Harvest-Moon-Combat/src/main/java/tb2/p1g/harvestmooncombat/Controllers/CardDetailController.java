@@ -66,4 +66,8 @@ public class CardDetailController {
 
         this.cardSlot.getChildren().add(new Card(deskripsiKartu.get(0)));
     }
+
+    public void panenButtonAction(){
+        System.out.println("Panen Button Clicked");
+    }
 }

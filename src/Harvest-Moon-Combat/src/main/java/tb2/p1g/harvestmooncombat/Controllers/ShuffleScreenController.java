@@ -108,6 +108,10 @@ public class ShuffleScreenController {
             counter++;
         }
 
+        for (int i = 0; i < 4; i++){
+            isClicked.set(i, false);
+        
+        }
         countClicked = 0;
     }
 

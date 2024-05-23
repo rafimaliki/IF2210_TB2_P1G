@@ -119,8 +119,10 @@ public class Muat implements MuatInterface {
                     kartu = new KartuHewan(nama);
                 } else if (Config.listKartuTanaman.contains(nama)){
                     kartu = new KartuTanaman(nama);
-                } else {
+                } else if(Config.listKartuProduk.contains(nama)){
                     kartu = new KartuProduk(nama);
+                } else{
+                    kartu = new KartuItem(nama);
                 }
                 deckAktif.setKartu(baris * 5 + kolom, kartu);
             }
@@ -138,7 +140,10 @@ public class Muat implements MuatInterface {
 
                 String nama = parts[1];
 
-                int umur_berat = Integer.parseInt(parts[2]);
+                int umur_berat = 0;
+                if(!Config.listKartuProduk.contains(nama)) {
+                    umur_berat = Integer.parseInt(parts[2]);
+                }
 
                 Kartu kartu;
                 if (Config.listKartuHewan.contains(nama)){
@@ -153,8 +158,8 @@ public class Muat implements MuatInterface {
                     kartu = new KartuProduk(nama);
                 }
 
-                for (int j = 4 ; j < 4 + Integer.parseInt(parts[3]); j++){
-                    if(!Config.listKartuProduk.contains(parts[2])){
+                if(!Config.listKartuProduk.contains(nama)){
+                    for (int j = 4 ; j < 4 + Integer.parseInt(parts[3]); j++){
                         kartu.setEfekItem(new KartuItem(parts[j]));
                     }
                 }

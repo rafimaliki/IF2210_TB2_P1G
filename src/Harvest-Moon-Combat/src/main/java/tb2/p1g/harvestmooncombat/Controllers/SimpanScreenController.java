@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 import tb2.p1g.harvestmooncombat.App;
 import tb2.p1g.harvestmooncombat.Models.Muat;
+import tb2.p1g.harvestmooncombat.Models.Simpan;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class SimpanScreenController {
 
     List<String> fileNames = new ArrayList<>();
     String selectedFormat;
+    String selectedFolder;
 
     @FXML
     public void initialize(){
@@ -52,6 +54,11 @@ public class SimpanScreenController {
                 fileNames.add(file.getAbsolutePath());
             }
         }
+
+        selectedFolder = selectedDirectory.getAbsolutePath();
+
+
+
     }
 
     @FXML
@@ -66,18 +73,25 @@ public class SimpanScreenController {
         selectedFormat = comboBox.getValue().toString();
         System.out.println("Selected Format: " + selectedFormat);
 
-        if (fileNames.isEmpty()) {
-            System.out.println("Tidak ada file yang dipilih");
-            return;
-        }
+//        if (fileNames.isEmpty()) {
+//            System.out.println("Tidak ada file yang dipilih");
+//            return;
+//        }
+//
+//        for (String fileName : fileNames) {
+//            System.out.println("File Name: " + fileName);
+//            if (!fileName.endsWith(selectedFormat)) {
+//                System.out.println("Format tidak sesuai terdeteksi");
+//                return;
+//            }
+//        }
 
-        for (String fileName : fileNames) {
-            System.out.println("File Name: " + fileName);
-            if (!fileName.endsWith(selectedFormat)) {
-                System.out.println("Format tidak sesuai terdeteksi");
-                return;
-            }
-        }
+        //load class simpan
+        Simpan simpan = new Simpan(selectedFolder);
+        simpan.saveEntryPoint();
+
+
+
     }
 
     @FXML

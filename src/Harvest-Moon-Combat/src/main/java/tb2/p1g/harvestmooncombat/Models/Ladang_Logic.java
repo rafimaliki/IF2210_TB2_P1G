@@ -67,6 +67,19 @@ public class Ladang_Logic {
         ladang.get(row).set(col, null);
     }
 
+
+    public int getJumlahKartu(){
+        int jumlahKartu = 0;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 5; j++){
+                if(ladang.get(i).get(j) != null){
+                    jumlahKartu++;
+                }
+            }
+        }
+        return jumlahKartu;
+    }
+
 //    public void moveKartuDiLadang(int idxInit, int idxDest){
 //        int rowInit = idxInit / this.ladang.size();
 //        int colInit = idxInit % this.ladang.size();

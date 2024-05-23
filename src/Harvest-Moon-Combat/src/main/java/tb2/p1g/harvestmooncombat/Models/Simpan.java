@@ -1,10 +1,18 @@
 package tb2.p1g.harvestmooncombat.Models;
 
+import java.io.FileWriter;
 import java.util.List;
-import java.util.Map;
 
 public class Simpan {
-    private String convert_gameStatustoString(){
+
+    private String path;
+
+    public Simpan(String absolutePath) {
+        this.path = absolutePath;
+    }
+
+
+    private String convert_gameStatustoString() {
         String result = "";
         // cari jumlah turn saat ini
         int sumTurn = GameManager.getInstance().getTurnNumber();
@@ -12,16 +20,16 @@ public class Simpan {
 
         // cari jumlah product
         int countProduct = 0;
-        for(TokoEntry tk : Toko.produkToko){
-            if(tk != null){
+        for (TokoEntry tk : Toko.produkToko) {
+            if (tk != null) {
                 countProduct++;
             }
         }
         result += countProduct + "\n";
 
         // cari product
-        for(TokoEntry tk : Toko.produkToko){
-            if(tk != null){
+        for (TokoEntry tk : Toko.produkToko) {
+            if (tk != null) {
                 result += tk.getKartu().getNama() + " " + tk.getKuantitas() + "\n";
             }
         }
@@ -29,7 +37,7 @@ public class Simpan {
         return result;
     }
 
-    private String convert_playertoString(Player player){
+    private String convert_playertoString(Player player) {
         // Inisialisasi result
         String result = "";
 
@@ -46,10 +54,10 @@ public class Simpan {
         result += lenDeckAktif + "\n";
 
         // Masukan deckAktif ke string
-        for (int i = 0; i < 6; i++){
+        for (int i = 0; i < 6; i++) {
             Kartu kartu = player.getDeckAktif().getKartu(i);
-            if (kartu != null){
-                char kolom = (char)('A' + i);
+            if (kartu != null) {
+                char kolom = (char) ('A' + i);
                 String kolomStr = kolom + "01";
                 String namaKartu = kartu.getNama();
                 result += kolomStr + " " + namaKartu + "\n";
@@ -58,15 +66,16 @@ public class Simpan {
 
         //Inisalisasi ladang
         Ladang_Logic ladang = player.getLadang();
+        result += ladang.getJumlahKartu() + "\n";
 
         // Ubah ladang ke string
-        for(int i = 0 ; i < 4 ; i++){
-            for(int j = 0 ; j < 5 ; j++){
-                Kartu kartu = ladang.getKartu(i,j);
-                if(kartu != null){
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 5; j++) {
+                Kartu kartu = ladang.getKartu(i, j);
+                if (kartu != null) {
                     // Cari string index
-                    char kolom = (char)('A' + j);
-                    String baris = Integer.toString(i+1);
+                    char kolom = (char) ('A' + j);
+                    String baris = Integer.toString(i + 1);
                     baris = "0" + baris;
                     String indexStr = kolom + baris;
 
@@ -74,13 +83,13 @@ public class Simpan {
                     String namaKartu = kartu.getNama();
 
                     int umur_berat = 0;
-                    if (Config.listKartuTanaman.contains(namaKartu)){
+                    if (Config.listKartuTanaman.contains(namaKartu)) {
                         KartuTanaman tanaman = (KartuTanaman) kartu;
                         umur_berat = tanaman.getUmur();
-                    }else if (Config.listKartuHewan.contains(namaKartu)){
+                    } else if (Config.listKartuHewan.contains(namaKartu)) {
                         KartuHewan hewan = (KartuHewan) kartu;
                         umur_berat = hewan.getBerat();
-                    }else{
+                    } else {
                         KartuProduk produk = (KartuProduk) kartu;
                     }
 
@@ -94,16 +103,72 @@ public class Simpan {
                         }
                     }
 
-                    result += indexStr + " " + namaKartu + " ";
+                    result += indexStr + " " + namaKartu;
 
-                    if(Config.listKartuProduk.contains(namaKartu)) {
+                    if (Config.listKartuProduk.contains(namaKartu)) {
                         result += "\n";
-                    }else {
-                        result += umur_berat + " " + banyak_efek_item + efekItemStr + "\n";
+                    } else {
+                        result += " " + umur_berat + " " + banyak_efek_item + efekItemStr + "\n";
                     }
                 }
             }
         }
         return result;
     }
+
+
+    public void writeSavePlayer(Player player) {
+        // Inisialisasi result
+        String result = "";
+
+
+        // Ubah player ke string
+        result += convert_playertoString(player);
+
+        //get id player
+        String nama = player.getNama();
+        //hilangkan spasi dari nama dan buat semuanya huruf kecil
+        nama = nama.replaceAll("\\s", "").toLowerCase();
+
+
+
+        // Tulis ke file
+        try {
+            nama = '/' + nama;
+            FileWriter myWriter = new FileWriter(this.path + nama + ".txt");
+            myWriter.write(result);
+            myWriter.close();
+        } catch (Exception e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public void writeGameState() {
+        // Inisialisasi result
+        String result = "";
+
+        // Ubah game state ke string
+        result += convert_gameStatustoString();
+
+        // Tulis ke file
+        try {
+            //simpan file txt ke path
+
+            FileWriter myWriter = new FileWriter(this.path + "/gamestate.txt");
+            myWriter.write(result);
+            myWriter.close();
+        } catch (Exception e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public void saveEntryPoint(){
+        writeGameState();
+        writeSavePlayer(GameManager.getInstance().getPlayerOne());
+        writeSavePlayer(GameManager.getInstance().getPlayerTwo());
+    }
 }
+
+

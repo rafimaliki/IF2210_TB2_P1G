@@ -58,7 +58,7 @@ public class KartuHewan extends Kartu {
         if (namaItem.equals("ACCELERATE")){
             this.berat += 8;
         } else if (namaItem.equals("DELAY")){
-            this.berat -= 5;
+            this.berat -= 5 * this.itemAktif.get("DELAY");
             if (this.berat < 0){
                 this.berat = 0;
             }

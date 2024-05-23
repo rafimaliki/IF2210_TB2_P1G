@@ -326,11 +326,6 @@ public class Player {
 
     }
 
-    /**
-     *
-     * @param deckIdx
-     * @throws Exception
-     */
     public void jual(String deckIdx) throws Exception {
         int idx = Integer.parseInt(deckIdx.substring(1));
 

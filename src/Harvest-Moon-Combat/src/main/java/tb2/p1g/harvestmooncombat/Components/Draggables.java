@@ -83,6 +83,13 @@ public class Draggables implements  Runnable {
     private static void setupDragAndDrop(Pane pane) {
         pane.setOnDragDetected(event -> {
             if (!pane.getChildren().isEmpty()) {
+                if (pane.getId().charAt(0) == 'd'){
+                    GameManager gm = GameManager.getInstance();
+                    if(gm.isBearAttackInProgress()){
+                        System.out.println("Serangan beruang sedang berlangsung, tidak bisa melakukan aksi bebas");
+                        return;
+                    }
+                }
 
 //              System.out.println("Source: " + pane.getId());
                 Dragboard db = pane.startDragAndDrop(TransferMode.ANY);

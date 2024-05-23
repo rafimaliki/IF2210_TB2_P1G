@@ -74,6 +74,7 @@ public class SeranganBeruang implements Runnable {
         Player player = GameManager.getInstance().getCurrentPlayer();
         performAttack(player);
         bearAttack = false;
+        this.beruangBox.setVisible(false);
     }
 
     public void performAttack(Player player) {

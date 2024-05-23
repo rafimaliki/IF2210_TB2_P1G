@@ -126,12 +126,22 @@ public class GameScreenController {
 
     @FXML
     protected  void tokoButtonAction(){
+        GameManager gm = GameManager.getInstance();
+        if(gm.isBearAttackInProgress()){
+            System.out.println("Bear is attacking, cannot end turn");
+            return;
+        }
         System.out.println("Toko button clicked");
         ViewFactory.ShowTokoScreen();
     }
 
     @FXML
     protected void ladangKuButtonAction(){
+        GameManager gm = GameManager.getInstance();
+        if(gm.isBearAttackInProgress()){
+            System.out.println("Bear is attacking, cannot end turn");
+            return;
+        }
         if (ladangShow == playerTurn) return;
         GameManager.getInstance().setLadang(GameManager.getInstance().getCurrentPlayer().getLadang());
         GameManager.getInstance().setViewLawan();
@@ -148,6 +158,11 @@ public class GameScreenController {
 
     @FXML
     protected void ladangLawanButtonAction(){
+        GameManager gm = GameManager.getInstance();
+        if(gm.isBearAttackInProgress()){
+            System.out.println("Bear is attacking, cannot end turn");
+            return;
+        }
         if (ladangShow != playerTurn) return;
 
         GameManager.getInstance().inverseLadang();

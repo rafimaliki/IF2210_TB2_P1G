@@ -101,7 +101,15 @@ public class CardDetailController {
             // close this window
             thisStage.close();
         } else {
+            //ambil
             System.out.println("Klik Ambil: "+ row + " " + col);
+            try{
+                GameManager.getInstance().getCurrentPlayer().Ambil(this.slotIdx);
+
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+            }
             thisStage.close();
         }
     }

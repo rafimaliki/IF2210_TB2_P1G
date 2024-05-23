@@ -87,6 +87,7 @@ public class Muat implements MuatInterface {
 
             reader.close();
             System.out.println("Game State Loaded");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -185,6 +186,8 @@ public class Muat implements MuatInterface {
 
             GameManager.getInstance().getPlayers().set(0, player1);
             GameManager.getInstance().getPlayers().set(1, player2);
+            GameManager.getInstance().setDeckAktif(GameManager.getInstance().getCurrentPlayer().getDeckAktif());
+            GameManager.getInstance().setLadang(GameManager.getInstance().getCurrentPlayer().getLadang());
 
         }catch (Exception e){
             e.printStackTrace();

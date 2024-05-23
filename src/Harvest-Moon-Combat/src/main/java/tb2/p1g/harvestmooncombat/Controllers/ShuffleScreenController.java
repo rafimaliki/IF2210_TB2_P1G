@@ -87,6 +87,7 @@ public class ShuffleScreenController {
             }
         }
         gameManager.getCurrentPlayer().getDeckNonAktif().kembalikanKartu(returnKartu, returnKartu.size());
+        gameManager.initBearAttack();
     }
 
     @FXML

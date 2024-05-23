@@ -11,6 +11,7 @@ import tb2.p1g.harvestmooncombat.App;
 
 import tb2.p1g.harvestmooncombat.Components.ActiveDeck;
 import tb2.p1g.harvestmooncombat.Components.Card;
+import tb2.p1g.harvestmooncombat.Controllers.MainScreenController;
 import tb2.p1g.harvestmooncombat.Controllers.TokoScreenController;
 import tb2.p1g.harvestmooncombat.Controllers.CardDetailController;
 import tb2.p1g.harvestmooncombat.Controllers.ShuffleScreenController;
@@ -30,7 +31,7 @@ public class ViewFactory {
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            Stage primaryStage = App.PrimaryStage;
+            Stage primaryStage = MainScreenController.primaryStage;
             stage.initOwner(primaryStage);
             stage.initStyle(StageStyle.TRANSPARENT);
 
@@ -60,7 +61,7 @@ public class ViewFactory {
             Stage stage = new Stage();
             controller.setStage(stage);
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(App.PrimaryStage);
+            stage.initOwner(MainScreenController.primaryStage);
             stage.initStyle(StageStyle.TRANSPARENT);
 
 
@@ -70,8 +71,8 @@ public class ViewFactory {
             stage.setScene(scene);
 
             stage.setOnShown(event -> {
-                stage.setX(App.PrimaryStage.getX() + App.PrimaryStage.getWidth() / 2 - stage.getWidth() / 2);
-                stage.setY(App.PrimaryStage.getY() + App.PrimaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
+                stage.setX(MainScreenController.primaryStage.getX() + MainScreenController.primaryStage.getWidth() / 2 - stage.getWidth() / 2);
+                stage.setY(MainScreenController.primaryStage.getY() + MainScreenController.primaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
             });
 
             stage.show();
@@ -90,7 +91,7 @@ public class ViewFactory {
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(App.PrimaryStage);
+            stage.initOwner(MainScreenController.primaryStage);
             stage.initStyle(StageStyle.TRANSPARENT);
 
             Scene scene = new Scene(root);
@@ -105,8 +106,8 @@ public class ViewFactory {
 
 
             stage.setOnShown(event -> {
-                stage.setX(App.PrimaryStage.getX() + App.PrimaryStage.getWidth() / 2 - stage.getWidth() / 2);
-                stage.setY(App.PrimaryStage.getY() + App.PrimaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
+                stage.setX(MainScreenController.primaryStage.getX() + MainScreenController.primaryStage.getWidth() / 2 - stage.getWidth() / 2);
+                stage.setY(MainScreenController.primaryStage.getY() + MainScreenController.primaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
             });
 
             stage.show();
@@ -125,7 +126,7 @@ public class ViewFactory {
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(App.PrimaryStage);
+            stage.initOwner(MainScreenController.primaryStage);
             stage.initStyle(StageStyle.TRANSPARENT);
 
 
@@ -135,8 +136,8 @@ public class ViewFactory {
             stage.setScene(scene);
 
             stage.setOnShown(event -> {
-                stage.setX(App.PrimaryStage.getX() + App.PrimaryStage.getWidth() / 2 - stage.getWidth() / 2);
-                stage.setY(App.PrimaryStage.getY() + App.PrimaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
+                stage.setX(MainScreenController.primaryStage.getX() + MainScreenController.primaryStage.getWidth() / 2 - stage.getWidth() / 2);
+                stage.setY(MainScreenController.primaryStage.getY() + MainScreenController.primaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
             });
 
             stage.show();
@@ -155,7 +156,7 @@ public class ViewFactory {
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(App.PrimaryStage);
+            stage.initOwner(MainScreenController.primaryStage);
             stage.initStyle(StageStyle.TRANSPARENT);
 
 
@@ -165,8 +166,8 @@ public class ViewFactory {
             stage.setScene(scene);
 
             stage.setOnShown(event -> {
-                stage.setX(App.PrimaryStage.getX() + App.PrimaryStage.getWidth() / 2 - stage.getWidth() / 2);
-                stage.setY(App.PrimaryStage.getY() + App.PrimaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
+                stage.setX(MainScreenController.primaryStage.getX() + MainScreenController.primaryStage.getWidth() / 2 - stage.getWidth() / 2);
+                stage.setY(MainScreenController.primaryStage.getY() + MainScreenController.primaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
             });
 
             stage.show();
@@ -185,7 +186,7 @@ public class ViewFactory {
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(App.PrimaryStage);
+            stage.initOwner(MainScreenController.primaryStage);
             stage.initStyle(StageStyle.TRANSPARENT);
 
 
@@ -195,8 +196,8 @@ public class ViewFactory {
             stage.setScene(scene);
 
             stage.setOnShown(event -> {
-                stage.setX(App.PrimaryStage.getX() + App.PrimaryStage.getWidth() / 2 - stage.getWidth() / 2);
-                stage.setY(App.PrimaryStage.getY() + App.PrimaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
+                stage.setX(MainScreenController.primaryStage.getX() + MainScreenController.primaryStage.getWidth() / 2 - stage.getWidth() / 2);
+                stage.setY(MainScreenController.primaryStage.getY() + MainScreenController.primaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
             });
 
             stage.show();
@@ -215,7 +216,7 @@ public class ViewFactory {
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(App.PrimaryStage);
+            stage.initOwner(MainScreenController.primaryStage);
             stage.initStyle(StageStyle.TRANSPARENT);
 
 
@@ -225,8 +226,35 @@ public class ViewFactory {
             stage.setScene(scene);
 
             stage.setOnShown(event -> {
-                stage.setX(App.PrimaryStage.getX() + App.PrimaryStage.getWidth() / 2 - stage.getWidth() / 2);
-                stage.setY(App.PrimaryStage.getY() + App.PrimaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
+                stage.setX(MainScreenController.primaryStage.getX() + MainScreenController.primaryStage.getWidth() / 2 - stage.getWidth() / 2);
+                stage.setY(MainScreenController.primaryStage.getY() + MainScreenController.primaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
+            });
+
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void ShowMainScreen() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/MainScreen.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(MainScreenController.primaryStage);
+            stage.initStyle(StageStyle.TRANSPARENT);
+
+
+            Scene scene = new Scene(root);
+            scene.setFill(null);
+            scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
+            stage.setScene(scene);
+
+            stage.setOnShown(event -> {
+                stage.setX(MainScreenController.primaryStage.getX() + MainScreenController.primaryStage.getWidth() / 2 - stage.getWidth() / 2);
+                stage.setY(MainScreenController.primaryStage.getY() + MainScreenController.primaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
             });
 
             stage.show();

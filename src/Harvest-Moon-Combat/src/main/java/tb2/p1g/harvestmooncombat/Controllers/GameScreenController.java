@@ -85,7 +85,9 @@ public class GameScreenController {
         beruangBox.setVisible(false);
 
         GameManager gm = GameManager.getInstance();
-        gm.setBeruangBox( beruangBox);
+        gm.setBeruangBox(beruangBox);
+
+//        ViewFactory.ShowMainScreen();
     }
 
     @FXML

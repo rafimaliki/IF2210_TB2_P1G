@@ -14,6 +14,7 @@ import javafx.util.Duration;
 import tb2.p1g.harvestmooncombat.App;
 import tb2.p1g.harvestmooncombat.Components.AngryBear;
 import tb2.p1g.harvestmooncombat.Controllers.GameScreenController;
+import tb2.p1g.harvestmooncombat.Controllers.MainScreenController;
 
 
 public class SeranganBeruang implements Runnable {
@@ -211,13 +212,12 @@ public class SeranganBeruang implements Runnable {
             beruangBox.setPrefHeight(290);
         }
         System.out.println("start col, start row: " + startCol + ", " + startRow);
-        System.out.println(App.Root);
 
         beruangBox.setLayoutX(startX + startCol * 80-5);
         beruangBox.setLayoutY(startY + startRow * 100-5);
 
         Platform.runLater(() -> {
-            new Thread(() -> runFireAnimation(App.Root)).start();
+            new Thread(() -> runFireAnimation(MainScreenController.root)).start();
         });
 
     }

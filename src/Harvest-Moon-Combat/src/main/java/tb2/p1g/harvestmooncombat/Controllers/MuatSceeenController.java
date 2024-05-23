@@ -37,7 +37,7 @@ public class MuatSceeenController {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Select Folder");
 
-        File selectedDirectory = directoryChooser.showDialog(App.PrimaryStage);
+        File selectedDirectory = directoryChooser.showDialog(MainScreenController.primaryStage);
 
         if (selectedDirectory == null) {
             return;

@@ -88,7 +88,7 @@ public class ShuffleScreenController {
         gameManager.getCurrentPlayer().getDeckNonAktif().kembalikanKartu(returnKartu, returnKartu.size());
         gameManager.initBearAttack();
 
-        ((Label) App.Root.lookup("#kartuSisa")).setText(""+gameManager.getCurrentPlayer().getDeckNonAktif().getKartuSisa());
+        ((Label) MainScreenController.root.lookup("#kartuSisa")).setText(""+gameManager.getCurrentPlayer().getDeckNonAktif().getKartuSisa());
     }
 
     @FXML

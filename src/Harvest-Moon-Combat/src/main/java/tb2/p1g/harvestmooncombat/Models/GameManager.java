@@ -127,7 +127,7 @@ public class GameManager {
         Random random = new Random();
         int chance = random.nextInt(5);
 //        chance = 0;
-        if (chance == -1){
+        if (chance == 1){
             System.out.println("Serangan beruang!");
             seranganBeruang(this.beruangBox);
         }

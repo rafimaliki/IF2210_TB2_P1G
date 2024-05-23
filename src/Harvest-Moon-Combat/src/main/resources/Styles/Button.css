@@ -37,3 +37,7 @@
 .green-button:hover {
     -fx-background-color: #143f0c;
 }
+
+.new-game-button {
+    -fx-background-image: url('../Images/Other/NewGameButton.png');
+}

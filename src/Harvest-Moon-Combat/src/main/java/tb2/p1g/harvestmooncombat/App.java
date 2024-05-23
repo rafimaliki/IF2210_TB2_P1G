@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import tb2.p1g.harvestmooncombat.Controllers.GameScreenController;
+import tb2.p1g.harvestmooncombat.Controllers.MainScreenController;
 import tb2.p1g.harvestmooncombat.Models.GameManager;
 import tb2.p1g.harvestmooncombat.Models.SimpanInterface;
 import tb2.p1g.harvestmooncombat.Models.MuatInterface;
@@ -32,57 +33,21 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        this.PrimaryStage = stage;
-//        String filepath = System.getProperty("user.dir") + "/src/main/java/tb2/p1g/harvestmooncombat/Plugins/";
-//        File directory = new File(filepath);
-//
-//        // Check if the specified path points to a directory
-//        if (directory.isDirectory()) {
-//            // Get a list of all files in the directory
-//            File[] files = directory.listFiles();
-//
-//            // Iterate over the files and print their names
-//            if (files != null) {
-//                for (File file : files) {
-//                    System.out.println(file.getName());
-//                }
-//            }
-//        } else {
-//            System.out.println("Specified path is not a directory: " + filepath);
-//        }
-//        PluginLoader pluginLoader = new PluginLoader();
-//        try{
-//            pluginLoader.loadPlugins(filepath);
-//            List<MuatInterface> muatplug = pluginLoader.getMuatPlugins();
-//            List<SimpanInterface> simpanplug = pluginLoader.getSimpanPlugins();
-//
-//            for(MuatInterface mi : muatplug){
-//                mi.loadGameState("Ini plugin");
-//            }
-//        }catch(Exception e){
-//            System.out.println(e.getMessage());
-//        }
-//
 
         GameManager gameManager = GameManager.getInstance();
         gameManager.startGame();
 
-        System.out.println("Tes");
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/GameScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/MainScreen.fxml"));
         AnchorPane root = fxmlLoader.load();
-        this.Root = root;
         Scene scene = new Scene(root, 600, 600);
 
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/Styles/Bear.css")).toExternalForm());
+        MainScreenController controller = fxmlLoader.getController();
+        controller.setPrimaryStage(stage);
 
         stage.setTitle("Harvest Moon Combat");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
-
-        GameScreenController controller = fxmlLoader.getController();
-        controller.setPrimaryStage(stage);
-        ViewFactory.ShowShuffleScreen();
     }
 
     public static void main(String[] args) {

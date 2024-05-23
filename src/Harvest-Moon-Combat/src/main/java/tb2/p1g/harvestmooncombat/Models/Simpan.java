@@ -7,7 +7,7 @@ public class Simpan {
     private String convert_gameStatustoString(){
         String result = "";
         // cari jumlah turn saat ini
-        int sumTurn = GameManager.getInstance().getSumTurn();
+        int sumTurn = GameManager.getInstance().getTurnNumber();
         result += sumTurn + "\n";
 
         // cari jumlah product

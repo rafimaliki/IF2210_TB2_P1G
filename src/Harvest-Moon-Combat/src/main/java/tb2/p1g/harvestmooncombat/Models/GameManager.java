@@ -145,12 +145,7 @@ public class GameManager {
         this.beruangBox = beruangBox;
     }
 
-    public int getSumTurn(){
-        return sumTurn;
+    public int getTurnNumber() {
+        return turnNumber;
     }
-
-    public void setSumTurn(int sumTurn){
-        this.sumTurn = sumTurn;
-    }
-
 }

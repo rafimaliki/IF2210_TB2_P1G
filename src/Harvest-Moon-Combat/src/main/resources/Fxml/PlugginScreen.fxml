@@ -16,13 +16,13 @@
         </Button>
         <AnchorPane layoutX="104.0" layoutY="145.0" prefHeight="310.0" prefWidth="391.0" style="-fx-background-color: white; -fx-background-radius: 30;">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="14.0" prefHeight="17.0" prefWidth="171.0" text="Pluggin" textAlignment="CENTER">
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="14.0" prefHeight="17.0" prefWidth="171.0" text="Plugin" textAlignment="CENTER">
                     <font>
                         <Font size="19.0" />
                     </font>
                 </Label>
-                <Button fx:id="inputButton" layoutX="121.0" layoutY="87.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Choose File" />
-                <Button layoutX="121.0" layoutY="246.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Upload" />
+                <Button fx:id="inputButton" layoutX="121.0" layoutY="87.0" mnemonicParsing="false" onAction="#inputButtonAction" prefHeight="25.0" prefWidth="150.0" text="Choose Plugin" />
+                <Button fx:id="uploadButton" layoutX="121.0" layoutY="246.0" mnemonicParsing="false" onAction="#uploadButtonAction" prefHeight="25.0" prefWidth="150.0" text="Upload" />
             </children>
         </AnchorPane>
     </children>

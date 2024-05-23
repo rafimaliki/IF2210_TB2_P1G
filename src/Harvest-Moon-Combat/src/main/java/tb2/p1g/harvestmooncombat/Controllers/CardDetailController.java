@@ -76,8 +76,10 @@ public class CardDetailController {
 
         if (Config.mapProduk.containsKey(kartu.getNama())){
             actionButton.setText("AMBIL");
+            action = "AMBIL";
         } else {
             actionButton.setText("PANEN");
+            action = "PANEN";
         }
 
         this.namaKartu.setText(deskripsiKartu.get(0));
@@ -99,7 +101,15 @@ public class CardDetailController {
             // close this window
             thisStage.close();
         } else {
+            //ambil
             System.out.println("Klik Ambil: "+ row + " " + col);
+            try{
+                GameManager.getInstance().getCurrentPlayer().Ambil(this.slotIdx);
+
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+            }
             thisStage.close();
         }
     }

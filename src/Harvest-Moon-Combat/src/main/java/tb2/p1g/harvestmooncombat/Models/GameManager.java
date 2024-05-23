@@ -145,5 +145,7 @@ public class GameManager {
         this.beruangBox = beruangBox;
     }
 
-
+    public int getTurnNumber() {
+        return turnNumber;
+    }
 }

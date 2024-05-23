@@ -121,7 +121,6 @@ public class GameScreenController {
         gm.getCurrentPlayer().getLadang().displayDataKartuLadang();
 
         ViewFactory.ShowShuffleScreen(this.primaryStage, draggables.getActiveDeck());
-        seranganBeruangUI();
     }
 
     @FXML
@@ -201,6 +200,7 @@ public class GameScreenController {
     @FXML
     protected void loadButtonAction(){
         System.out.println("Load button clicked");
+        ViewFactory.ShowLoadScreen();
     }
 
     @FXML
@@ -217,41 +217,5 @@ public class GameScreenController {
     protected void setButtonClicked(String buttonName) {
         unclickButtons();
         buttonList.get(buttonName).setStyle("-fx-background-color: #50C878;");
-    }
-
-    protected void seranganBeruangUI(){
-        // get pixel of beruang box
-
-        // set visibility true
-//        beruangBox.setVisible(true);
-
-        int startX = 11;
-        int startY = 87;
-
-        int beruangBoxX = (int) beruangBox.getLayoutX();
-        int beruangBoxY = (int) beruangBox.getLayoutY();
-
-        int startRow = SeranganBeruang.getStartRow();
-        int startCol = SeranganBeruang.getStartCol();
-        int endRow = SeranganBeruang.getEndRow();
-        int endCol = SeranganBeruang.getEndCol();
-
-        boolean isHorizontal;
-
-        if (endRow-startRow == 1){
-            isHorizontal = true;
-        } else {
-            isHorizontal = false;
-        }
-
-        if (isHorizontal){
-            beruangBox.setPrefWidth(237);
-            beruangBox.setPrefHeight(201);
-        } else {
-            beruangBox.setPrefWidth(160);
-            beruangBox.setPrefHeight(291);
-        }
-        beruangBox.setLayoutX(startX + startCol * 80-5);
-        beruangBox.setLayoutY(startY + startRow * 100-5);
     }
 }

@@ -76,6 +76,15 @@ public class Muat implements MuatInterface {
                 this.item_shop.put(parts[0], Integer.parseInt(parts[1]));
                 System.out.println(parts[0] + " " + parts[1]);
             }
+
+            // Masukan ke game stat
+            GameManager.getInstance().setTurnNumber(current_turn);
+            for (Map.Entry<String, Integer> entry : item_shop.entrySet()) {
+                for(int i = 0; i < entry.getValue(); i++){
+                    Toko.addProduk(new KartuProduk(entry.getKey()));
+                }
+            }
+
             reader.close();
             System.out.println("Game State Loaded");
         } catch (Exception e) {
@@ -173,7 +182,10 @@ public class Muat implements MuatInterface {
                 this.player2.setLadang(ladang);
             }
             reader.close();
-            System.out.println("Player " + player + " Loaded");
+
+            GameManager.getInstance().getPlayers().set(0, player1);
+            GameManager.getInstance().getPlayers().set(1, player2);
+
         }catch (Exception e){
             e.printStackTrace();
         }

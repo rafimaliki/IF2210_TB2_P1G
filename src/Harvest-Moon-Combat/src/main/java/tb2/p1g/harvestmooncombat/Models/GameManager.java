@@ -156,4 +156,12 @@ public class GameManager {
     public int getTurnNumber() {
         return turnNumber;
     }
+
+    public void setTurnNumber(int turnNumber) {
+        this.turnNumber = turnNumber;
+    }
+
+    public List<Player> getPlayers(){
+        return players;
+    }
 }

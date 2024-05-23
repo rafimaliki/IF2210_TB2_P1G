@@ -92,11 +92,6 @@ public class GameScreenController {
     protected void nextButtonAction() {
         GameManager gm = GameManager.getInstance();
 
-        if (!gm.getIsRunning()){
-            System.out.println("Game is not running");
-            return;
-        }
-
         if(gm.isBearAttackInProgress()){
             System.out.println("Bear is attacking, cannot end turn");
             return;
@@ -127,6 +122,10 @@ public class GameScreenController {
             player2Name.setStyle("-fx-background-color: #50C878;");
         }
         gm.nextTurn(beruangBox);
+        if (!gm.getIsRunning()){
+            System.out.println("Game is not running");
+            return;
+        }
         gm.getCurrentPlayer().getLadang().displayLadang();
         gm.getCurrentPlayer().getDeckAktif().displayInfoDeck();
 

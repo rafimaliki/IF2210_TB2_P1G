@@ -31,6 +31,9 @@ import javax.swing.text.View;
 
 public class GameScreenController {
 
+    @FXML public Label GuldenPlayer2;
+    @FXML public Label GuldenPlayer1;
+
     @FXML private AnchorPane root;
     @FXML private GridPane activeDeckGrid, ladangGrid;
     @FXML private Pane beruangBox;
@@ -59,6 +62,9 @@ public class GameScreenController {
         draggables = new Draggables(activeDeckGrid, ladangGrid);
         refreshThread = new Thread(draggables);
         refreshThread.start();
+
+        GuldenPlayer1.setText(String.valueOf(GameManager.getInstance().getPlayerOne().getGulden()));
+        GuldenPlayer2.setText(String.valueOf(GameManager.getInstance().getPlayerTwo().getGulden()));
 
 
 
@@ -132,7 +138,15 @@ public class GameScreenController {
             return;
         }
         System.out.println("Toko button clicked");
-        ViewFactory.ShowTokoScreen();
+        ViewFactory.ShowTokoScreen(GuldenPlayer1,GuldenPlayer2);
+        refreshGulden();
+
+    }
+
+    public void refreshGulden(){
+        GuldenPlayer1.setText(String.valueOf(GameManager.getInstance().getPlayerOne().getGulden()));
+        GuldenPlayer2.setText(String.valueOf(GameManager.getInstance().getPlayerTwo().getGulden()));
+
     }
 
     @FXML

@@ -11,10 +11,11 @@ public class GameManager {
     public static int currentPlayerIdx;
     private SeranganBeruang seranganBeruang;
     private Thread seranganThread;
-    private  Ladang_Logic currentLadang;
-    private  DeckAktif currentDeck;
+    private Ladang_Logic currentLadang;
+    private DeckAktif currentDeck;
     private boolean isViewLawan;
     private Pane beruangBox;
+    private int turnNumber;
 
     private static GameManager instance;
 
@@ -24,6 +25,7 @@ public class GameManager {
         this.isRunning = false;
         currentPlayerIdx = 0;
         this.seranganBeruang = null;
+        this.turnNumber = 0;
 
     }
     public static synchronized GameManager getInstance() {
@@ -63,7 +65,9 @@ public class GameManager {
         setLadang(getCurrentPlayer().getLadang());
         setDeckAktif(getCurrentPlayer().getDeckAktif());
         isViewLawan = false;
+        this.turnNumber = 1;
     }
+
     public void setViewLawan(){
         isViewLawan = !isViewLawan;
     }
@@ -75,15 +79,33 @@ public class GameManager {
         isRunning = false;
     }
 
+    public void checkWin(){
+        if (this.turnNumber == 20){
+            Player winner;
+            if (players.get(0).getGulden() > players.get(1).getGulden()){
+                winner = players.getFirst();
+            } else {
+                winner = players.getLast();
+            }
+            System.out.println("Player " + winner.getNama() + " wins!");
+            this.endGame();
+        }
+    }
+
     public void nextTurn(Pane beruangBox){
-        currentPlayerIdx = (currentPlayerIdx + 1) % 2;
-        Player player1 = players.get(0);
-        Player player2 = players.get(1);
-        player1.tumbuhkanTanaman();
-        player2.tumbuhkanTanaman();
-        setLadang(getCurrentPlayer().getLadang());
-        setDeckAktif(getCurrentPlayer().getDeckAktif());
-        isViewLawan = false;
+        this.checkWin();
+
+        if (this.isRunning) {
+            currentPlayerIdx = (currentPlayerIdx + 1) % 2;
+            Player player1 = players.get(0);
+            Player player2 = players.get(1);
+            player1.tumbuhkanTanaman();
+            player2.tumbuhkanTanaman();
+            setLadang(getCurrentPlayer().getLadang());
+            setDeckAktif(getCurrentPlayer().getDeckAktif());
+            isViewLawan = false;
+            this.turnNumber++;
+        }
 
         // chance of bear attack
 

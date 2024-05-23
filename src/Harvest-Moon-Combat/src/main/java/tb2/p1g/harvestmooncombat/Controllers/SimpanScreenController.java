@@ -14,7 +14,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MuatSceeenController {
+public class SimpanScreenController {
 
     @FXML ComboBox comboBox;
     @FXML Button inputButton;

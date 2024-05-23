@@ -179,22 +179,9 @@ public class GameScreenController {
     }
 
     @FXML
-    protected void loadLadangKu(){
-        if (ladangShow == playerTurn) return;
-
-        LadangSave.put(ladangShow, draggables.getLadang().saveCards());
-        draggables.getLadang().clearCards();
-
-        ladangShow = playerTurn;
-        draggables.loadLadang(LadangSave.get(ladangShow));
-
-        ladangKuButton.setStyle("-fx-background-color: #50C878;");
-        ladangLawanButton.setStyle("-fx-background-color: #eee6e6;");
-    }
-
-    @FXML
     protected void saveButtonAction(){
         System.out.println("Save button clicked");
+        ViewFactory.ShowSaveScreen();
     }
 
     @FXML

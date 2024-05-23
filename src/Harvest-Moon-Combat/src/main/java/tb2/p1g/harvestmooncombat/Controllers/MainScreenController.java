@@ -41,10 +41,8 @@ public class MainScreenController {
     private void startNewGame() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/GameScreen.fxml"));
-            // load css
             AnchorPane mainGameRoot = fxmlLoader.load();
             Scene mainGameScene = new Scene(mainGameRoot, 600, 600); // Adjust dimensions as needed
-            // load css to mainGameScene
             mainGameScene.getStylesheets().add(getClass().getResource("/Styles/Bear.css").toExternalForm());
             root = mainGameRoot;
             primaryStage.setScene(mainGameScene);

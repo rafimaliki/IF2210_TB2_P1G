@@ -21,7 +21,9 @@ public class CardDetailController {
     @FXML Pane cardSlot;
     @FXML Button actionButton;
 
-    String action;
+    private Stage thisStage;
+
+    private String action;
 
     private int row;
     private int col;
@@ -94,8 +96,15 @@ public class CardDetailController {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+            // close this window
+            thisStage.close();
         } else {
             System.out.println("Klik Ambil: "+ row + " " + col);
+            thisStage.close();
         }
+    }
+
+    public void setStage(Stage stage) {
+        this.thisStage = stage;
     }
 }

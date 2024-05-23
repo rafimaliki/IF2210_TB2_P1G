@@ -58,6 +58,7 @@ public class ViewFactory {
             controller.setCard(slotIndex);
 
             Stage stage = new Stage();
+            controller.setStage(stage);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(App.PrimaryStage);
             stage.initStyle(StageStyle.TRANSPARENT);

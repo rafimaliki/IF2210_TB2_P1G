@@ -3,7 +3,7 @@ package tb2.p1g.harvestmooncombat.Models;
 import java.io.FileWriter;
 import java.util.List;
 
-public class Simpan {
+public class Simpan implements SimpanInterface {
 
     private String path;
 
@@ -169,6 +169,8 @@ public class Simpan {
         writeSavePlayer(GameManager.getInstance().getPlayerOne());
         writeSavePlayer(GameManager.getInstance().getPlayerTwo());
     }
+
+    public void writeGameState(StateSave stateSave) {}
 }
 
 

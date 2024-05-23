@@ -27,6 +27,9 @@ import java.util.concurrent.TimeUnit;
 import javafx.stage.Stage;
 
 import javax.swing.text.View;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.io.IOException;
 
 
 public class GameScreenController {
@@ -208,6 +211,8 @@ public class GameScreenController {
     @FXML
     protected void saveButtonAction(){
         System.out.println("Save button clicked");
+        ObjectMapper objectMapper = new ObjectMapper();
+
         ViewFactory.ShowSaveScreen();
     }
 

@@ -3,6 +3,8 @@ package tb2.p1g.harvestmooncombat.Models;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Muat {
@@ -23,8 +25,8 @@ public class Muat {
 
     public void loadGameState(String path) {
         try {
-            // Baca file
             BufferedReader reader = new BufferedReader(new FileReader(path));
+            // Baca file
             String line = reader.readLine();
             // Baca Current Turn
             this.current_turn = Integer.parseInt(line);
@@ -33,12 +35,15 @@ public class Muat {
             line = reader.readLine();
             this.jumlah_item_shop = Integer.parseInt(line);
 
+            this.item_shop = new HashMap<>();
+
             // Baca Item Shop
             for (int i = 0; i < this.jumlah_item_shop; i++) {
                 line = reader.readLine();
                 String[] parts = line.split(" ");
                 this.item_shop.put(parts[0], Integer.parseInt(parts[1]));
             }
+            reader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,7 +67,7 @@ public class Muat {
             for (int i = 0; i < jumlah_deck_aktif; i++){
                 line = reader.readLine();
                 String[] parts = line.split(" ");
-                int baris = Integer.parseInt(parts[0].substring(1));
+                int baris = Integer.parseInt(parts[0].substring(1)) - 1;
                 int kolom = parts[0].charAt(0) - 'A';
                 String nama = parts[1];
                 Kartu kartu;
@@ -70,10 +75,8 @@ public class Muat {
                     kartu = new KartuHewan(nama);
                 } else if (Config.listKartuTanaman.contains(nama)){
                     kartu = new KartuTanaman(nama);
-                } else if (Config.listKartuProduk.contains(nama)){
-                    kartu = new KartuProduk(nama);
                 } else {
-                    kartu = new KartuItem(nama);
+                    kartu = new KartuProduk(nama);
                 }
                 deckAktif.setKartu(baris * 5 + kolom, kartu);
             }
@@ -86,7 +89,7 @@ public class Muat {
                 line = reader.readLine();
                 String[] parts = line.split(" ");
 
-                int baris = Integer.parseInt(parts[0].substring(1));
+                int baris = Integer.parseInt(parts[0].substring(1)) - 1;
                 int kolom = parts[0].charAt(0) - 'A';
 
                 String nama = parts[1];
@@ -97,14 +100,30 @@ public class Muat {
                 if (Config.listKartuHewan.contains(nama)){
                     kartu = new KartuHewan(nama);
                     ((KartuHewan) kartu).setBerat(umur_berat);
-                } else {
+
+                }else if (Config.listKartuTanaman.contains(nama)){
                     kartu = new KartuTanaman(nama);
                     ((KartuTanaman) kartu).setUmur(umur_berat);
+
+                }else {
+                    kartu = new KartuProduk(nama);
                 }
 
                 for (int j = 4 ; j < 4 + Integer.parseInt(parts[3]); j++){
-                    kartu.setEfekItem(new KartuItem(parts[j]));
+                    if(!Config.listKartuProduk.contains(parts[2])){
+                        kartu.setEfekItem(new KartuItem(parts[j]));
+                    }
                 }
+
+                if (Config.listKartuHewan.contains(nama)){
+                    ((KartuHewan) kartu).setBerat(umur_berat);
+
+                }else if (Config.listKartuTanaman.contains(nama)){
+                    ((KartuTanaman) kartu).setUmur(umur_berat);
+
+                }
+
+
                 ladang.setLadang(kartu, baris, kolom);
             }
 
@@ -119,9 +138,40 @@ public class Muat {
                 this.player2.setDeckAktif(deckAktif);
                 this.player2.setLadang(ladang);
             }
+            reader.close();
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
 
+    public static void main(String[] args) {
+        Muat muat = new Muat();
+
+        muat.loadGameState("test/gamestate.txt");
+        muat.loadPlayer("test/player1.txt", 1);
+
+        muat.loadPlayer("test/player2.txt", 2);
+//        // Buatlah print untuk mengecek apakah fungsi yang dibuat sudah benar?
+//        System.out.println("Current Turn: " + muat.current_turn);
+//        System.out.println("Jumlah Item Shop: " + muat.jumlah_item_shop);
+//        System.out.println("Item Shop: ");
+//        for (Map.Entry<String, Integer> entry : muat.item_shop.entrySet()) {
+//            System.out.println(entry.getKey() + " " + entry.getValue());
+//        }
+
+        // System.out.println("Player 1: ");
+
+        // System.out.println("Gulden: " + muat.player1.getGulden());
+        // System.out.println("Deck Aktif: ");
+        // for (int i = 0; i < 6; i++) {
+        //     Kartu kartu = muat.player1.getDeckAktif().getKartu(i);
+        //     if (kartu != null) {
+        //         System.out.println(kartu.getNama());
+        //         System.out.println("i: " + i);
+        //     }
+        // }
+
+        // System.out.println("Ladang: ");
+        // muat.player1.getLadang().displayDataKartuLadang();
     }
 }

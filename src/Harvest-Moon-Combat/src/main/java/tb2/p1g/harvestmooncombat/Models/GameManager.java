@@ -20,7 +20,7 @@ public class GameManager {
 
     private static GameManager instance;
 
-    public static List<Player> players = new ArrayList<Player>();
+    private List<Player> players = new ArrayList<Player>();
 
     private GameManager() {
         this.isRunning = false;
@@ -55,7 +55,12 @@ public class GameManager {
         return currentLadang;
     }
 
-
+    public  Player getPlayerOne(){
+        return this.players.getFirst();
+    }
+    public Player getPlayerTwo(){
+        return this.players.getLast();
+    }
 
     public void startGame(){
         isRunning = true;

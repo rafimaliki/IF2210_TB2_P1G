@@ -14,6 +14,38 @@ public class Muat implements MuatInterface {
     private Player player1;
     private Player player2;
 
+    private String player1path;
+    private String player2path;
+    private String gameStatePath;
+
+    public Muat(List<String> paths) {
+        // my file name is with absolute path, i want to check just the file name
+
+        for (String path : paths){
+            if (path.contains("gamestate")) {
+                this.gameStatePath = path;
+            }
+            else if (path.contains("player1")) {
+                this.player1path = path;
+            }
+            else if (path.contains("player2")) {
+                this.player2path = path;
+            }
+        }
+    }
+
+    public void loadGame() {
+        if (tryReadFile(this.gameStatePath)) {
+            loadGameState(this.gameStatePath);
+        }
+        if (tryReadFile(this.player1path)) {
+            loadPlayer(this.player1path, 1);
+        }
+        if (tryReadFile(this.player2path)) {
+            loadPlayer(this.player2path, 2);
+        }
+    }
+
     public boolean tryReadFile(String path) {
         // Cek apakah file ada
         File file = new File(path);
@@ -42,6 +74,7 @@ public class Muat implements MuatInterface {
                 line = reader.readLine();
                 String[] parts = line.split(" ");
                 this.item_shop.put(parts[0], Integer.parseInt(parts[1]));
+                System.out.println(parts[0] + " " + parts[1]);
             }
 
             // Masukan ke game stat
@@ -53,6 +86,7 @@ public class Muat implements MuatInterface {
             }
 
             reader.close();
+            System.out.println("Game State Loaded");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -157,34 +191,34 @@ public class Muat implements MuatInterface {
         }
     }
 
-    public static void main(String[] args) {
-        Muat muat = new Muat();
-
-        muat.loadGameState("test/gamestate.txt");
-        muat.loadPlayer("test/player1.txt", 1);
-
-        muat.loadPlayer("test/player2.txt", 2);
-//        // Buatlah print untuk mengecek apakah fungsi yang dibuat sudah benar?
-//        System.out.println("Current Turn: " + muat.current_turn);
-//        System.out.println("Jumlah Item Shop: " + muat.jumlah_item_shop);
-//        System.out.println("Item Shop: ");
-//        for (Map.Entry<String, Integer> entry : muat.item_shop.entrySet()) {
-//            System.out.println(entry.getKey() + " " + entry.getValue());
-//        }
-
-        // System.out.println("Player 1: ");
-
-        // System.out.println("Gulden: " + muat.player1.getGulden());
-        // System.out.println("Deck Aktif: ");
-        // for (int i = 0; i < 6; i++) {
-        //     Kartu kartu = muat.player1.getDeckAktif().getKartu(i);
-        //     if (kartu != null) {
-        //         System.out.println(kartu.getNama());
-        //         System.out.println("i: " + i);
-        //     }
-        // }
-
-        // System.out.println("Ladang: ");
-        // muat.player1.getLadang().displayDataKartuLadang();
-    }
+//    public static void main(String[] args) {
+//        Muat muat = new Muat();
+//
+//        muat.loadGameState("test/gamestate.txt");
+//        muat.loadPlayer("test/player1.txt", 1);
+//
+//        muat.loadPlayer("test/player2.txt", 2);
+////        // Buatlah print untuk mengecek apakah fungsi yang dibuat sudah benar?
+////        System.out.println("Current Turn: " + muat.current_turn);
+////        System.out.println("Jumlah Item Shop: " + muat.jumlah_item_shop);
+////        System.out.println("Item Shop: ");
+////        for (Map.Entry<String, Integer> entry : muat.item_shop.entrySet()) {
+////            System.out.println(entry.getKey() + " " + entry.getValue());
+////        }
+//
+//        // System.out.println("Player 1: ");
+//
+//        // System.out.println("Gulden: " + muat.player1.getGulden());
+//        // System.out.println("Deck Aktif: ");
+//        // for (int i = 0; i < 6; i++) {
+//        //     Kartu kartu = muat.player1.getDeckAktif().getKartu(i);
+//        //     if (kartu != null) {
+//        //         System.out.println(kartu.getNama());
+//        //         System.out.println("i: " + i);
+//        //     }
+//        // }
+//
+//        // System.out.println("Ladang: ");
+//        // muat.player1.getLadang().displayDataKartuLadang();
+//    }
 }

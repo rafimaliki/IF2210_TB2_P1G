@@ -183,7 +183,14 @@ public class Player implements TokoActionInterface, CardActionsInterface {
                             if (kartu.getNama().equals("DESTROY")){
                                 prosesladang.removeKartu(rowDest,colDest);
                             } else {
-                                kartuTujuan.setEfekItem((KartuItem) kartu);
+                                if(Config.listKartuHewan.contains(kartuTujuan.getNama())){
+                                    KartuHewan kh = (KartuHewan) kartuTujuan;
+                                    kh.setEfekItem((KartuItem) kartu);
+                                }else if(Config.listKartuTanaman.contains(kartuTujuan.getNama())){
+                                    KartuTanaman kt = (KartuTanaman) kartuTujuan;
+                                    kt.setEfekItem((KartuItem) kartu);
+                                }
+
                             }
 
                         } else{
@@ -202,8 +209,13 @@ public class Player implements TokoActionInterface, CardActionsInterface {
                             prosesladang.removeKartu(rowDest, colDest);
                             prosesladang.addKartu(produk, rowDest, colDest);
                         }
-                        kartuTujuan.setEfekItem((KartuItem) kartu);
-
+                        if(Config.listKartuHewan.contains(kartuTujuan.getNama())){
+                            KartuHewan kh = (KartuHewan) kartuTujuan;
+                            kh.setEfekItem((KartuItem) kartu);
+                        }else if(Config.listKartuTanaman.contains(kartuTujuan.getNama())){
+                            KartuTanaman kt = (KartuTanaman) kartuTujuan;
+                            kt.setEfekItem((KartuItem) kartu);
+                        }
 
                     }
                 }
@@ -285,10 +297,19 @@ public class Player implements TokoActionInterface, CardActionsInterface {
         if(deckAktif.isFull()){
             throw new Exception("Deck aktif penuh");
         }
-
-        if(!kartu.isReadyToHarvest()){
-            throw new Exception("Belum siap panen");
+        if(Config.listKartuHewan.contains(kartu.getNama())){
+            KartuHewan kh = (KartuHewan) kartu;
+            if(!kh.isReadyToHarvest()){
+                throw new Exception("Belum siap panen");
+            }
+        }else if(Config.listKartuTanaman.contains(kartu.getNama())){
+            KartuTanaman kt = (KartuTanaman) kartu;
+            if(!kt.isReadyToHarvest()){
+                throw new Exception("Belum siap panen");
+            }
         }
+
+
 
         KartuProduk produk = new KartuProduk(Config.mapHewanTanamanKeProduk.get(kartu.getNama()));
         ladang.removeKartu(row, col);

@@ -9,6 +9,7 @@ public class KartuProduk extends Kartu {
     private int hargaJual;
     private int beratTambah;
 
+    public KartuProduk(){};
     public KartuProduk(String nama){
         this.nama = nama;
         this.hargaJual = Config.mapProduk.get(this.nama).getFirst();

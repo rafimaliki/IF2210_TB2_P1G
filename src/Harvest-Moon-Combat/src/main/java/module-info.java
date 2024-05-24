@@ -17,4 +17,5 @@ module tb2.p1g.harvestmooncombat {
     exports tb2.p1g.harvestmooncombat.Components;
     exports tb2.p1g.harvestmooncombat.Models;
     opens tb2.p1g.harvestmooncombat.Components to javafx.fxml;
+    opens tb2.p1g.harvestmooncombat.Models to com.fasterxml.jackson.databind;
 }

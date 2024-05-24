@@ -9,20 +9,9 @@ public abstract class Kartu {
     public String getNama(){
         return this.nama;
     }
+    public void setNama(String nama){this.nama = nama;}
 
-
-    public void setEfekItem(KartuItem item) throws Exception {}
-
-    public boolean isReadyToHarvest(){
-        return false;
-    }
-
-    public List<String> getInformasi(){
+    public List<String> getInformasi() {
         return new ArrayList<>();
     }
-
-    public List<String> getEfekItem(){
-        return new ArrayList<>();
-    }
-
- }
+}

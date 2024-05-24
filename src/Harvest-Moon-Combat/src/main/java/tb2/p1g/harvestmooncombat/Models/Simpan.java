@@ -1,6 +1,7 @@
 package tb2.p1g.harvestmooncombat.Models;
 
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Simpan implements SimpanInterface {
@@ -96,7 +97,14 @@ public class Simpan implements SimpanInterface {
                     String efekItemStr = "";
                     int banyak_efek_item = 0;
                     if (!Config.listKartuProduk.contains(namaKartu)) {
-                        List<String> efekItem = kartu.getEfekItem();
+                        List<String> efekItem = new ArrayList<>();
+                        if(Config.listKartuHewan.contains(kartu.getNama())){
+                            KartuHewan kh = (KartuHewan) kartu;
+                            efekItem = kh.getEfekItem();
+                        }else if(Config.listKartuTanaman.contains(kartu.getNama())){
+                            KartuTanaman kt = (KartuTanaman) kartu;
+                            efekItem = kt.getEfekItem();
+                        }
                         banyak_efek_item = efekItem.size();
                         for (String efek : efekItem) {
                             efekItemStr += " " + efek;
@@ -142,6 +150,11 @@ public class Simpan implements SimpanInterface {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void writeSaveObject(Object object) throws Exception {
+
     }
 
     public void writeGameState() {

@@ -10,7 +10,7 @@ public class KartuTanaman extends Kartu {
     private String nama;
     private int umur;
     private Map<String, Integer> itemAktif;
-
+    public KartuTanaman(){};
     public KartuTanaman(String namaTanaman){
         this.nama = namaTanaman;
         this.umur = 0;

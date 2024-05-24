@@ -59,17 +59,15 @@ public class TokoScreenController {
         this.tokoSellButtonsUI = new TokoSellButtonsUI(sellButtons, activeDeck, tokoBuyUI);
 
         // setup player gold
-        // belum implementasi
-        // AngryBear.addRandomBear(root);
-
+        setMoney(GameManager.getInstance().getCurrentPlayer().getGulden());
     }
 
     @FXML
     public void keluarButtonAction(ActionEvent event) {
         Stage stage = (Stage) ((javafx.scene.Node) (event.getSource())).getScene().getWindow();
 
-        ((Label) ViewFactory.Root.lookup("#GuldenPlayer1")).setText(String.valueOf(GameManager.getInstance().getPlayerOne().getGulden()));
-        ((Label) ViewFactory.Root.lookup("#GuldenPlayer2")).setText(String.valueOf(GameManager.getInstance().getPlayerTwo().getGulden()));
+        ((Label) ViewFactory.Root.lookup("#guldenPlayer1")).setText(String.valueOf(GameManager.getInstance().getPlayerOne().getGulden()));
+        ((Label) ViewFactory.Root.lookup("#guldenPlayer2")).setText(String.valueOf(GameManager.getInstance().getPlayerTwo().getGulden()));
 
         stage.close();
     }

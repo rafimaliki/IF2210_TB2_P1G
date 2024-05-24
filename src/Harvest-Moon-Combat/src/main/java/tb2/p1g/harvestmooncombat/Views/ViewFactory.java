@@ -3,17 +3,13 @@ package tb2.p1g.harvestmooncombat.Views;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import tb2.p1g.harvestmooncombat.App;
 
-import tb2.p1g.harvestmooncombat.Controllers.MainScreenController;
-import tb2.p1g.harvestmooncombat.Controllers.TokoScreenController;
 import tb2.p1g.harvestmooncombat.Controllers.CardDetailController;
-import tb2.p1g.harvestmooncombat.Models.GameManager;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -32,8 +28,6 @@ public class ViewFactory {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/MainScreen.fxml"));
             Root = fxmlLoader.load();
             Scene scene = new Scene(Root, 600, 600);
-
-            MainScreenController controller = fxmlLoader.getController();
 
             PrimaryStage.setTitle("Harvest Moon Combat");
             PrimaryStage.setResizable(false);
@@ -123,9 +117,6 @@ public class ViewFactory {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/TokoScreen.fxml"));
             Parent ModalRoot = fxmlLoader.load();
-
-            TokoScreenController controller = fxmlLoader.getController();
-            controller.setMoney(GameManager.getInstance().getCurrentPlayer().getGulden());
 
             Stage ModalStage = new Stage();
             ModalStage.initModality(Modality.APPLICATION_MODAL);

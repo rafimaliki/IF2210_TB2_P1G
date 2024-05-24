@@ -107,7 +107,7 @@ class TokoBuyEntryUI {
 
             try {
                 System.out.println("Beli: " + cardName);
-                GameManager.getInstance().getCurrentPlayer().beli(cardName);
+                GameManager.getInstance().BeliGM(cardName);
                 controller.getActiveDeck().refreshCards();
                 controller.setMoney(GameManager.getInstance().getCurrentPlayer().getGulden());
                 if (this.stock == 1) {
@@ -215,7 +215,7 @@ class TokoSellButtonsUI {
                 String idxjual = 'd' + String.valueOf(finalI);
                 try {
                     System.out.println(idxjual);
-                    GameManager.getInstance().getCurrentPlayer().jual(idxjual);
+                    GameManager.getInstance().JualGM(idxjual);
                     // Kalo berhasil refresh deckAktif
                     this.activeDeck.refreshCards();
                     Toko.displayToko();

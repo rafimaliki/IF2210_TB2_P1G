@@ -158,13 +158,13 @@ public class Draggables implements  Runnable {
                     System.out.println("Source: " + sourcePane.getId());
                     System.out.println("Target: " + pane.getId());
                     try{
-                        GameManager.getInstance().getCurrentPlayer().moveKartu(sourcePane.getId(),pane.getId());
+                        GameManager.getInstance().moveKartuGM(sourcePane.getId(),pane.getId());
 
                     } catch (InvalidMoveExceptions e){
                         System.out.println("Error! " + e.getMessage() );
                         Kartu invalid_kartu =  e.getKartu();
                         if(invalid_kartu != null){
-                            GameManager.getInstance().getCurrentPlayer().undoKartu(invalid_kartu,sourcePane.getId());
+                            GameManager.getInstance().undoKartuGM(invalid_kartu,sourcePane.getId());
                         }
                     }catch(Exception e){
                         System.out.println(e.getMessage());

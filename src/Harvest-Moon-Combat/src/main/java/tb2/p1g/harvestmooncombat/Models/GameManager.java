@@ -123,10 +123,33 @@ public class GameManager implements GameManagerInterface {
 
     }
 
+    public void undoKartuGM(Kartu k, String idxInit){
+        getCurrentPlayer().undoKartu(k, idxInit);
+    }
+
+    public void moveKartuGM(String idxInit, String idxDest) throws Exception {
+        getCurrentPlayer().moveKartu(idxInit, idxDest);
+    }
+
+    public void PanenGM(String idx) throws Exception {
+        getCurrentPlayer().Panen(idx);
+    }
+
+    public void AmbilGM(String idx) throws Exception {
+        getCurrentPlayer().Ambil(idx);
+    }
+
+    public void JualGM(String idx) throws Exception {
+        getCurrentPlayer().jual(idx);
+    }
+
+    public void BeliGM(String idx) throws Exception {
+        getCurrentPlayer().beli(idx);
+    }
+
     public void initBearAttack() {
         Random random = new Random();
         int chance = random.nextInt(5);
-        chance = 1;
         if (chance == 1){
             System.out.println("Serangan beruang!");
             seranganBeruang(this.beruangBox);

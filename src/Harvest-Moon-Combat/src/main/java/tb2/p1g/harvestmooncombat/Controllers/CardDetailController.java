@@ -94,7 +94,7 @@ public class CardDetailController {
         if (action == "PANEN"){
             System.out.println("Klik Panen: " + row + " " + col);
             try {
-                GameManager.getInstance().getCurrentPlayer().Panen(this.slotIdx);
+                GameManager.getInstance().PanenGM(this.slotIdx);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -104,7 +104,7 @@ public class CardDetailController {
             //ambil
             System.out.println("Klik Ambil: "+ row + " " + col);
             try{
-                GameManager.getInstance().getCurrentPlayer().Ambil(this.slotIdx);
+                GameManager.getInstance().AmbilGM(this.slotIdx);
 
             }
             catch (Exception e){

@@ -258,11 +258,6 @@ public class Player implements PlayerInfoInterface, DeckManagementInterface, Tok
         }
     }
 
-    public void addKartuToLadang(Kartu kartu, int row, int col){
-        ladang.addKartu(kartu, row, col);
-    }
-
-
     public void tumbuhkanTanaman(){
         List<List<Kartu>> ladangContent = ladang.getLadang();
         for (int i = 0; i < 4; i++){

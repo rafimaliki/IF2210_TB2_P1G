@@ -1,6 +1,8 @@
 package tb2.p1g.harvestmooncombat.Models;
 
 import tb2.p1g.harvestmooncombat.Exceptions.InvalidMoveExceptions;
+
+import javax.smartcardio.Card;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
@@ -8,7 +10,7 @@ import java.util.Random;
 
 
 
-public class Player {
+public class Player implements PlayerInfoInterface, DeckManagementInterface, TokoActionInterface, CardActionsInterface {
 
     private String nama;
     private int gulden;

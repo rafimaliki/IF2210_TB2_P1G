@@ -6,6 +6,7 @@ module tb2.p1g.harvestmooncombat {
     requires java.desktop;
     requires java.sql;
     requires com.fasterxml.jackson.databind;
+    requires java.smartcardio;
 
     opens tb2.p1g.harvestmooncombat to javafx.fxml;
     exports tb2.p1g.harvestmooncombat;

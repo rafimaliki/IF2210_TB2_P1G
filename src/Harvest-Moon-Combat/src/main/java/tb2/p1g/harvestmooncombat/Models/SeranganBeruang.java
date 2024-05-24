@@ -261,7 +261,7 @@ public class SeranganBeruang implements Runnable {
                 AngryBear.addRandomBear(root);
             }
 
-            for (int i = 0; i <= duration.toMillis() / interval.toMillis(); i++) {
+            for (int i = 0; i <= duration.toMillis() / interval.toMillis() - 2; i++) {
                 double position = i * 25;
 
                 timeline.getKeyFrames().add(new KeyFrame(interval.multiply(i), e -> {
@@ -274,17 +274,20 @@ public class SeranganBeruang implements Runnable {
                         fire.setLayoutY(y - offset);
                         System.out.println("top");
                     } else if (position <= width + height) {
-                        fire.setLayoutX(x + width - offset);
+                        fire.setLayoutX(x + width - offset + 10);
                         fire.setLayoutY(y + (position - width) - offset);
                         System.out.println("right");
+                        fire.setRotate(90);
                     } else if (position <= 2 * width + height) {
                         fire.setLayoutX(x + width - (position - width - height) - offset);
-                        fire.setLayoutY(y + height - offset);
+                        fire.setLayoutY(y + height - offset + 15);
                         System.out.println("bottom");
+                        fire.setRotate(180);
                     } else if (position <= 2 * width + 2 * height) {
-                        fire.setLayoutX(x - offset);
+                        fire.setLayoutX(x - offset - 10);
                         fire.setLayoutY(y + height - (position - 2 * width - height) - offset);
                         System.out.println("left");
+                        fire.setRotate(270);
                     }
                     root.getChildren().add(fire);
                 }));

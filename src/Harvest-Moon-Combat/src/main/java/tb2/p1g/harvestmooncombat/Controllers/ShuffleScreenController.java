@@ -42,14 +42,16 @@ public class ShuffleScreenController {
                     maxClicked = 6-GameManager.getInstance().getCurrentPlayer().getDeckAktif().getLengthKartu();
                     if (maxClicked > 4) maxClicked = 4;
                     if (isClicked.get(Integer.parseInt(pane.getId()))) {
-                        pane.setStyle("-fx-background-color: #FFFFFF;");
+                        // remove bg color
+                        pane.setStyle("-fx-background-color: transparent;");
                         isClicked.set(Integer.parseInt(pane.getId()), false);
                         countClicked--;
                         System.out.print("Membatalkan: ");
                         System.out.println(((Card) ((Pane) pane).getChildren().getFirst()).getCardName());;
                     } else {
                         if (countClicked == maxClicked) return;
-                        pane.setStyle("-fx-background-color: #50C878;");
+                        pane.setStyle("-fx-background-color: rgba(80, 200, 120, 0.5);");
+
                         isClicked.set(Integer.parseInt(pane.getId()), true);
                         countClicked++;
                         System.out.print("Memilih: ");
@@ -104,7 +106,6 @@ public class ShuffleScreenController {
         int counter = 0;
         for (Pane pane : cardShuffleList) {
             pane.getChildren().clear();
-            pane.setStyle("-fx-background-color: #FFFFFF;");
             pane.getChildren().add(new Card(randomKartu.get(counter).getNama()));
             counter++;
         }

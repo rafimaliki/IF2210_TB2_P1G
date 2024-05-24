@@ -21,8 +21,10 @@
                         <Font size="19.0" />
                     </font>
                 </Label>
-                <Button fx:id="inputButton" layoutX="121.0" layoutY="87.0" mnemonicParsing="false" onAction="#inputButtonAction" prefHeight="25.0" prefWidth="150.0" text="Choose Plugin" />
-                <Button fx:id="uploadButton" layoutX="121.0" layoutY="246.0" mnemonicParsing="false" onAction="#uploadButtonAction" prefHeight="25.0" prefWidth="150.0" text="Upload" />
+                <Button layoutX="121.0" layoutY="102.0" mnemonicParsing="false" onAction="#inputButtonAction" prefHeight="25.0" prefWidth="150.0" text="Choose Plugin" />
+                <Button fx:id="uploadButton" layoutX="121.0" layoutY="231.0" mnemonicParsing="false" onAction="#uploadButtonAction" prefHeight="25.0" prefWidth="150.0" text="Upload" />
+            <Label fx:id="message" alignment="CENTER" contentDisplay="CENTER" layoutX="31.0" layoutY="269.0" prefHeight="17.0" prefWidth="338.0" textAlignment="CENTER" />
+            <Label fx:id="inputPath" alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="71.0" prefHeight="17.0" prefWidth="338.0" textAlignment="CENTER" />
             </children>
         </AnchorPane>
     </children>

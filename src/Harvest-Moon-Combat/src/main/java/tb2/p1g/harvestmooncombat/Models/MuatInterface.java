@@ -23,4 +23,12 @@ public interface MuatInterface {
      */
     public void loadPlayer(String path, int player);
 
+    /**
+     *
+     * @param filepath
+     * @return
+     */
+    public Player loadPlayerPlugin(String filepath) throws Exception;
+    public StateSave loadStatePlugin(String filepath) throws Exception;
+
 }

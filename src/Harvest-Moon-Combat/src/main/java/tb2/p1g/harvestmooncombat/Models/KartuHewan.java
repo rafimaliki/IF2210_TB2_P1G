@@ -11,6 +11,7 @@ public class KartuHewan extends Kartu {
     private int berat;
     private String type;
     private Map<String, Integer> itemAktif;
+    public KartuHewan(){};
 
     public KartuHewan(String namaHewan){
         this.nama = namaHewan;

@@ -8,37 +8,17 @@ import javafx.scene.control.Label;
 import tb2.p1g.harvestmooncombat.Components.Draggables;
 
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.AnchorPane;
 import tb2.p1g.harvestmooncombat.Models.GameManager;
-import tb2.p1g.harvestmooncombat.Models.KartuProduk;
 import tb2.p1g.harvestmooncombat.Views.ViewFactory;
-import tb2.p1g.harvestmooncombat.Components.Card;
-import tb2.p1g.harvestmooncombat.Models.SeranganBeruang;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
-
-import javafx.stage.Stage;
-
-import javax.swing.text.View;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.File;
-import java.io.IOException;
-
 
 public class GameScreenController {
 
-    @FXML public Label GuldenPlayer2;
-    @FXML public Label GuldenPlayer1;
+    @FXML public Label guldenPlayer2;
+    @FXML public Label guldenPlayer1;
 
-    @FXML private AnchorPane root;
     @FXML private GridPane activeDeckGrid, ladangGrid;
     @FXML private Pane beruangBox;
 
@@ -57,8 +37,8 @@ public class GameScreenController {
         Thread refreshThread = new Thread(draggables);
         refreshThread.start();
 
-        GuldenPlayer1.setText(String.valueOf(gameManager.getPlayerOne().getGulden()));
-        GuldenPlayer2.setText(String.valueOf(gameManager.getPlayerTwo().getGulden()));
+        guldenPlayer1.setText(String.valueOf(gameManager.getPlayerOne().getGulden()));
+        guldenPlayer2.setText(String.valueOf(gameManager.getPlayerTwo().getGulden()));
 
         buttonList.put("ladangKuButton", ladangKuButton);
         buttonList.put("ladangLawanButton", ladangLawanButton);

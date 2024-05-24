@@ -227,8 +227,8 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <Label fx:id="GuldenPlayer1" layoutX="69.0" layoutY="12.0" text="3000" textFill="WHITE" />
-                <Label fx:id="GuldenPlayer2" layoutX="70.0" layoutY="34.0" text="2000" textFill="WHITE" />
+                <Label fx:id="guldenPlayer1" layoutX="69.0" layoutY="12.0" text="3000" textFill="WHITE" />
+                <Label fx:id="guldenPlayer2" layoutX="70.0" layoutY="34.0" text="2000" textFill="WHITE" />
             <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="108.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/Other/GoldCoin.png" />

@@ -12,7 +12,7 @@ import tb2.p1g.harvestmooncombat.Models.Config;
 import tb2.p1g.harvestmooncombat.Models.GameManager;
 import tb2.p1g.harvestmooncombat.Models.Kartu;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class CardDetailController {
@@ -91,7 +91,7 @@ public class CardDetailController {
 
     public void actionButtonAction() {
 
-        if (action == "PANEN"){
+        if (Objects.equals(action, "PANEN")){
             System.out.println("Klik Panen: " + row + " " + col);
             try {
                 GameManager.getInstance().PanenGM(this.slotIdx);

@@ -107,6 +107,7 @@ public class ShuffleScreenController {
         for (Pane pane : cardShuffleList) {
             pane.getChildren().clear();
             pane.getChildren().add(new Card(randomKartu.get(counter).getNama()));
+            pane.setStyle("-fx-background-color: transparent;");
             counter++;
         }
 

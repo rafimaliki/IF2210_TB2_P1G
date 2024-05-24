@@ -12,7 +12,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import tb2.p1g.harvestmooncombat.App;
-import tb2.p1g.harvestmooncombat.Audio.AudioFactory;
 import tb2.p1g.harvestmooncombat.Components.AngryBear;
 import tb2.p1g.harvestmooncombat.Controllers.GameScreenController;
 import tb2.p1g.harvestmooncombat.Controllers.MainScreenController;
@@ -239,8 +238,6 @@ public class SeranganBeruang implements Runnable {
     private void runFireAnimation(AnchorPane root) {
         Platform.runLater(() -> {
 
-            AudioFactory.playAudio("bear");
-
             Text bearAttackText = new Text("BEAR FRENZY!");
             bearAttackText.setStyle("-fx-font-size: 48px; -fx-font-weight: bold; -fx-fill: red;");
             bearAttackText.setLayoutX(root.getWidth() / 2- 150);
@@ -314,7 +311,6 @@ public class SeranganBeruang implements Runnable {
                     root.getChildren().removeIf(node -> node.getStyleClass().contains("fire"));
                     root.getChildren().removeIf(node -> node.getStyleClass().contains("bear"));
                     root.getChildren().removeIf(node -> node.getStyleClass().contains("angrybear"));
-                    AudioFactory.playAudio("farm");
                 });
             });
 

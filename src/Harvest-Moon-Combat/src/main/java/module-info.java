@@ -7,7 +7,6 @@ module tb2.p1g.harvestmooncombat {
     requires java.sql;
     requires com.fasterxml.jackson.databind;
     requires java.smartcardio;
-    requires javafx.media;
 
     opens tb2.p1g.harvestmooncombat to javafx.fxml;
     exports tb2.p1g.harvestmooncombat;
@@ -19,6 +18,4 @@ module tb2.p1g.harvestmooncombat {
     exports tb2.p1g.harvestmooncombat.Models;
     opens tb2.p1g.harvestmooncombat.Components to javafx.fxml;
     opens tb2.p1g.harvestmooncombat.Models to com.fasterxml.jackson.databind;
-    exports tb2.p1g.harvestmooncombat.Audio;
-    opens tb2.p1g.harvestmooncombat.Audio to javafx.fxml;
 }

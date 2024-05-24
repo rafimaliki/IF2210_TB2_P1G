@@ -1,13 +1,6 @@
 package tb2.p1g.harvestmooncombat.Models;
 
-import java.util.List;
-
 public class DeckAktif extends Deck {
-    private int jumlahSlotKosong;
-    private List<String> kartuNames;
-    private boolean full;
-    private int lengthKartu; // Add this field
-
     public DeckAktif() {
         super(6);
     }

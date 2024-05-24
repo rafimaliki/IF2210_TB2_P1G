@@ -17,15 +17,11 @@ import tb2.p1g.harvestmooncombat.Models.KartuProduk;
 import tb2.p1g.harvestmooncombat.Models.MuatInterface;
 import tb2.p1g.harvestmooncombat.Models.SimpanInterface;
 
+public  class PluginLoader {
+    private static List<Class<?>> plugins = new ArrayList<>();
+    private static List<String> pluginNameList = new ArrayList<>();
 
-
-
-public class PluginLoader {
-    private List<Class<?>> plugins = new ArrayList<>();
-
-
-
-    public void loadPlugins(String pluginDir) throws Exception {
+    public static void loadPlugins(String pluginDir) throws Exception {
         File dir = new File(pluginDir);
         File[] files = dir.listFiles((d, name) -> name.endsWith(".jar"));
         if (files == null) return;
@@ -34,7 +30,7 @@ public class PluginLoader {
         }
     }
 
-    private void loadPlugin(File file) throws Exception {
+    private static void loadPlugin(File file) throws Exception {
         URL jarUrl = file.toURI().toURL();
         try (URLClassLoader classLoader = new URLClassLoader(new URL[]{jarUrl})) {
             // Ambil nama JAR tanpa ekstensi
@@ -46,27 +42,43 @@ public class PluginLoader {
             Class<?> pluginClass = classLoader.loadClass(className);
 
             plugins.add(pluginClass);
+            pluginNameList.add(getNamaPlugin(plugins.size()-1));
 
         }
     }
 
-    public List<Class<?>> getObjectPlugins() {
+    public static List<Class<?>> getObjectPlugins() {
         return plugins;
     }
 
-    public String getNamaPlugin(int idplugin) throws Exception{
+    public static List<String> getPluginNameList(){
+        return pluginNameList;
+    }
+    public static void displayPluginNames(){
+        if(pluginNameList.isEmpty()){
+            System.out.println("Tak ada plugin!");
+        }else{
+            for(String s : pluginNameList){
+                System.out.println(s);
+            }
+        }
+
+    }
+
+    public static String getNamaPlugin(int idplugin) throws Exception{
         Object pluginObject = getObjectPlugins().get(idplugin).getDeclaredConstructor().newInstance();
         Method method = getObjectPlugins().get(idplugin).getMethod("getNama");
-        Object result =  method.invoke(pluginObject);
+        Object result = method.invoke(pluginObject);
         return (String)  result;
     }
-    public void saveUsePlugins(int idplugin,String filepath,Object data) throws Exception{
+
+    public static void saveUsePlugins(int idplugin,String filepath,Object data) throws Exception{
         Object pluginObject = getObjectPlugins().get(idplugin).getDeclaredConstructor().newInstance();
         Method method = getObjectPlugins().get(idplugin).getMethod("processAndReturnJson",Object.class,String.class);
         method.invoke(pluginObject,data,filepath);
     }
 
-    public Object loadUsePlugins(int idplugin,String filepath) throws  Exception{
+    public static Object loadUsePlugins(int idplugin,String filepath) throws  Exception{
         Object pluginObject = getObjectPlugins().get(idplugin).getDeclaredConstructor().newInstance();
         Method method = getObjectPlugins().get(idplugin).getMethod("deserialize",String.class);
         Object result = method.invoke(pluginObject,filepath);

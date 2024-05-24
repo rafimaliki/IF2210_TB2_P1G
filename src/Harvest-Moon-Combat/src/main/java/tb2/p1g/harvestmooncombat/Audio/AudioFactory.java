@@ -25,6 +25,7 @@ public class AudioFactory {
             Media media = new Media(path);
             currentMediaPlayer = new MediaPlayer(media);
             currentMediaPlayer.setAutoPlay(true);
+            currentMediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         } else {
             System.out.println("Audio " + key + " not found");
         }

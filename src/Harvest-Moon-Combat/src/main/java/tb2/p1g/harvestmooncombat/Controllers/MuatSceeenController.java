@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 import tb2.p1g.harvestmooncombat.App;
 import tb2.p1g.harvestmooncombat.Models.Muat;
+import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class MuatSceeenController {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Select Folder");
 
-        File selectedDirectory = directoryChooser.showDialog(MainScreenController.primaryStage);
+        File selectedDirectory = directoryChooser.showDialog(ViewFactory.PrimaryStage);
 
         if (selectedDirectory == null) {
             return;

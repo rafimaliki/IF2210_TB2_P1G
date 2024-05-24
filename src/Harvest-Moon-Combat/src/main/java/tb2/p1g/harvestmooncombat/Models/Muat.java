@@ -2,6 +2,7 @@ package tb2.p1g.harvestmooncombat.Models;
 
 import javafx.scene.control.Label;
 import tb2.p1g.harvestmooncombat.Controllers.MainScreenController;
+import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -89,7 +90,7 @@ public class Muat implements MuatInterface {
             }
 
             reader.close();
-            ((Label) MainScreenController.root.lookup("#turnNumber")).setText(""+current_turn);
+            ((Label) ViewFactory.Root.lookup("#turnNumber")).setText(""+current_turn);
             System.out.println(current_turn);
             System.out.println("Game State Loaded");
 

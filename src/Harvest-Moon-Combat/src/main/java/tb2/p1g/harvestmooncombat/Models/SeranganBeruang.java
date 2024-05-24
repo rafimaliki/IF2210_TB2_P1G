@@ -15,6 +15,7 @@ import tb2.p1g.harvestmooncombat.App;
 import tb2.p1g.harvestmooncombat.Components.AngryBear;
 import tb2.p1g.harvestmooncombat.Controllers.GameScreenController;
 import tb2.p1g.harvestmooncombat.Controllers.MainScreenController;
+import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 
 
 public class SeranganBeruang implements Runnable {
@@ -217,7 +218,7 @@ public class SeranganBeruang implements Runnable {
         beruangBox.setLayoutY(startY + startRow * 100-5);
 
         Platform.runLater(() -> {
-            new Thread(() -> runFireAnimation(MainScreenController.root)).start();
+            new Thread(() -> runFireAnimation(ViewFactory.Root)).start();
         });
 
     }
@@ -257,7 +258,7 @@ public class SeranganBeruang implements Runnable {
             Duration interval = Duration.millis((this.countdown * 1000) / (2 * (this.beruangBox.getHeight() + this.beruangBox.getWidth()) / 5));
             System.out.println(interval);
 
-            for (int i = 0; i < 15; i++){
+            for (int i = 0; i < 10; i++){
                 AngryBear.addRandomBear(root);
             }
 

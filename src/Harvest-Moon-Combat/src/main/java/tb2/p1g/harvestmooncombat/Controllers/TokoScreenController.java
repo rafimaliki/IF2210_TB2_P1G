@@ -18,21 +18,17 @@ import tb2.p1g.harvestmooncombat.Components.Card;
 import tb2.p1g.harvestmooncombat.Components.AngryBear;
 import tb2.p1g.harvestmooncombat.Models.Toko;
 import tb2.p1g.harvestmooncombat.Models.TokoEntry;
+import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TokoScreenController {
 
-    @FXML
-    Label money;
-    @FXML
-    GridPane activeDeckGrid, tokoRow1, tokoRow2, tokoRow3, sellButtons;
-    @FXML
-    AnchorPane root;
+    @FXML Label money;
+    @FXML GridPane activeDeckGrid, tokoRow1, tokoRow2, tokoRow3, sellButtons;
+    @FXML AnchorPane root;
 
-    Label GP1;
-    Label GP2;
     ActiveDeck activeDeck;
     TokoBuyUI tokoBuyUI;
     TokoSellButtonsUI tokoSellButtonsUI;
@@ -67,16 +63,14 @@ public class TokoScreenController {
         // AngryBear.addRandomBear(root);
 
     }
-    public void setGP(Label gp1,Label gp2){
-        this.GP1 = gp1;
-        this.GP2  = gp2;
-    }
 
     @FXML
     public void keluarButtonAction(ActionEvent event) {
         Stage stage = (Stage) ((javafx.scene.Node) (event.getSource())).getScene().getWindow();
-        GP1.setText(String.valueOf(GameManager.getInstance().getPlayerOne().getGulden()));
-        GP2.setText(String.valueOf(GameManager.getInstance().getPlayerTwo().getGulden()));
+
+        ((Label) ViewFactory.Root.lookup("#GuldenPlayer1")).setText(String.valueOf(GameManager.getInstance().getPlayerOne().getGulden()));
+        ((Label) ViewFactory.Root.lookup("#GuldenPlayer2")).setText(String.valueOf(GameManager.getInstance().getPlayerTwo().getGulden()));
+
         stage.close();
     }
 }

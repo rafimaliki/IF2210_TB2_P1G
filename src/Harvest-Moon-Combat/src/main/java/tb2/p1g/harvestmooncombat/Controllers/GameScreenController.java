@@ -45,11 +45,6 @@ public class GameScreenController {
     @FXML private Label turnNumber, player1Name, player2Name;
     @FXML private Button ladangKuButton, ladangLawanButton, tokoButton, saveButton, loadButton, pluginButton;
 
-    private Stage primaryStage;
-
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-    }
 
     private Draggables draggables;
     private Thread refreshThread;
@@ -157,7 +152,7 @@ public class GameScreenController {
             return;
         }
         System.out.println("Toko button clicked");
-        ViewFactory.ShowTokoScreen(GuldenPlayer1,GuldenPlayer2);
+        ViewFactory.ShowTokoScreen();
         refreshGulden();
 
     }
@@ -165,7 +160,6 @@ public class GameScreenController {
     public void refreshGulden(){
         GuldenPlayer1.setText(String.valueOf(GameManager.getInstance().getPlayerOne().getGulden()));
         GuldenPlayer2.setText(String.valueOf(GameManager.getInstance().getPlayerTwo().getGulden()));
-
     }
 
     @FXML

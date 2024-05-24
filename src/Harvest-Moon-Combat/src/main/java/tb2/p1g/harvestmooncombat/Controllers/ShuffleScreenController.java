@@ -18,6 +18,7 @@ import tb2.p1g.harvestmooncombat.Components.ActiveDeck;
 import tb2.p1g.harvestmooncombat.Components.Card;
 import tb2.p1g.harvestmooncombat.Models.GameManager;
 import tb2.p1g.harvestmooncombat.Models.Kartu;
+import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 
 public class ShuffleScreenController {
 
@@ -90,7 +91,7 @@ public class ShuffleScreenController {
         gameManager.getCurrentPlayer().getDeckNonAktif().kembalikanKartu(returnKartu, returnKartu.size());
         gameManager.initBearAttack();
 
-        ((Label) MainScreenController.root.lookup("#kartuSisa")).setText(""+gameManager.getCurrentPlayer().getDeckNonAktif().getKartuSisa());
+        ((Label) ViewFactory.Root.lookup("#kartuSisa")).setText(""+gameManager.getCurrentPlayer().getDeckNonAktif().getKartuSisa());
     }
 
     @FXML

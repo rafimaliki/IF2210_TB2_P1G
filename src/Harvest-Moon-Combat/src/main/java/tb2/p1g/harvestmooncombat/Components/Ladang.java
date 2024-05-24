@@ -9,7 +9,7 @@ import tb2.p1g.harvestmooncombat.Components.Card;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import tb2.p1g.harvestmooncombat.Models.GameManager;
-import tb2.p1g.harvestmooncombat.Models.Ladang_Logic;
+import tb2.p1g.harvestmooncombat.Models.LadangLogic;
 import tb2.p1g.harvestmooncombat.Models.Utility;
 
 import java.util.HashMap;
@@ -56,9 +56,10 @@ public class Ladang {
             pane.getChildren().clear();
         });
     }
-    public  void refreshLadang(){
+
+    public void refreshLadang(){
         clearCards();
-        Ladang_Logic ladang = GameManager.getInstance().getCurrentLadang();
+        LadangLogic ladang = GameManager.getInstance().getCurrentLadang();
         for (int i = 0; i <numCards ; i++) {
             int row = i / numCols;
             int col = i % numCols;

@@ -30,8 +30,6 @@ public class SeranganBeruang implements Runnable {
     private Pane beruangBox;
     private volatile boolean readyAttack = false;
 
-
-
     public SeranganBeruang(Pane beruangBox) {
         this.beruangBox = beruangBox;
         generateAttackArea();
@@ -62,7 +60,7 @@ public class SeranganBeruang implements Runnable {
 
     public void performAttack(Player player) {
         //Ambil ladang current palyer
-        Ladang_Logic ladangPlayer = player.getLadang();
+        LadangLogic ladangPlayer = player.getLadang();
 
         if(checkTrapCard(player)){
             System.out.println("Serangan beruang terhenti oleh trap card");
@@ -91,7 +89,7 @@ public class SeranganBeruang implements Runnable {
     }
 
     public boolean checkTrapCard(Player player){
-        Ladang_Logic ladang = player.getLadang();
+        LadangLogic ladang = player.getLadang();
         for (int i = startRow; i <= endRow; i++) {
             for (int j = startCol; j <= endCol; j++) {
                 Kartu kartu = ladang.getKartu(i, j);

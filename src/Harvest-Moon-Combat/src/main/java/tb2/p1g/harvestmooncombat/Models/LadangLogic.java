@@ -3,10 +3,10 @@ package tb2.p1g.harvestmooncombat.Models;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Ladang_Logic {
+public class LadangLogic {
     private List<List<Kartu>> ladang;
 
-    public Ladang_Logic() {
+    public LadangLogic() {
         ladang = new ArrayList<>(4);
 
         for (int i = 0; i < 4; i++) {

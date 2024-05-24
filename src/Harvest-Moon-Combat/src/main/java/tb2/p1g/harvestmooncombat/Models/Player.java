@@ -1,6 +1,8 @@
 package tb2.p1g.harvestmooncombat.Models;
 
 import tb2.p1g.harvestmooncombat.Exceptions.InvalidMoveExceptions;
+
+import javax.smartcardio.Card;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
@@ -8,20 +10,20 @@ import java.util.Random;
 
 
 
-public class Player {
+public class Player implements TokoActionInterface, CardActionsInterface {
 
     private String nama;
     private int gulden;
     private DeckAktif deckAktif;
     private DeckNonAktif deckNonAktif;
-    private Ladang_Logic ladang;
+    private LadangLogic ladang;
 
     public Player(String nama){
         this.nama = nama;
         this.gulden = 0;
         this.deckAktif = new DeckAktif();
         this.deckNonAktif = new DeckNonAktif(40);
-        this.ladang = new Ladang_Logic();
+        this.ladang = new LadangLogic();
     }
 
     public String getNama(){
@@ -40,7 +42,7 @@ public class Player {
         return this.deckNonAktif;
     }
 
-    public Ladang_Logic getLadang(){
+    public LadangLogic getLadang(){
         return this.ladang;
     }
 
@@ -60,7 +62,7 @@ public class Player {
         this.deckNonAktif = deckNonAktif;
     }
 
-    public void setLadang(Ladang_Logic ladang){
+    public void setLadang(LadangLogic ladang){
         this.ladang = ladang;
     }
 
@@ -96,7 +98,7 @@ public class Player {
         String destLocation = idxDest.substring(0, 1);
         int destIndex = Integer.parseInt(idxDest.substring(1));
         boolean beriMakan = false;
-        Ladang_Logic prosesladang;
+        LadangLogic prosesladang;
         if (GameManager.getInstance().getViewLawan()){
             System.out.println("Ladang lawan!");
             prosesladang = GameManager.getInstance().getCurrentLadang();
@@ -256,11 +258,6 @@ public class Player {
         }
     }
 
-    public void addKartuToLadang(Kartu kartu, int row, int col){
-        ladang.addKartu(kartu, row, col);
-    }
-
-
     public void tumbuhkanTanaman(){
         List<List<Kartu>> ladangContent = ladang.getLadang();
         for (int i = 0; i < 4; i++){
@@ -301,6 +298,7 @@ public class Player {
     public void displayLadangData(){
         getLadang().displayDataKartuLadang();
     }
+
     public void Ambil(String idx) throws Exception {
         int index = Integer.parseInt(idx.substring(1));
         int row = index / 5;

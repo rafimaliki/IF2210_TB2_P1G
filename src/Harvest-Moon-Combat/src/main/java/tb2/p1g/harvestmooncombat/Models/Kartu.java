@@ -1,5 +1,6 @@
 package tb2.p1g.harvestmooncombat.Models;
-
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,5 @@ public abstract class Kartu {
     }
     public void setNama(String nama){this.nama = nama;}
 
-    public List<String> getInformasi() {
-        return new ArrayList<>();
-    }
+    public abstract List<String> getInformasi();
 }

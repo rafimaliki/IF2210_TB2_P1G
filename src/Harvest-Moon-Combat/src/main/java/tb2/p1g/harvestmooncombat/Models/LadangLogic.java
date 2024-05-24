@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class LadangLogic {
     private List<List<Kartu>> ladang;
+    public int jumlahKartu;
 
     public LadangLogic() {
         ladang = new ArrayList<>(4);

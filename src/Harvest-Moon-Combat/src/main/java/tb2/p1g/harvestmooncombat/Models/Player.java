@@ -18,6 +18,8 @@ public class Player implements TokoActionInterface, CardActionsInterface {
     private DeckNonAktif deckNonAktif;
     private LadangLogic ladang;
 
+    public  Player(){};
+
     public Player(String nama){
         this.nama = nama;
         this.gulden = 0;

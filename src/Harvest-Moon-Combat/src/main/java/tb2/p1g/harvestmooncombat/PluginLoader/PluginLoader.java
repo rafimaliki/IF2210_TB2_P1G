@@ -118,13 +118,17 @@ public class PluginLoader {
             }
             if (o instanceof Player) {
                 Player player = (Player) o;
-                if (player.getNama().equals("Player1")) {
+                Player playertest = GameManager.getInstance().getPlayerOne();
+                Player playerTwo = GameManager.getInstance().getPlayerTwo();
+                if (player.getNama().equals("Player 1")) {
                     GameManager.getInstance().getPlayers().set(0, player);
-                } else if (player.getNama().equals("Player2")) {
+                } else if (player.getNama().equals("Player 2")) {
                     GameManager.getInstance().getPlayers().set(1, player);
                 } else {
                     System.out.println("Nama player tidak sesuai");
                 }
+                playertest = GameManager.getInstance().getPlayerOne();
+                System.out.println("TESTING");
                 // Additional processing for Player object
             }
 

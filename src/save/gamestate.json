@@ -1,1 +1,1 @@
-{"turn":2,"toko":[]}
+{"turn":4,"toko":[{"kartu":{"nama":"TELUR","hargaJual":50,"beratTambah":2,"informasi":["TELUR","Harga Jual: 50","Berat Tambah: 2"]},"kuantitas":1,"hargaSatuan":50},{"kartu":{"nama":"DAGING_DOMBA","hargaJual":120,"beratTambah":6,"informasi":["DAGING_DOMBA","Harga Jual: 120","Berat Tambah: 6"]},"kuantitas":1,"hargaSatuan":120},{"kartu":{"nama":"LABU","hargaJual":500,"beratTambah":10,"informasi":["LABU","Harga Jual: 500","Berat Tambah: 10"]},"kuantitas":1,"hargaSatuan":500}]}

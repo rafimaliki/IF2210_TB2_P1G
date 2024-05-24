@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import tb2.p1g.harvestmooncombat.App;
 import tb2.p1g.harvestmooncombat.Models.GameManager;
 import tb2.p1g.harvestmooncombat.Models.Muat;
+import tb2.p1g.harvestmooncombat.Models.Player;
 import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 import tb2.p1g.harvestmooncombat.Models.Simpan;
 import tb2.p1g.harvestmooncombat.PluginLoader.PluginLoader;
@@ -103,6 +104,7 @@ public class MuatSceeenController {
                 System.out.println(e.getMessage());
             }
             PluginLoader.loadObjects();
+            Player p1 = GameManager.getInstance().getCurrentPlayer();
             GameManager.getInstance().setDeckAktif(GameManager.getInstance().getCurrentPlayer().getDeckAktif());
             GameManager.getInstance().setLadang(GameManager.getInstance().getCurrentPlayer().getLadang());
         }

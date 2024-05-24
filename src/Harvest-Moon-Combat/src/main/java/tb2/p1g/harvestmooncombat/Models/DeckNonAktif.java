@@ -11,6 +11,8 @@ public class DeckNonAktif extends Deck {
 
     public DeckNonAktif(){
         super(40);
+        this.kartuSisa = 40;
+        this.randomize();
     }
     public DeckNonAktif(int kartuSisa){
         super(40);

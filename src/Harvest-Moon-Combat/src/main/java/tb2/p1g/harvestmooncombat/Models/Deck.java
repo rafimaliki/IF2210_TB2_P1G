@@ -12,6 +12,7 @@ public class Deck {
             this.kartu.add(null);
         }
     }
+
     public  void displayInfoDeck(){
         int i = 0;
         for (Kartu k : kartu){
@@ -46,6 +47,14 @@ public class Deck {
 
     public void setKartu(int index, Kartu kartu){
         this.kartu.set(index, kartu);
+    }
+
+    public void setKartu(List<Kartu> kartu){
+        this.kartu = kartu;
+    }
+
+    public List<Kartu> getKartu(){
+        return this.kartu;
     }
 
     public void tambahKartu(Kartu card) throws Exception{

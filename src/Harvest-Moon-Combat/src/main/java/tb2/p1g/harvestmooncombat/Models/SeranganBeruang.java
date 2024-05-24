@@ -254,15 +254,15 @@ public class SeranganBeruang implements Runnable {
             double y = beruangBox.getLayoutY();
 
             Duration duration = Duration.seconds(this.countdown+1);
-            Duration interval = Duration.millis((this.countdown * 1000) / (2 * (this.beruangBox.getHeight() + this.beruangBox.getWidth()) / 25));
+            Duration interval = Duration.millis((this.countdown * 1000) / (2 * (this.beruangBox.getHeight() + this.beruangBox.getWidth()) / 5));
             System.out.println(interval);
 
-            for (int i = 0; i < 10; i++){
+            for (int i = 0; i < 15; i++){
                 AngryBear.addRandomBear(root);
             }
 
             for (int i = 0; i <= duration.toMillis() / interval.toMillis() - 2; i++) {
-                double position = i * 25;
+                double position = i * 5;
 
                 timeline.getKeyFrames().add(new KeyFrame(interval.multiply(i), e -> {
                     Pane fire = new Pane();
@@ -284,7 +284,7 @@ public class SeranganBeruang implements Runnable {
                         System.out.println("bottom");
                         fire.setRotate(180);
                     } else if (position <= 2 * width + 2 * height) {
-                        fire.setLayoutX(x - offset - 10);
+                        fire.setLayoutX(x - offset - 5);
                         fire.setLayoutY(y + height - (position - 2 * width - height) - offset);
                         System.out.println("left");
                         fire.setRotate(270);

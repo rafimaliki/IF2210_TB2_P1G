@@ -70,8 +70,20 @@ public class SeranganBeruang implements Runnable {
         //Serang aread yang sudah di generate
         for (int i = startRow; i <= endRow; i++) {
             for (int j = startCol; j <= endCol; j++) {
-
                 if (ladangPlayer.getKartu(i, j) != null) {
+                    if(Config.listKartuHewan.contains(ladangPlayer.getKartu(i, j).getNama())){
+                        KartuHewan kh = (KartuHewan) ladangPlayer.getKartu(i, j);
+                        if(kh.getEfekItem().contains("PROTECT")){
+                            System.out.println("Serangan beruang terhenti oleh kartu " + kh.getNama() + " di posisi " + i + ", " + j);
+                            continue;
+                        }
+                    }else if(Config.listKartuTanaman.contains(ladangPlayer.getKartu(i, j).getNama())){
+                        KartuTanaman kt = (KartuTanaman) ladangPlayer.getKartu(i, j);
+                        if(kt.getEfekItem().contains("PROTECT")){
+                            System.out.println("Serangan beruang terhenti oleh kartu " + kt.getNama() + " di posisi " + i + ", " + j);
+                            continue;
+                        }
+                    }
                     System.out.println("Serangan beruang menghancurkan kartu " + ladangPlayer.getKartu(i, j).getNama() + " di posisi " + i + ", " + j);
                     ladangPlayer.getLadang().get(i).set(j, null);
                     ladangPlayer.displayLadang();

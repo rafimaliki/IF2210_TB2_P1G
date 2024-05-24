@@ -10,7 +10,7 @@ import java.util.Random;
 
 
 
-public class Player implements PlayerInfoInterface, DeckManagementInterface, TokoActionInterface, CardActionsInterface {
+public class Player implements TokoActionInterface, CardActionsInterface {
 
     private String nama;
     private int gulden;

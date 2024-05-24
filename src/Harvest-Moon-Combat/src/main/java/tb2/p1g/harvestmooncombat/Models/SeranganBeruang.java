@@ -29,8 +29,6 @@ public class SeranganBeruang implements Runnable {
     private Pane beruangBox;
     private volatile boolean readyAttack = false;
 
-
-
     public SeranganBeruang(Pane beruangBox) {
         this.beruangBox = beruangBox;
         generateAttackArea();

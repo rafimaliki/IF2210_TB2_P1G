@@ -65,7 +65,7 @@ public class Simpan implements SimpanInterface {
         }
 
         //Inisalisasi ladang
-        Ladang_Logic ladang = player.getLadang();
+        LadangLogic ladang = player.getLadang();
         result += ladang.getJumlahKartu() + "\n";
 
         // Ubah ladang ke string

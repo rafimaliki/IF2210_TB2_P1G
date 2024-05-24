@@ -135,7 +135,7 @@ public class Muat implements MuatInterface {
             // Inisialisasi ladang
             line = reader.readLine();
             int jumlah_kartu_ladang = Integer.parseInt(line);
-            Ladang_Logic ladang = new Ladang_Logic();
+            LadangLogic ladang = new LadangLogic();
             for (int i = 0; i < jumlah_kartu_ladang; i++){
                 line = reader.readLine();
                 String[] parts = line.split(" ");

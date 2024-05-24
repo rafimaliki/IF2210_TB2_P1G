@@ -11,7 +11,7 @@ public class GameManager implements GameManagerInterface {
     public static int currentPlayerIdx;
     private SeranganBeruang seranganBeruang;
     private Thread seranganThread;
-    private Ladang_Logic currentLadang;
+    private LadangLogic currentLadang;
     private DeckAktif currentDeck;
     private boolean isViewLawan;
     private Pane beruangBox;
@@ -48,10 +48,10 @@ public class GameManager implements GameManagerInterface {
     public  DeckAktif getDeckAktif(){
         return currentDeck;
     }
-    public  void setLadang(Ladang_Logic ladan){
+    public  void setLadang(LadangLogic ladan){
         currentLadang = ladan;
     }
-    public Ladang_Logic getCurrentLadang(){
+    public LadangLogic getCurrentLadang(){
         return currentLadang;
     }
 

@@ -16,14 +16,14 @@ public class Player implements TokoActionInterface, CardActionsInterface {
     private int gulden;
     private DeckAktif deckAktif;
     private DeckNonAktif deckNonAktif;
-    private Ladang_Logic ladang;
+    private LadangLogic ladang;
 
     public Player(String nama){
         this.nama = nama;
         this.gulden = 0;
         this.deckAktif = new DeckAktif();
         this.deckNonAktif = new DeckNonAktif(40);
-        this.ladang = new Ladang_Logic();
+        this.ladang = new LadangLogic();
     }
 
     public String getNama(){
@@ -42,7 +42,7 @@ public class Player implements TokoActionInterface, CardActionsInterface {
         return this.deckNonAktif;
     }
 
-    public Ladang_Logic getLadang(){
+    public LadangLogic getLadang(){
         return this.ladang;
     }
 
@@ -62,7 +62,7 @@ public class Player implements TokoActionInterface, CardActionsInterface {
         this.deckNonAktif = deckNonAktif;
     }
 
-    public void setLadang(Ladang_Logic ladang){
+    public void setLadang(LadangLogic ladang){
         this.ladang = ladang;
     }
 
@@ -98,7 +98,7 @@ public class Player implements TokoActionInterface, CardActionsInterface {
         String destLocation = idxDest.substring(0, 1);
         int destIndex = Integer.parseInt(idxDest.substring(1));
         boolean beriMakan = false;
-        Ladang_Logic prosesladang;
+        LadangLogic prosesladang;
         if (GameManager.getInstance().getViewLawan()){
             System.out.println("Ladang lawan!");
             prosesladang = GameManager.getInstance().getCurrentLadang();

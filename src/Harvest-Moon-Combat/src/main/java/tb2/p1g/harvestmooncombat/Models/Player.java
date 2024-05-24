@@ -189,7 +189,7 @@ public class Player {
                         }
                     } else { // Ladang sendiri
                         if ((kartu.getNama().equals("DELAY")) || (kartu.getNama().equals("DESTROY"))){
-                            throw new Exception("Tidak bisa menaruh delay atau destroy di ladang sendiri!");
+                            throw new InvalidMoveExceptions("Tidak bisa menaruh delay atau destroy di ladang sendiri!", kartu);
                         }
 
                         Kartu kartuTujuan = ladang.getKartu(rowDest, colDest);

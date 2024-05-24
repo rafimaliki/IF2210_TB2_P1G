@@ -1,6 +1,6 @@
 package tb2.p1g.harvestmooncombat.Models;
 
-import java.sql.SQLOutput;
+
 import java.util.Random;
 
 import javafx.animation.KeyFrame;
@@ -95,8 +95,22 @@ public class SeranganBeruang implements Runnable {
             for (int j = startCol; j <= endCol; j++) {
                 Kartu kartu = ladang.getKartu(i, j);
                 if (kartu != null) {
+                    boolean isTrap = false;
+                    if(Config.listKartuHewan.contains(kartu.getNama())){
+                        KartuHewan kh = (KartuHewan) kartu;
+                        if(kh.getEfekItem().contains("TRAP")){
+                            isTrap = true;
+                        }
 
-                    if (kartu.getEfekItem().contains("TRAP")) {
+                    }else if(Config.listKartuTanaman.contains(kartu.getNama())){
+                        KartuTanaman kt = (KartuTanaman) kartu;
+                        if(kt.getEfekItem().contains("TRAP")){
+                            isTrap = true;
+                        }
+
+                    }
+
+                    if (isTrap) {
                         System.out.println("Serangan beruang terhenti oleh trap card" + i + " " + j);
                         //simpan kartu beruang di ladang player
                         //cari ladang kosong di area trap jika tidak ada iterasi seluruh ladang

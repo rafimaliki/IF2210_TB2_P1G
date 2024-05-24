@@ -8,8 +8,10 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 import tb2.p1g.harvestmooncombat.App;
+import tb2.p1g.harvestmooncombat.Models.GameManager;
 import tb2.p1g.harvestmooncombat.Models.Simpan;
 import tb2.p1g.harvestmooncombat.Views.ViewFactory;
+import tb2.p1g.harvestmooncombat.PluginLoader.PluginLoader;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -27,9 +29,15 @@ public class SimpanScreenController {
     @FXML
     public void initialize(){
         System.out.println("Simpan Screen Controller Initialized");
+        comboBox.getItems().clear();
+        comboBox.getItems().add(".txt");
+        List<String> availableExtensions = PluginLoader.getPluginNameList();
 
-        // set comboBox items
-        comboBox.getItems().addAll(".txt", ".json", ".xml", ".yaml");
+        if(!availableExtensions.isEmpty()){
+            // set comboBox items
+
+            comboBox.getItems().addAll(availableExtensions);
+        }
     }
 
     @FXML
@@ -71,7 +79,21 @@ public class SimpanScreenController {
         }
 
         selectedFormat = comboBox.getValue().toString();
-        System.out.println("Selected Format: " + selectedFormat);
+        int idFormat = comboBox.getSelectionModel().getSelectedIndex();
+        System.out.println("Selected Format: " + selectedFormat + " Dengan id box " + idFormat);
+        if(idFormat == 0) { //default txt
+            Simpan simpan = new Simpan(selectedFolder);
+            simpan.saveEntryPoint();
+        }else{
+            try{
+                PluginLoader.saveWithPlugins(idFormat-1,selectedFolder);
+
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+
+
+        }
 
 //        if (fileNames.isEmpty()) {
 //            System.out.println("Tidak ada file yang dipilih");
@@ -87,8 +109,7 @@ public class SimpanScreenController {
 //        }
 
         //load class simpan
-        Simpan simpan = new Simpan(selectedFolder);
-        simpan.saveEntryPoint();
+
 
 
 

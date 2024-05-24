@@ -8,8 +8,11 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 import tb2.p1g.harvestmooncombat.App;
+import tb2.p1g.harvestmooncombat.Models.GameManager;
 import tb2.p1g.harvestmooncombat.Models.Muat;
 import tb2.p1g.harvestmooncombat.Views.ViewFactory;
+import tb2.p1g.harvestmooncombat.Models.Simpan;
+import tb2.p1g.harvestmooncombat.PluginLoader.PluginLoader;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,9 +29,15 @@ public class MuatSceeenController {
     @FXML
     public void initialize(){
         System.out.println("Muat Screen Controller Initialized");
-
+        comboBox.getItems().clear();
+        comboBox.getItems().add(".txt");
+        List<String> availExtensions = PluginLoader.getPluginNameList();
         // set comboBox items
-        comboBox.getItems().addAll(".txt", ".json", ".xml", ".yaml");
+
+        if(!availExtensions.isEmpty()){
+            comboBox.getItems().addAll(availExtensions);
+
+        }
     }
 
     @FXML
@@ -66,7 +75,8 @@ public class MuatSceeenController {
 
         selectedFormat = comboBox.getValue().toString();
         System.out.println("Selected Format: " + selectedFormat);
-
+        int idFormat = comboBox.getSelectionModel().getSelectedIndex();
+        System.out.println("Selected Format: " + selectedFormat + " Dengan id box " + idFormat);
         if (fileNames.isEmpty()) {
             System.out.println("Tidak ada file yang dipilih");
             return;
@@ -79,9 +89,25 @@ public class MuatSceeenController {
                 return;
             }
         }
+        if(idFormat == 0) { //default txt
+            Muat muat = new Muat(fileNames);
+            muat.loadGame();
+        }else{
+            try{
+                for(String file :fileNames){
+                    PluginLoader.loadObjectWithPlugins(idFormat-1,file);
+                    //update ladang dan deck active
 
-        Muat muat = new Muat(fileNames);
-        muat.loadGame();
+                }
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+            PluginLoader.loadObjects();
+            GameManager.getInstance().setDeckAktif(GameManager.getInstance().getCurrentPlayer().getDeckAktif());
+            GameManager.getInstance().setLadang(GameManager.getInstance().getCurrentPlayer().getLadang());
+        }
+
+
     }
 
     @FXML

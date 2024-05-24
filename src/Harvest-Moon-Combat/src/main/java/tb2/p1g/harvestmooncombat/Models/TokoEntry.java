@@ -5,6 +5,9 @@ public class TokoEntry {
     private int kuantitas;
     private int hargaSatuan;
 
+    public TokoEntry(){
+    }
+
     public TokoEntry(KartuProduk kartu){
         this.kartu = kartu;
         this.kuantitas = 1;

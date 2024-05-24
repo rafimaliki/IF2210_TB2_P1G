@@ -166,7 +166,15 @@ public class Muat implements MuatInterface {
 
                 if(!Config.listKartuProduk.contains(nama)){
                     for (int j = 4 ; j < 4 + Integer.parseInt(parts[3]); j++){
-                        kartu.setEfekItem(new KartuItem(parts[j]));
+                        if(Config.listKartuHewan.contains(kartu.getNama())){
+                            KartuHewan kh = (KartuHewan) kartu;
+                            kh.setEfekItem(new KartuItem(parts[j]));
+
+                        }else if(Config.listKartuTanaman.contains(kartu.getNama())){
+                            KartuTanaman kt = (KartuTanaman) kartu;
+                            kt.setEfekItem(new KartuItem(parts[j]));
+
+                        }
                     }
                 }
 
@@ -203,6 +211,16 @@ public class Muat implements MuatInterface {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Player loadPlayerPlugin(String filepath) throws Exception {
+        return null;
+    }
+
+    @Override
+    public StateSave loadStatePlugin(String filepath) throws Exception {
+        return null;
     }
 
 //    public static void main(String[] args) {

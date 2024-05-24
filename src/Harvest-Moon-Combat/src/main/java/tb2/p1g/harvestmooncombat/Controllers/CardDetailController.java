@@ -98,14 +98,11 @@ public class CardDetailController {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            // close this window
             thisStage.close();
         } else {
-            //ambil
             System.out.println("Klik Ambil: "+ row + " " + col);
             try{
                 GameManager.getInstance().AmbilGM(this.slotIdx);
-
             }
             catch (Exception e){
                 System.out.println(e.getMessage());

@@ -15,6 +15,7 @@ import tb2.p1g.harvestmooncombat.App;
 import tb2.p1g.harvestmooncombat.Components.AngryBear;
 import tb2.p1g.harvestmooncombat.Controllers.GameScreenController;
 import tb2.p1g.harvestmooncombat.Controllers.MainScreenController;
+import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 
 
 public class SeranganBeruang implements Runnable {
@@ -28,8 +29,6 @@ public class SeranganBeruang implements Runnable {
     private volatile boolean bearAttack = false;
     private Pane beruangBox;
     private volatile boolean readyAttack = false;
-
-
 
     public SeranganBeruang(Pane beruangBox) {
         this.beruangBox = beruangBox;
@@ -61,7 +60,7 @@ public class SeranganBeruang implements Runnable {
 
     public void performAttack(Player player) {
         //Ambil ladang current palyer
-        Ladang_Logic ladangPlayer = player.getLadang();
+        LadangLogic ladangPlayer = player.getLadang();
 
         if(checkTrapCard(player)){
             System.out.println("Serangan beruang terhenti oleh trap card");
@@ -90,7 +89,7 @@ public class SeranganBeruang implements Runnable {
     }
 
     public boolean checkTrapCard(Player player){
-        Ladang_Logic ladang = player.getLadang();
+        LadangLogic ladang = player.getLadang();
         for (int i = startRow; i <= endRow; i++) {
             for (int j = startCol; j <= endCol; j++) {
                 Kartu kartu = ladang.getKartu(i, j);
@@ -217,7 +216,7 @@ public class SeranganBeruang implements Runnable {
         beruangBox.setLayoutY(startY + startRow * 100-5);
 
         Platform.runLater(() -> {
-            new Thread(() -> runFireAnimation(MainScreenController.root)).start();
+            new Thread(() -> runFireAnimation(ViewFactory.Root)).start();
         });
 
     }
@@ -254,15 +253,15 @@ public class SeranganBeruang implements Runnable {
             double y = beruangBox.getLayoutY();
 
             Duration duration = Duration.seconds(this.countdown+1);
-            Duration interval = Duration.millis((this.countdown * 1000) / (2 * (this.beruangBox.getHeight() + this.beruangBox.getWidth()) / 25));
+            Duration interval = Duration.millis((this.countdown * 1000) / (2 * (this.beruangBox.getHeight() + this.beruangBox.getWidth()) / 5));
             System.out.println(interval);
 
             for (int i = 0; i < 10; i++){
                 AngryBear.addRandomBear(root);
             }
 
-            for (int i = 0; i <= duration.toMillis() / interval.toMillis(); i++) {
-                double position = i * 25;
+            for (int i = 0; i <= duration.toMillis() / interval.toMillis() - 2; i++) {
+                double position = i * 5;
 
                 timeline.getKeyFrames().add(new KeyFrame(interval.multiply(i), e -> {
                     Pane fire = new Pane();
@@ -274,20 +273,22 @@ public class SeranganBeruang implements Runnable {
                         fire.setLayoutY(y - offset);
                         System.out.println("top");
                     } else if (position <= width + height) {
-                        fire.setLayoutX(x + width - offset);
+                        fire.setLayoutX(x + width - offset + 10);
                         fire.setLayoutY(y + (position - width) - offset);
                         System.out.println("right");
+                        fire.setRotate(90);
                     } else if (position <= 2 * width + height) {
                         fire.setLayoutX(x + width - (position - width - height) - offset);
-                        fire.setLayoutY(y + height - offset);
+                        fire.setLayoutY(y + height - offset + 15);
                         System.out.println("bottom");
+                        fire.setRotate(180);
                     } else if (position <= 2 * width + 2 * height) {
-                        fire.setLayoutX(x - offset);
+                        fire.setLayoutX(x - offset - 5);
                         fire.setLayoutY(y + height - (position - 2 * width - height) - offset);
                         System.out.println("left");
+                        fire.setRotate(270);
                     }
                     root.getChildren().add(fire);
-                    System.out.println(root.getChildren().size());
                 }));
             }
 

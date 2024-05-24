@@ -16,17 +16,12 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tb2.p1g.harvestmooncombat.Controllers.GameScreenController">
     <children>
-      <ImageView fitHeight="624.0" fitWidth="625.0" layoutX="-9.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="600.0" fitWidth="600.0" layoutX="1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/Other/Panel.jpeg" />
+            <Image url="@../Images/Other/Background4.jpeg.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="600.0" fitWidth="600.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/Other/Layout.png" />
-         </image>
-      </ImageView>
-      <Pane fx:id="beruangBox" layoutX="11.0" layoutY="87.0" prefHeight="291.0" prefWidth="158.0" style="-fx-border-width: 5; -fx-border-style: solid; -fx-border-color: red;" />
+      <Pane fx:id="beruangBox" layoutX="13.0" layoutY="91.0" prefHeight="291.0" prefWidth="158.0" style="-fx-border-width: 5; -fx-border-style: solid; -fx-border-color: red;" />
         <GridPane fx:id="ladangGrid" alignment="CENTER" hgap="5.0" layoutX="21.0" layoutY="93.0" prefHeight="360.0" prefWidth="350.0" vgap="5.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" />
@@ -167,8 +162,13 @@
                </cursor></Pane>
             </children>
         </GridPane>
-        <VBox alignment="CENTER" layoutX="452.0" layoutY="93.0" prefHeight="360.0" prefWidth="125.0" stylesheets="@../Styles/Wood.css">
+        <VBox alignment="CENTER" layoutX="478.0" layoutY="101.0" prefHeight="360.0" prefWidth="125.0" stylesheets="@../Styles/Wood.css">
             <children>
+              <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#nextButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Akhiri Turn">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
                 <Button fx:id="ladangKuButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#ladangKuButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="styled-button" stylesheets="@../Styles/Button.css" text="Ladangku">
                     <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
@@ -201,18 +201,20 @@
                 </Button>
             </children>
         </VBox>
-        <AnchorPane layoutX="328.0" layoutY="15.0" prefHeight="60.0" prefWidth="60.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-radius: 30; -fx-background-color: white; -fx-background-radius: 30;">
+        <AnchorPane layoutX="496.0" layoutY="507.0" prefHeight="49.0" prefWidth="90.0">
             <children>
-                <Label layoutX="18.0" layoutY="11.0" text="Turn" />
-                <Label fx:id="turnNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="30.0" prefHeight="17.0" prefWidth="42.0" text="1" />
-            </children>
-        </AnchorPane>
-        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="470.0" layoutY="30.0" maxHeight="30.0" maxWidth="90.0" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#nextButtonAction" prefHeight="30.0" prefWidth="90.0" text="Next" />
-        <AnchorPane layoutX="487.0" layoutY="507.0" prefHeight="49.0" prefWidth="90.0" style="-fx-border-style: solid; -fx-border-width: 1; -fx-background-color: white;">
-            <children>
-                <Label layoutX="33.0" layoutY="7.0" text="Deck" />
-                <Label layoutX="46.0" layoutY="25.0" text="/40" />
-                <Label fx:id="kartuSisa" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="16.0" layoutY="25.0" prefHeight="17.0" prefWidth="27.0" text="40" />
+                <Label layoutX="23.0" layoutY="-3.0" text="Deck">
+               <font>
+                  <Font name="Baskerville Old Face" size="23.0" />
+               </font></Label>
+                <Label layoutX="46.0" layoutY="25.0" text="/40">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+                <Label fx:id="kartuSisa" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="16.0" layoutY="25.0" prefHeight="17.0" prefWidth="27.0" text="40">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             </children>
         </AnchorPane>
         <AnchorPane layoutX="21.0" layoutY="15.0" prefHeight="62.0" prefWidth="171.0" stylesheets="@../Styles/Wood.css">
@@ -225,19 +227,29 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <Label fx:id="GuldenPlayer1" layoutX="73.0" layoutY="12.0" text="3000" textFill="WHITE" />
-                <Label fx:id="GuldenPlayer2" layoutX="73.0" layoutY="34.0" text="2000" textFill="WHITE" />
-            <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="125.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                <Label fx:id="guldenPlayer1" layoutX="69.0" layoutY="12.0" text="3000" textFill="WHITE" />
+                <Label fx:id="guldenPlayer2" layoutX="70.0" layoutY="34.0" text="2000" textFill="WHITE" />
+            <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="108.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/Other/GoldCoin.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="125.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="108.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/Other/GoldCoin.png" />
                </image>
             </ImageView>
             </children>
         </AnchorPane>
+          <Label layoutX="193.0" layoutY="27.0" text="Turn" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+          <Label fx:id="turnNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="185.0" layoutY="36.0" prefHeight="17.0" prefWidth="42.0" text="1" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

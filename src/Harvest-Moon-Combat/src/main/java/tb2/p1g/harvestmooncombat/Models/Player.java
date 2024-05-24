@@ -1,6 +1,8 @@
 package tb2.p1g.harvestmooncombat.Models;
 
 import tb2.p1g.harvestmooncombat.Exceptions.InvalidMoveExceptions;
+
+import javax.smartcardio.Card;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
@@ -8,20 +10,20 @@ import java.util.Random;
 
 
 
-public class Player {
+public class Player implements TokoActionInterface, CardActionsInterface {
 
     private String nama;
     private int gulden;
     private DeckAktif deckAktif;
     private DeckNonAktif deckNonAktif;
-    private Ladang_Logic ladang;
+    private LadangLogic ladang;
 
     public Player(String nama){
         this.nama = nama;
         this.gulden = 0;
         this.deckAktif = new DeckAktif();
         this.deckNonAktif = new DeckNonAktif(40);
-        this.ladang = new Ladang_Logic();
+        this.ladang = new LadangLogic();
     }
 
     public String getNama(){
@@ -40,7 +42,7 @@ public class Player {
         return this.deckNonAktif;
     }
 
-    public Ladang_Logic getLadang(){
+    public LadangLogic getLadang(){
         return this.ladang;
     }
 
@@ -60,7 +62,7 @@ public class Player {
         this.deckNonAktif = deckNonAktif;
     }
 
-    public void setLadang(Ladang_Logic ladang){
+    public void setLadang(LadangLogic ladang){
         this.ladang = ladang;
     }
 
@@ -96,11 +98,11 @@ public class Player {
         String destLocation = idxDest.substring(0, 1);
         int destIndex = Integer.parseInt(idxDest.substring(1));
         boolean beriMakan = false;
-        Ladang_Logic prosesladang;
-        if(GameManager.getInstance().getViewLawan()){
+        LadangLogic prosesladang;
+        if (GameManager.getInstance().getViewLawan()){
             System.out.println("Ladang lawan!");
             prosesladang = GameManager.getInstance().getCurrentLadang();
-        }else{
+        } else {
             System.out.println("Ladang pribadi");
             prosesladang = ladang;
         }
@@ -136,33 +138,29 @@ public class Player {
         }
         // move kartu dari deck aktif ke ladang
         else if ((initLocation.equals("d")) && (destLocation.equals("l"))){
-
             Kartu kartu = deckAktif.getKartu(initIndex);
             deckAktif.removeKartu(initIndex);
 
-
-
-
             Kartu dest = ladang.getKartu(rowDest,colDest);
             //kasih makan dari deck ke ladang
-            if(Config.listKartuProduk.contains(kartu.getNama()) && dest != null && Config.listKartuHewan.contains(dest.getNama()) && !GameManager.getInstance().getViewLawan()){
+            if ((Config.listKartuProduk.contains(kartu.getNama())) && (dest != null) && (Config.listKartuHewan.contains(dest.getNama())) && (!GameManager.getInstance().getViewLawan())){
                 KartuHewan k_hewan = (KartuHewan) dest;
                 KartuProduk k_produk = (KartuProduk) kartu;
                 //Karnivore herbivore atau omnivore
                 String tipe_dest = Config.mapTipeHewan.get(dest.getNama());
-                if(tipe_dest.equals("CARNIVORE")){
-                    if(Config.makananKarnivore.contains(k_produk.getNama())){
+                if (tipe_dest.equals("CARNIVORE")){
+                    if (Config.makananKarnivore.contains(k_produk.getNama())){
                         k_hewan.tambahBerat(k_produk);
                         beriMakan = true;
-                    }else{
-                        throw new InvalidMoveExceptions("Tipe makanan tidak sesuai!",kartu);
+                    } else {
+                        throw new InvalidMoveExceptions("Tipe makanan tidak sesuai!", kartu);
                     }
-                }else {
-                    if(Config.makananHerbivore.contains(k_produk.getNama())){
+                } else {
+                    if (Config.makananHerbivore.contains(k_produk.getNama())){
                         k_hewan.tambahBerat(k_produk);
                         beriMakan = true;
-                    }else{
-                        throw new InvalidMoveExceptions("Tipe makanan tidak sesuai!",kartu);
+                    } else {
+                        throw new InvalidMoveExceptions("Tipe makanan tidak sesuai!", kartu);
                     }
                 }
             }
@@ -179,39 +177,41 @@ public class Player {
 
                 // Jika tujuan kartu tanaman atau hewan
                 else {
-                    if(GameManager.getInstance().getViewLawan()){ // Ladang lawan
+                    if (GameManager.getInstance().getViewLawan()){ // Ladang lawan
                         Kartu kartuTujuan = prosesladang.getKartu(rowDest,colDest);
-                        if(kartu.getNama().equals("DELAY") || kartu.getNama().equals("DESTROY")){
-                            if(kartu.getNama().equals("DESTROY")){
+                        if ((kartu.getNama().equals("DELAY")) || (kartu.getNama().equals("DESTROY"))){
+                            if (kartu.getNama().equals("DESTROY")){
                                 prosesladang.removeKartu(rowDest,colDest);
-                            }else{
+                            } else {
                                 kartuTujuan.setEfekItem((KartuItem) kartu);
                             }
 
-                        }else{
-                            throw new InvalidMoveExceptions("Gk bisa! bukan delay atau destroy",kartu);
+                        } else{
+                            throw new InvalidMoveExceptions("Gk bisa! bukan delay atau destroy", kartu);
                         }
-                    }else{
+                    } else { // Ladang sendiri
+                        if ((kartu.getNama().equals("DELAY")) || (kartu.getNama().equals("DESTROY"))){
+                            throw new InvalidMoveExceptions("Tidak bisa menaruh delay atau destroy di ladang sendiri!", kartu);
+                        }
+
                         Kartu kartuTujuan = ladang.getKartu(rowDest, colDest);
                         String namaTujuan = kartuTujuan.getNama();
-                        if(kartu.getNama().equals("DESTROY")){
-                            prosesladang.removeKartu(rowDest,colDest);
-                        }else{
-                            if (kartu.getNama().equals("INSTANT_HARVEST")){
-                                KartuProduk produk = new KartuProduk(Config.mapHewanTanamanKeProduk.get(namaTujuan));
-                                prosesladang.removeKartu(rowDest, colDest);
-                                prosesladang.addKartu(produk, rowDest, colDest);
-                            }
-                            kartuTujuan.setEfekItem((KartuItem) kartu);
+
+                        if (kartu.getNama().equals("INSTANT_HARVEST")){
+                            KartuProduk produk = new KartuProduk(Config.mapHewanTanamanKeProduk.get(namaTujuan));
+                            prosesladang.removeKartu(rowDest, colDest);
+                            prosesladang.addKartu(produk, rowDest, colDest);
                         }
+                        kartuTujuan.setEfekItem((KartuItem) kartu);
+
 
                     }
                 }
             } else {
-                if(GameManager.getInstance().getViewLawan()){
+                if (GameManager.getInstance().getViewLawan()){
                     throw new InvalidMoveExceptions("Tidak bisa menaro kartu selain item di ladang lawan",kartu);
                 }
-                if(!beriMakan){
+                if (!beriMakan){
                     prosesladang.addKartu(kartu, rowDest, colDest);
                 }
             }
@@ -258,11 +258,6 @@ public class Player {
         }
     }
 
-    public void addKartuToLadang(Kartu kartu, int row, int col){
-        ladang.addKartu(kartu, row, col);
-    }
-
-
     public void tumbuhkanTanaman(){
         List<List<Kartu>> ladangContent = ladang.getLadang();
         for (int i = 0; i < 4; i++){
@@ -303,6 +298,7 @@ public class Player {
     public void displayLadangData(){
         getLadang().displayDataKartuLadang();
     }
+
     public void Ambil(String idx) throws Exception {
         int index = Integer.parseInt(idx.substring(1));
         int row = index / 5;
@@ -326,11 +322,6 @@ public class Player {
 
     }
 
-    /**
-     *
-     * @param deckIdx
-     * @throws Exception
-     */
     public void jual(String deckIdx) throws Exception {
         int idx = Integer.parseInt(deckIdx.substring(1));
 

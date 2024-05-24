@@ -6,12 +6,12 @@ import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
 
-public class GameManager {
+public class GameManager implements GameManagerInterface {
     private boolean isRunning;
     public static int currentPlayerIdx;
     private SeranganBeruang seranganBeruang;
     private Thread seranganThread;
-    private Ladang_Logic currentLadang;
+    private LadangLogic currentLadang;
     private DeckAktif currentDeck;
     private boolean isViewLawan;
     private Pane beruangBox;
@@ -48,10 +48,10 @@ public class GameManager {
     public  DeckAktif getDeckAktif(){
         return currentDeck;
     }
-    public  void setLadang(Ladang_Logic ladan){
+    public  void setLadang(LadangLogic ladan){
         currentLadang = ladan;
     }
-    public Ladang_Logic getCurrentLadang(){
+    public LadangLogic getCurrentLadang(){
         return currentLadang;
     }
 
@@ -104,7 +104,7 @@ public class GameManager {
         }
     }
 
-    public void nextTurn(Pane beruangBox){
+    public void nextTurn(){
         this.checkWin();
 
         if (this.isRunning) {
@@ -121,6 +121,30 @@ public class GameManager {
 
         // chance of bear attack
 
+    }
+
+    public void undoKartuGM(Kartu k, String idxInit){
+        getCurrentPlayer().undoKartu(k, idxInit);
+    }
+
+    public void moveKartuGM(String idxInit, String idxDest) throws Exception {
+        getCurrentPlayer().moveKartu(idxInit, idxDest);
+    }
+
+    public void PanenGM(String idx) throws Exception {
+        getCurrentPlayer().Panen(idx);
+    }
+
+    public void AmbilGM(String idx) throws Exception {
+        getCurrentPlayer().Ambil(idx);
+    }
+
+    public void JualGM(String idx) throws Exception {
+        getCurrentPlayer().jual(idx);
+    }
+
+    public void BeliGM(String idx) throws Exception {
+        getCurrentPlayer().beli(idx);
     }
 
     public void initBearAttack() {

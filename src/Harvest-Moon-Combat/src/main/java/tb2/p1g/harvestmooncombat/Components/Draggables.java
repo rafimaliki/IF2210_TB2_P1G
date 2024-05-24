@@ -50,11 +50,10 @@ public class Draggables implements  Runnable {
         }
     }
 
-    public  void refresh(){
+    public void refresh(){
         activeDeck.refreshCards();
         ladang.refreshLadang();
     }
-
 
     public ActiveDeck getActiveDeck() {
         return activeDeck;
@@ -64,49 +63,29 @@ public class Draggables implements  Runnable {
         return ladang;
     }
 
-    public void loadActiveDeck(Map<String, Card> playerActiveDeck) {
-        int i = 0;
-        System.out.println("Load Active deck");
-        for (Map.Entry<String, Card> entry : playerActiveDeck.entrySet()) {
-            activeDeck.addCard(entry.getKey(), entry.getValue());
-            i++;
-        }
-    }
-
-    public void loadLadang(Map<String, Card> playerLadang) {
-        System.out.println("Load Ladang");
-        for (Map.Entry<String, Card> entry : playerLadang.entrySet()) {
-            ladang.addCard(entry.getKey(), entry.getValue());
-        }
-    }
-
     private static void setupDragAndDrop(Pane pane) {
         pane.setOnDragDetected(event -> {
-            if (!pane.getChildren().isEmpty()) {
-                if (pane.getId().charAt(0) == 'd'){
-                    GameManager gm = GameManager.getInstance();
-                    if(gm.isBearAttackInProgress()){
-                        System.out.println("Serangan beruang sedang berlangsung, tidak bisa melakukan aksi bebas");
-                        return;
-                    }
-                }
-
-//              System.out.println("Source: " + pane.getId());
-                Dragboard db = pane.startDragAndDrop(TransferMode.ANY);
-                ClipboardContent content = new ClipboardContent();
-
-                content.putString(pane.getId());
-                db.setContent(content);
-
-
-
-
-                SnapshotParameters snapshotParams = new SnapshotParameters();
-                snapshotParams.setFill(Color.TRANSPARENT);
-                WritableImage snapshot = pane.getChildren().getFirst().snapshot(snapshotParams, null);
-
-                db.setDragView(snapshot, pane.getWidth() / 2, pane.getHeight() / 2);
+            if (pane.getChildren().isEmpty()) {
+               return;
             }
+
+            if (pane.getId().charAt(0) == 'd' && GameManager.getInstance().isBearAttackInProgress()){
+                System.out.println("Serangan beruang sedang berlangsung, tidak bisa melakukan aksi bebas");
+                return;
+            }
+
+            Dragboard db = pane.startDragAndDrop(TransferMode.ANY);
+            ClipboardContent content = new ClipboardContent();
+
+            content.putString(pane.getId());
+            db.setContent(content);
+
+            SnapshotParameters snapshotParams = new SnapshotParameters();
+            snapshotParams.setFill(Color.TRANSPARENT);
+            WritableImage snapshot = pane.getChildren().getFirst().snapshot(snapshotParams, null);
+
+            db.setDragView(snapshot, pane.getWidth() / 2, pane.getHeight() / 2);
+
             event.consume();
         });
 
@@ -125,55 +104,28 @@ public class Draggables implements  Runnable {
                 if (id.charAt(0) == 'd') {
                     node = activeDeck.getCard(id);
                 } else {
-
                     node = ladang.getCard(id);
                 }
 
                 if (node instanceof Pane sourcePane) {
 
-                    if (pane.getChildren().isEmpty()){
-                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'd') {
-                        }
-                        else {
-                        pane.getChildren().add(sourcePane.getChildren().getFirst());
-                        }
-                    }
-                    else if (sourcePane.getId().charAt(0) == 'd' && pane.getId().charAt(0) == 'd' && pane.getChildren().getFirst() != sourcePane.getChildren().getFirst()){
-                        System.out.println("Swapping");
-                        Pane temp = new Pane();
-                        temp.getChildren().add(sourcePane.getChildren().getFirst());
-                        sourcePane.getChildren().clear();
-                        sourcePane.getChildren().add(pane.getChildren().getFirst());
-                        pane.getChildren().clear();
-                        pane.getChildren().add(temp.getChildren().getFirst());
-                    }
-                    else if (pane.getChildren().getFirst() != sourcePane.getChildren().getFirst()){
-                        if (sourcePane.getId().charAt(0) == 'l' && pane.getId().charAt(0) == 'l') {
-                        }
-                        else {
-                            sourcePane.getChildren().clear();
-                        }
-                    }
-
                     System.out.println("Source: " + sourcePane.getId());
                     System.out.println("Target: " + pane.getId());
                     try{
-                        GameManager.getInstance().getCurrentPlayer().moveKartu(sourcePane.getId(),pane.getId());
+                        GameManager.getInstance().moveKartuGM(sourcePane.getId(),pane.getId());
 
                     } catch (InvalidMoveExceptions e){
                         System.out.println("Error! " + e.getMessage() );
                         Kartu invalid_kartu =  e.getKartu();
                         if(invalid_kartu != null){
-                            GameManager.getInstance().getCurrentPlayer().undoKartu(invalid_kartu,sourcePane.getId());
+                            GameManager.getInstance().undoKartuGM(invalid_kartu,sourcePane.getId());
                         }
-                    }catch(Exception e){
+
+                    }catch (Exception e){
                         System.out.println(e.getMessage());
                     }
                 }
-
-
             }
-
             event.setDropCompleted(true);
             event.consume();
 
@@ -184,7 +136,6 @@ public class Draggables implements  Runnable {
                 System.out.println("Clicked: " + pane.getId());
                 ViewFactory.ShowCardDetail(pane.getId());
             }
-
         });
     }
 }

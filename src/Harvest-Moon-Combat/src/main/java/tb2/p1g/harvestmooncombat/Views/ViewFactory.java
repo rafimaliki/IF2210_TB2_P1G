@@ -3,48 +3,79 @@ package tb2.p1g.harvestmooncombat.Views;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import tb2.p1g.harvestmooncombat.App;
 
-import tb2.p1g.harvestmooncombat.Components.ActiveDeck;
-import tb2.p1g.harvestmooncombat.Components.Card;
-import tb2.p1g.harvestmooncombat.Controllers.MainScreenController;
-import tb2.p1g.harvestmooncombat.Controllers.TokoScreenController;
 import tb2.p1g.harvestmooncombat.Controllers.CardDetailController;
-import tb2.p1g.harvestmooncombat.Controllers.ShuffleScreenController;
-import tb2.p1g.harvestmooncombat.Models.GameManager;
 
+import java.io.IOException;
 import java.util.Objects;
 
-
 public class ViewFactory {
+
+    public static Stage PrimaryStage;
+    public static AnchorPane Root;
+
+    public void setPrimaryStage(Stage stage) {
+        PrimaryStage = stage;
+    }
+
+    public static void LoadMainScreen() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/MainScreen.fxml"));
+            Root = fxmlLoader.load();
+            Scene scene = new Scene(Root, 600, 600);
+
+            PrimaryStage.setTitle("Harvest Moon Combat");
+            PrimaryStage.setResizable(false);
+            PrimaryStage.setScene(scene);
+            PrimaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void LoadGameScreen() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(ViewFactory.class.getResource("/Fxml/GameScreen.fxml"));
+            AnchorPane mainGameRoot = fxmlLoader.load();
+
+            Scene mainGameScene = new Scene(mainGameRoot, 600, 600); // Adjust dimensions as needed
+            mainGameScene.getStylesheets().add(ViewFactory.class.getResource("/Styles/Bear.css").toExternalForm());
+
+            PrimaryStage.setScene(mainGameScene);
+            Root = mainGameRoot;
+
+            ViewFactory.ShowShuffleScreen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void ShowShuffleScreen() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/ShuffleScreen.fxml"));
-            Parent root = fxmlLoader.load();
+            Parent ModalRoot = fxmlLoader.load();
 
-            ShuffleScreenController controller = fxmlLoader.getController();
+            Stage ModalStage = new Stage();
 
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            Stage primaryStage = MainScreenController.primaryStage;
-            stage.initOwner(primaryStage);
-            stage.initStyle(StageStyle.TRANSPARENT);
+            ModalStage.initModality(Modality.APPLICATION_MODAL);
+            ModalStage.initStyle(StageStyle.TRANSPARENT);
+            ModalStage.initOwner(PrimaryStage);
 
-            Scene scene = new Scene(root);
-            scene.setFill(null);
-            stage.setScene(scene);
+            Scene ModalScene = new Scene(ModalRoot);
+            ModalScene.setFill(null);
+            ModalStage.setScene(ModalScene);
 
-            stage.setOnShown(event -> {
-                stage.setX(primaryStage.getX() + primaryStage.getWidth() / 2 - stage.getWidth() / 2);
-                stage.setY(primaryStage.getY() + primaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
+            ModalStage.setOnShown(event -> {
+                ModalStage.setX(PrimaryStage.getX() + PrimaryStage.getWidth() / 2 - ModalStage.getWidth() / 2);
+                ModalStage.setY(PrimaryStage.getY() + PrimaryStage.getHeight() / 2 - ModalStage.getHeight() / 2 + 10);
             });
 
-            stage.show();
+            ModalStage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,64 +84,58 @@ public class ViewFactory {
     public static void ShowCardDetail(String slotIndex) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/CardDetailScreen.fxml"));
-            Parent root = fxmlLoader.load();
+            Parent ModalRoot = fxmlLoader.load();
 
             CardDetailController controller = fxmlLoader.getController();
+
+            Stage ModalStage = new Stage();
+            ModalStage.initOwner(PrimaryStage);
+            ModalStage.initModality(Modality.APPLICATION_MODAL);
+            ModalStage.initStyle(StageStyle.TRANSPARENT);
+
             controller.setCard(slotIndex);
+            controller.setStage(ModalStage);
 
-            Stage stage = new Stage();
-            controller.setStage(stage);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(MainScreenController.primaryStage);
-            stage.initStyle(StageStyle.TRANSPARENT);
+            Scene ModalScene = new Scene(ModalRoot);
+            ModalScene.setFill(null);
+            ModalScene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
 
+            ModalStage.setScene(ModalScene);
 
-            Scene scene = new Scene(root);
-            scene.setFill(null);
-            scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
-            stage.setScene(scene);
-
-            stage.setOnShown(event -> {
-                stage.setX(MainScreenController.primaryStage.getX() + MainScreenController.primaryStage.getWidth() / 2 - stage.getWidth() / 2);
-                stage.setY(MainScreenController.primaryStage.getY() + MainScreenController.primaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
+            ModalStage.setOnShown(event -> {
+                ModalStage.setX(PrimaryStage.getX() + PrimaryStage.getWidth() / 2 - ModalStage.getWidth() / 2);
+                ModalStage.setY(PrimaryStage.getY() + PrimaryStage.getHeight() / 2 - ModalStage.getHeight() / 2 + 10);
             });
 
-            stage.show();
+            ModalStage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void ShowTokoScreen(Label gp1, Label gp2) {
+    public static void ShowTokoScreen() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/TokoScreen.fxml"));
-            Parent root = fxmlLoader.load();
+            Parent ModalRoot = fxmlLoader.load();
 
-            TokoScreenController controller = fxmlLoader.getController();
-            controller.setGP(gp1, gp2);
+            Stage ModalStage = new Stage();
+            ModalStage.initModality(Modality.APPLICATION_MODAL);
+            ModalStage.initOwner(PrimaryStage);
+            ModalStage.initStyle(StageStyle.TRANSPARENT);
 
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(MainScreenController.primaryStage);
-            stage.initStyle(StageStyle.TRANSPARENT);
+            Scene ModalScene = new Scene(ModalRoot);
+            ModalStage.setScene(ModalScene);
 
-            Scene scene = new Scene(root);
-//            scene.setFill(null);
-            stage.setScene(scene);
+            ModalScene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
+            ModalScene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Bear.css")).toExternalForm());
+            ModalStage.setScene(ModalScene);
 
-            scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
-            scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Bear.css")).toExternalForm());
-            stage.setScene(scene);
-
-            controller.setMoney(GameManager.getInstance().getCurrentPlayer().getGulden());
-
-
-            stage.setOnShown(event -> {
-                stage.setX(MainScreenController.primaryStage.getX() + MainScreenController.primaryStage.getWidth() / 2 - stage.getWidth() / 2);
-                stage.setY(MainScreenController.primaryStage.getY() + MainScreenController.primaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
+            ModalStage.setOnShown(event -> {
+                ModalStage.setX(PrimaryStage.getX() + PrimaryStage.getWidth() / 2 - ModalStage.getWidth() / 2);
+                ModalStage.setY(PrimaryStage.getY() + PrimaryStage.getHeight() / 2 - ModalStage.getHeight() / 2 + 10);
             });
 
-            stage.show();
+            ModalStage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -119,28 +144,7 @@ public class ViewFactory {
     public static void ShowLoadScreen() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/MuatScreen.fxml"));
-            Parent root = fxmlLoader.load();
-
-//            CardDetailController controller = fxmlLoader.getController();
-//
-
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(MainScreenController.primaryStage);
-            stage.initStyle(StageStyle.TRANSPARENT);
-
-
-            Scene scene = new Scene(root);
-            scene.setFill(null);
-            scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
-            stage.setScene(scene);
-
-            stage.setOnShown(event -> {
-                stage.setX(MainScreenController.primaryStage.getX() + MainScreenController.primaryStage.getWidth() / 2 - stage.getWidth() / 2);
-                stage.setY(MainScreenController.primaryStage.getY() + MainScreenController.primaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
-            });
-
-            stage.show();
+            loadModalRoot(fxmlLoader);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -149,28 +153,7 @@ public class ViewFactory {
     public static void ShowSaveScreen() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/SimpanScreen.fxml"));
-            Parent root = fxmlLoader.load();
-
-//            CardDetailController controller = fxmlLoader.getController();
-//
-
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(MainScreenController.primaryStage);
-            stage.initStyle(StageStyle.TRANSPARENT);
-
-
-            Scene scene = new Scene(root);
-            scene.setFill(null);
-            scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
-            stage.setScene(scene);
-
-            stage.setOnShown(event -> {
-                stage.setX(MainScreenController.primaryStage.getX() + MainScreenController.primaryStage.getWidth() / 2 - stage.getWidth() / 2);
-                stage.setY(MainScreenController.primaryStage.getY() + MainScreenController.primaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
-            });
-
-            stage.show();
+            loadModalRoot(fxmlLoader);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -179,28 +162,7 @@ public class ViewFactory {
     public static void ShowPlugginScreen() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/PlugginScreen.fxml"));
-            Parent root = fxmlLoader.load();
-
-//            CardDetailController controller = fxmlLoader.getController();
-//
-
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(MainScreenController.primaryStage);
-            stage.initStyle(StageStyle.TRANSPARENT);
-
-
-            Scene scene = new Scene(root);
-            scene.setFill(null);
-            scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
-            stage.setScene(scene);
-
-            stage.setOnShown(event -> {
-                stage.setX(MainScreenController.primaryStage.getX() + MainScreenController.primaryStage.getWidth() / 2 - stage.getWidth() / 2);
-                stage.setY(MainScreenController.primaryStage.getY() + MainScreenController.primaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
-            });
-
-            stage.show();
+            loadModalRoot(fxmlLoader);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -209,57 +171,31 @@ public class ViewFactory {
     public static void ShowEndScreen() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/EndScreen.fxml"));
-            Parent root = fxmlLoader.load();
-
-//            CardDetailController controller = fxmlLoader.getController();
-//
-
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(MainScreenController.primaryStage);
-            stage.initStyle(StageStyle.TRANSPARENT);
-
-
-            Scene scene = new Scene(root);
-            scene.setFill(null);
-            scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
-            stage.setScene(scene);
-
-            stage.setOnShown(event -> {
-                stage.setX(MainScreenController.primaryStage.getX() + MainScreenController.primaryStage.getWidth() / 2 - stage.getWidth() / 2);
-                stage.setY(MainScreenController.primaryStage.getY() + MainScreenController.primaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
-            });
-
-            stage.show();
+            loadModalRoot(fxmlLoader);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void ShowMainScreen() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/MainScreen.fxml"));
-            Parent root = fxmlLoader.load();
+    private static void loadModalRoot(FXMLLoader fxmlLoader) throws IOException {
+        Parent ModalRoot = fxmlLoader.load();
 
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(MainScreenController.primaryStage);
-            stage.initStyle(StageStyle.TRANSPARENT);
+        Stage ModalStage = new Stage();
+        ModalStage.initModality(Modality.APPLICATION_MODAL);
+        ModalStage.initOwner(PrimaryStage);
+        ModalStage.initStyle(StageStyle.TRANSPARENT);
 
+        Scene ModalScene = new Scene(ModalRoot);
+        ModalScene.setFill(null);
+        ModalScene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
+        ModalStage.setScene(ModalScene);
 
-            Scene scene = new Scene(root);
-            scene.setFill(null);
-            scene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
-            stage.setScene(scene);
+        ModalStage.setOnShown(event -> {
+            ModalStage.setX(PrimaryStage.getX() + PrimaryStage.getWidth() / 2 - ModalStage.getWidth() / 2);
+            ModalStage.setY(PrimaryStage.getY() + PrimaryStage.getHeight() / 2 - ModalStage.getHeight() / 2 + 10);
+        });
 
-            stage.setOnShown(event -> {
-                stage.setX(MainScreenController.primaryStage.getX() + MainScreenController.primaryStage.getWidth() / 2 - stage.getWidth() / 2);
-                stage.setY(MainScreenController.primaryStage.getY() + MainScreenController.primaryStage.getHeight() / 2 - stage.getHeight() / 2 + 10);
-            });
-
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ModalStage.show();
     }
+
 }

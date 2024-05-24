@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.sql.PreparedStatement;
 import java.util.List;
 
-public class Simpan {
+public class Simpan implements SimpanInterface {
 
     private String path;
 
@@ -71,6 +71,11 @@ public class Simpan {
         }
     }
 
+    @Override
+    public void writeGameState(StateSave stateSave){
+
+    }
+
     public void writeGameState() {
         // Inisialisasi result
         String result = "";
@@ -81,7 +86,6 @@ public class Simpan {
         // Tulis ke file
         try {
             //simpan file txt ke path
-
             FileWriter myWriter = new FileWriter(this.path + "/gamestate.txt");
             myWriter.write(result);
             myWriter.close();
@@ -158,7 +162,7 @@ public class Simpan {
         String result = "";
 
         //Inisalisasi ladang
-        Ladang_Logic ladang = player.getLadang();
+        LadangLogic ladang = player.getLadang();
         result += ladang.getJumlahKartu() + "\n";
 
         for (int i = 0; i < 4; i++) {

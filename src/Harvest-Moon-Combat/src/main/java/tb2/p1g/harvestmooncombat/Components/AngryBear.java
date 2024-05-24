@@ -21,6 +21,13 @@ public class AngryBear {
         size = random.nextInt(100) + 25;
         bear.setPrefSize(size, size);
 
+        // set x pos
+        bear.setLayoutX(random.nextInt((int) root.getWidth() - size));
+        bear.setLayoutY(random.nextInt((int) root.getHeight() - size));
+
+        // bear random rotation
+        bear.setRotate(random.nextInt(360));
+
         root.getChildren().add(bear);
         AngryBear.movePaneInSnakePattern(bear, root);
 
@@ -34,6 +41,8 @@ public class AngryBear {
 
         Timeline timeline = new Timeline(
             new KeyFrame(Duration.seconds(0.01), event -> {
+
+                bear.setRotate(bear.getRotate() + 5);
 
                 if (random.nextDouble() < 0.01) {
                     angry[0] = !angry[0];

@@ -144,24 +144,7 @@ public class ViewFactory {
     public static void ShowLoadScreen() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/MuatScreen.fxml"));
-            Parent ModalRoot = fxmlLoader.load();
-
-            Stage ModalStage = new Stage();
-            ModalStage.initModality(Modality.APPLICATION_MODAL);
-            ModalStage.initOwner(PrimaryStage);
-            ModalStage.initStyle(StageStyle.TRANSPARENT);
-
-            Scene ModalScene = new Scene(ModalRoot);
-            ModalScene.setFill(null);
-            ModalScene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
-            ModalStage.setScene(ModalScene);
-
-            ModalStage.setOnShown(event -> {
-                ModalStage.setX(PrimaryStage.getX() + PrimaryStage.getWidth() / 2 - ModalStage.getWidth() / 2);
-                ModalStage.setY(PrimaryStage.getY() + PrimaryStage.getHeight() / 2 - ModalStage.getHeight() / 2 + 10);
-            });
-
-            ModalStage.show();
+            loadModalRoot(fxmlLoader);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -170,24 +153,7 @@ public class ViewFactory {
     public static void ShowSaveScreen() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/SimpanScreen.fxml"));
-            Parent ModalRoot = fxmlLoader.load();
-
-            Stage ModalStage = new Stage();
-            ModalStage.initModality(Modality.APPLICATION_MODAL);
-            ModalStage.initOwner(PrimaryStage);
-            ModalStage.initStyle(StageStyle.TRANSPARENT);
-
-            Scene ModalScene = new Scene(ModalRoot);
-            ModalScene.setFill(null);
-            ModalScene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
-            ModalStage.setScene(ModalScene);
-
-            ModalStage.setOnShown(event -> {
-                ModalStage.setX(PrimaryStage.getX() + PrimaryStage.getWidth() / 2 - ModalStage.getWidth() / 2);
-                ModalStage.setY(PrimaryStage.getY() + PrimaryStage.getHeight() / 2 - ModalStage.getHeight() / 2 + 10);
-            });
-
-            ModalStage.show();
+            loadModalRoot(fxmlLoader);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -196,24 +162,7 @@ public class ViewFactory {
     public static void ShowPlugginScreen() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/PlugginScreen.fxml"));
-            Parent ModalRoot = fxmlLoader.load();
-
-            Stage ModalStage = new Stage();
-            ModalStage.initModality(Modality.APPLICATION_MODAL);
-            ModalStage.initOwner(PrimaryStage);
-            ModalStage.initStyle(StageStyle.TRANSPARENT);
-
-            Scene ModalScene = new Scene(ModalRoot);
-            ModalScene.setFill(null);
-            ModalScene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
-            ModalStage.setScene(ModalScene);
-
-            ModalStage.setOnShown(event -> {
-                ModalStage.setX(PrimaryStage.getX() + PrimaryStage.getWidth() / 2 - ModalStage.getWidth() / 2);
-                ModalStage.setY(PrimaryStage.getY() + PrimaryStage.getHeight() / 2 - ModalStage.getHeight() / 2 + 10);
-            });
-
-            ModalStage.show();
+            loadModalRoot(fxmlLoader);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -222,26 +171,31 @@ public class ViewFactory {
     public static void ShowEndScreen() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/Fxml/EndScreen.fxml"));
-            Parent ModalRoot = fxmlLoader.load();
-
-            Stage ModalStage = new Stage();
-            ModalStage.initModality(Modality.APPLICATION_MODAL);
-            ModalStage.initOwner(PrimaryStage);
-            ModalStage.initStyle(StageStyle.TRANSPARENT);
-
-            Scene ModalScene = new Scene(ModalRoot);
-            ModalScene.setFill(null);
-            ModalScene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
-            ModalStage.setScene(ModalScene);
-
-            ModalStage.setOnShown(event -> {
-                ModalStage.setX(PrimaryStage.getX() + PrimaryStage.getWidth() / 2 - ModalStage.getWidth() / 2);
-                ModalStage.setY(PrimaryStage.getY() + PrimaryStage.getHeight() / 2 - ModalStage.getHeight() / 2 + 10);
-            });
-
-            ModalStage.show();
+            loadModalRoot(fxmlLoader);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    private static void loadModalRoot(FXMLLoader fxmlLoader) throws IOException {
+        Parent ModalRoot = fxmlLoader.load();
+
+        Stage ModalStage = new Stage();
+        ModalStage.initModality(Modality.APPLICATION_MODAL);
+        ModalStage.initOwner(PrimaryStage);
+        ModalStage.initStyle(StageStyle.TRANSPARENT);
+
+        Scene ModalScene = new Scene(ModalRoot);
+        ModalScene.setFill(null);
+        ModalScene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Cards.css")).toExternalForm());
+        ModalStage.setScene(ModalScene);
+
+        ModalStage.setOnShown(event -> {
+            ModalStage.setX(PrimaryStage.getX() + PrimaryStage.getWidth() / 2 - ModalStage.getWidth() / 2);
+            ModalStage.setY(PrimaryStage.getY() + PrimaryStage.getHeight() / 2 - ModalStage.getHeight() / 2 + 10);
+        });
+
+        ModalStage.show();
+    }
+
 }

@@ -97,10 +97,10 @@ public class Player {
         int destIndex = Integer.parseInt(idxDest.substring(1));
         boolean beriMakan = false;
         Ladang_Logic prosesladang;
-        if(GameManager.getInstance().getViewLawan()){
+        if (GameManager.getInstance().getViewLawan()){
             System.out.println("Ladang lawan!");
             prosesladang = GameManager.getInstance().getCurrentLadang();
-        }else{
+        } else {
             System.out.println("Ladang pribadi");
             prosesladang = ladang;
         }
@@ -136,33 +136,29 @@ public class Player {
         }
         // move kartu dari deck aktif ke ladang
         else if ((initLocation.equals("d")) && (destLocation.equals("l"))){
-
             Kartu kartu = deckAktif.getKartu(initIndex);
             deckAktif.removeKartu(initIndex);
 
-
-
-
             Kartu dest = ladang.getKartu(rowDest,colDest);
             //kasih makan dari deck ke ladang
-            if(Config.listKartuProduk.contains(kartu.getNama()) && dest != null && Config.listKartuHewan.contains(dest.getNama()) && !GameManager.getInstance().getViewLawan()){
+            if ((Config.listKartuProduk.contains(kartu.getNama())) && (dest != null) && (Config.listKartuHewan.contains(dest.getNama())) && (!GameManager.getInstance().getViewLawan())){
                 KartuHewan k_hewan = (KartuHewan) dest;
                 KartuProduk k_produk = (KartuProduk) kartu;
                 //Karnivore herbivore atau omnivore
                 String tipe_dest = Config.mapTipeHewan.get(dest.getNama());
-                if(tipe_dest.equals("CARNIVORE")){
-                    if(Config.makananKarnivore.contains(k_produk.getNama())){
+                if (tipe_dest.equals("CARNIVORE")){
+                    if (Config.makananKarnivore.contains(k_produk.getNama())){
                         k_hewan.tambahBerat(k_produk);
                         beriMakan = true;
-                    }else{
-                        throw new InvalidMoveExceptions("Tipe makanan tidak sesuai!",kartu);
+                    } else {
+                        throw new InvalidMoveExceptions("Tipe makanan tidak sesuai!", kartu);
                     }
-                }else {
-                    if(Config.makananHerbivore.contains(k_produk.getNama())){
+                } else {
+                    if (Config.makananHerbivore.contains(k_produk.getNama())){
                         k_hewan.tambahBerat(k_produk);
                         beriMakan = true;
-                    }else{
-                        throw new InvalidMoveExceptions("Tipe makanan tidak sesuai!",kartu);
+                    } else {
+                        throw new InvalidMoveExceptions("Tipe makanan tidak sesuai!", kartu);
                     }
                 }
             }
@@ -179,39 +175,41 @@ public class Player {
 
                 // Jika tujuan kartu tanaman atau hewan
                 else {
-                    if(GameManager.getInstance().getViewLawan()){ // Ladang lawan
+                    if (GameManager.getInstance().getViewLawan()){ // Ladang lawan
                         Kartu kartuTujuan = prosesladang.getKartu(rowDest,colDest);
-                        if(kartu.getNama().equals("DELAY") || kartu.getNama().equals("DESTROY")){
-                            if(kartu.getNama().equals("DESTROY")){
+                        if ((kartu.getNama().equals("DELAY")) || (kartu.getNama().equals("DESTROY"))){
+                            if (kartu.getNama().equals("DESTROY")){
                                 prosesladang.removeKartu(rowDest,colDest);
-                            }else{
+                            } else {
                                 kartuTujuan.setEfekItem((KartuItem) kartu);
                             }
 
-                        }else{
-                            throw new InvalidMoveExceptions("Gk bisa! bukan delay atau destroy",kartu);
+                        } else{
+                            throw new InvalidMoveExceptions("Gk bisa! bukan delay atau destroy", kartu);
                         }
-                    }else{
+                    } else { // Ladang sendiri
+                        if ((kartu.getNama().equals("DELAY")) || (kartu.getNama().equals("DESTROY"))){
+                            throw new Exception("Tidak bisa menaruh delay atau destroy di ladang sendiri!");
+                        }
+
                         Kartu kartuTujuan = ladang.getKartu(rowDest, colDest);
                         String namaTujuan = kartuTujuan.getNama();
-                        if(kartu.getNama().equals("DESTROY")){
-                            prosesladang.removeKartu(rowDest,colDest);
-                        }else{
-                            if (kartu.getNama().equals("INSTANT_HARVEST")){
-                                KartuProduk produk = new KartuProduk(Config.mapHewanTanamanKeProduk.get(namaTujuan));
-                                prosesladang.removeKartu(rowDest, colDest);
-                                prosesladang.addKartu(produk, rowDest, colDest);
-                            }
-                            kartuTujuan.setEfekItem((KartuItem) kartu);
+
+                        if (kartu.getNama().equals("INSTANT_HARVEST")){
+                            KartuProduk produk = new KartuProduk(Config.mapHewanTanamanKeProduk.get(namaTujuan));
+                            prosesladang.removeKartu(rowDest, colDest);
+                            prosesladang.addKartu(produk, rowDest, colDest);
                         }
+                        kartuTujuan.setEfekItem((KartuItem) kartu);
+
 
                     }
                 }
             } else {
-                if(GameManager.getInstance().getViewLawan()){
+                if (GameManager.getInstance().getViewLawan()){
                     throw new InvalidMoveExceptions("Tidak bisa menaro kartu selain item di ladang lawan",kartu);
                 }
-                if(!beriMakan){
+                if (!beriMakan){
                     prosesladang.addKartu(kartu, rowDest, colDest);
                 }
             }

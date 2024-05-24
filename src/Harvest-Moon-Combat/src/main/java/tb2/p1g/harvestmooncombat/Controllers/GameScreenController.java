@@ -216,7 +216,7 @@ public class GameScreenController {
 
         // Write the object to a file
         try {
-//            objectMapper.writeValue(new File("save.json"), GameManager.getInstance().getPlayerOne());
+            objectMapper.writeValue(new File("C:\\Users\\Nicholas R. Sihite\\OneDrive - Institut Teknologi Bandung\\Desktop\\New folder\\save.json"), GameManager.getInstance().getPlayerOne());
             String jsonInString = objectMapper.writeValueAsString(new KartuProduk("LABU"));
             System.out.println(jsonInString);
         } catch (IOException e) {

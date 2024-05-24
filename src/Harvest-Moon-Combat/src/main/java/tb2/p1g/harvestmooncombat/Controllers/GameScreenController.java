@@ -136,7 +136,7 @@ public class GameScreenController {
             player1Name.setStyle("-fx-background-color: none;");
             player2Name.setStyle("-fx-background-color: #50C878;");
         }
-        gm.nextTurn(beruangBox);
+        gm.nextTurn();
 
         if (gm.getIsRunning()){
             gm.getCurrentPlayer().getLadang().displayLadang();

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class KartuItem extends Kartu {
     private String nama;
-    private  String tipe;
+    private String tipe;
 
 
     public  KartuItem(String nama ){

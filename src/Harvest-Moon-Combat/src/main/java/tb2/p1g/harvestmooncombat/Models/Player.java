@@ -301,6 +301,7 @@ public class Player {
     public void displayLadangData(){
         getLadang().displayDataKartuLadang();
     }
+
     public void Ambil(String idx) throws Exception {
         int index = Integer.parseInt(idx.substring(1));
         int row = index / 5;

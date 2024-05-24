@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
 
-public class GameManager {
+public class GameManager implements GameManagerInterface {
     private boolean isRunning;
     public static int currentPlayerIdx;
     private SeranganBeruang seranganBeruang;
@@ -104,7 +104,7 @@ public class GameManager {
         }
     }
 
-    public void nextTurn(Pane beruangBox){
+    public void nextTurn(){
         this.checkWin();
 
         if (this.isRunning) {

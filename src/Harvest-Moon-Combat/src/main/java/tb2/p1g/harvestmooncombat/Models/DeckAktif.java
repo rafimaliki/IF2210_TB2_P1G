@@ -1,5 +1,7 @@
 package tb2.p1g.harvestmooncombat.Models;
 
+import java.util.List;
+
 public class DeckAktif extends Deck {
 
     public DeckAktif() {

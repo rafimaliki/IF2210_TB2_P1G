@@ -105,10 +105,6 @@ public class MuatSceeenController {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            PluginLoader.loadObjects();
-            Player p1 = GameManager.getInstance().getCurrentPlayer();
-            GameManager.getInstance().setDeckAktif(GameManager.getInstance().getCurrentPlayer().getDeckAktif());
-            GameManager.getInstance().setLadang(GameManager.getInstance().getCurrentPlayer().getLadang());
         }
 
     }

@@ -6,8 +6,7 @@ import java.util.ArrayList;
 
 public class DeckNonAktif extends Deck {
     private int kartuSisa;
-    private List<String> kartuNames;
-    private int lengthKartu; // Add this field
+
 
     public DeckNonAktif(){
         super(40);

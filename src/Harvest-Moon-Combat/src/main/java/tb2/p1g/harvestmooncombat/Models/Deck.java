@@ -60,28 +60,4 @@ public class Deck {
             }
         }
     }
-
-    public void printDeck(){
-        for(Kartu kartu : this.kartu){
-            if(kartu != null){
-                System.out.println(kartu.getNama());
-            }
-        }
-    }
-
-    public List<String> getKartuNames(){
-        List<String> namaKartu = new ArrayList<>();
-
-        for(Kartu kartu : this.kartu){
-            if(kartu != null){
-                namaKartu.add(kartu.getNama());
-            } else {
-                namaKartu.add("EMPTY");
-            }
-//            System.out.println("print");
-        }
-
-        return namaKartu;
-    }
-
 }

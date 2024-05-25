@@ -150,7 +150,7 @@ public class Player implements TokoActionInterface, CardActionsInterface {
                 KartuProduk k_produk = (KartuProduk) kartu;
                 //Karnivore herbivore atau omnivore
                 String tipe_dest = Config.mapTipeHewan.get(dest.getNama());
-                if (tipe_dest.equals("CARNIVORE")){
+                if (tipe_dest.equals("CARNIVORE") || tipe_dest.equals("OMNIVORE")){
                     if (Config.makananKarnivore.contains(k_produk.getNama())){
                         k_hewan.tambahBerat(k_produk);
                         beriMakan = true;

@@ -15,7 +15,7 @@ Repository Tugas Besar 2 IF2210 Pemrograman Berorientasi Objek
 
 
 ### Snapshot Program
-[foto](pic/main.png)
+![foto](/pic/main.png)
 
 ### Requirement
 

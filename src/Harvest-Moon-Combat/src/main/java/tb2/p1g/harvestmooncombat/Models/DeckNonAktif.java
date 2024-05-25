@@ -32,7 +32,7 @@ public class DeckNonAktif extends Deck {
             Random random = new Random();
             int idx = random.nextInt(4);
             if (idx == 0) {
-                int idxKartu = random.nextInt(Config.listKartuHewan.size() - 1);
+                int idxKartu = random.nextInt(Config.listKartuHewan.size());
                 Kartu kartu = new KartuHewan(Config.listKartuHewan.get(idxKartu));
                 this.setKartu(i, kartu);
             } else if (idx == 1) {

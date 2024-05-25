@@ -19,7 +19,7 @@ public class ViewFactory {
     public static Stage PrimaryStage;
     public static AnchorPane Root;
 
-    public static void setPrimaryStage(Stage stage) {
+    public void setPrimaryStage(Stage stage) {
         PrimaryStage = stage;
     }
 
@@ -44,7 +44,7 @@ public class ViewFactory {
             AnchorPane mainGameRoot = fxmlLoader.load();
 
             Scene mainGameScene = new Scene(mainGameRoot, 600, 600); // Adjust dimensions as needed
-            mainGameScene.getStylesheets().add(Objects.requireNonNull(ViewFactory.class.getResource("/Styles/Bear.css")).toExternalForm());
+            mainGameScene.getStylesheets().add(ViewFactory.class.getResource("/Styles/Bear.css").toExternalForm());
 
             PrimaryStage.setScene(mainGameScene);
             Root = mainGameRoot;

@@ -28,7 +28,6 @@ public class GameManager implements GameManagerInterface {
         this.seranganBeruang = null;
         this.turnNumber = 0;
         this.winner = null;
-
     }
     public static synchronized GameManager getInstance() {
         if (instance == null) {

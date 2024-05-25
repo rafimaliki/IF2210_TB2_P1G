@@ -12,38 +12,39 @@ import javafx.geometry.Insets;
 
 public class Card extends Pane {
 
-    private final String cardName;
+    private final List<String> cardNames = new ArrayList<>(){{
+        add("BERUANG");
+        add("AYAM");
+        add("SAPI");
+        add("HIU_DARAT");
+        add("KUDA");
+        add("DOMBA");
+        add("ACCELERATE");
+        add("TRAP");
+        add("DELAY");
+        add("DESTROY");
+        add("INSTANT_HARVEST");
+        add("PROTECT");
+        add("JAGUNG");
+        add("DAGING_BERUANG");
+        add("DAGING_DOMBA");
+        add("DAGING_KUDA");
+        add("LABU");
+        add("SIRIP_HIU");
+        add("STROBERI");
+        add("SUSU");
+        add("TELUR");
+        add("BIJI_JAGUNG");
+        add("BIJI_LABU");
+        add("BIJI_STROBERI");
+    }};
+
+    private String cardName;
 
     public Card() {
 
         setPrefSize(70, 90);
         Random random = new Random();
-        List<String> cardNames = new ArrayList<>() {{
-            add("BERUANG");
-            add("AYAM");
-            add("SAPI");
-            add("HIU_DARAT");
-            add("KUDA");
-            add("DOMBA");
-            add("ACCELERATE");
-            add("TRAP");
-            add("DELAY");
-            add("DESTROY");
-            add("INSTANT_HARVEST");
-            add("PROTECT");
-            add("JAGUNG");
-            add("DAGING_BERUANG");
-            add("DAGING_DOMBA");
-            add("DAGING_KUDA");
-            add("LABU");
-            add("SIRIP_HIU");
-            add("STROBERI");
-            add("SUSU");
-            add("TELUR");
-            add("BIJI_JAGUNG");
-            add("BIJI_LABU");
-            add("BIJI_STROBERI");
-        }};
         String randomCardName = cardNames.get(random.nextInt(cardNames.size()));
         this.cardName = randomCardName;
         String randomCardStyle = randomCardName + "-card";

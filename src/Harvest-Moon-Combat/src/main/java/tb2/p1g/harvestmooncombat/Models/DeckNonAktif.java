@@ -6,39 +6,40 @@ import java.util.ArrayList;
 
 public class DeckNonAktif extends Deck {
     private int kartuSisa;
-    private List<String> kartuNames;
-    private int lengthKartu; // Add this field
 
-    public DeckNonAktif(){
+    public DeckNonAktif() {
         super(40);
+        this.kartuSisa = 40;
+        randomize();
     }
-    public DeckNonAktif(int kartuSisa){
+
+    public DeckNonAktif(int kartuSisa) {
         super(40);
         this.kartuSisa = kartuSisa;
         this.randomize();
     }
 
-    public int getKartuSisa(){
+    public int getKartuSisa() {
         return this.kartuSisa;
     }
 
-    public void setKartuSisa(int kartuSisa){
+    public void setKartuSisa(int kartuSisa) {
         this.kartuSisa = kartuSisa;
     }
 
-    public void randomize(){
-        for (int i = 0; i < kartuSisa; i++){
+    public void randomize() {
+        for (int i = 0; i < kartuSisa; i++) {
             Random random = new Random();
             int idx = random.nextInt(4);
-            if (idx == 0){
+            if (idx == 0) {
                 int idxKartu = random.nextInt(Config.listKartuHewan.size());
                 Kartu kartu = new KartuHewan(Config.listKartuHewan.get(idxKartu));
                 this.setKartu(i, kartu);
-            } else if (idx == 1){
+            } else if (idx == 1) {
                 int idxKartu = random.nextInt(Config.listKartuTanaman.size());
                 Kartu kartu = new KartuTanaman(Config.listKartuTanaman.get(idxKartu));
                 this.setKartu(i, kartu);
-            } else if (idx == 2){
+            } else if (idx == 2) {
                 int idxKartu = random.nextInt(Config.listKartuProduk.size());
                 Kartu kartu = new KartuProduk(Config.listKartuProduk.get(idxKartu));
                 this.setKartu(i, kartu);
@@ -50,26 +51,23 @@ public class DeckNonAktif extends Deck {
         }
     }
 
-    public List<Kartu> ambil4Kartu(){
+    public List<Kartu> ambil4Kartu() {
         List<Kartu> kartuRandom = new ArrayList<>();
         Random random = new Random();
 
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++) {
             System.out.println(i);
             int idx = random.nextInt(this.kartuSisa);
             if (Config.listKartuHewan.contains(this.getKartu(idx).getNama())) {
                 kartuRandom.add(new KartuHewan(this.getKartu(idx).getNama()));
                 this.kartu.remove(idx);
-            }
-            else if (Config.listKartuTanaman.contains(this.getKartu(idx).getNama())) {
+            } else if (Config.listKartuTanaman.contains(this.getKartu(idx).getNama())) {
                 kartuRandom.add(new KartuTanaman(this.getKartu(idx).getNama()));
                 this.kartu.remove(idx);
-            }
-            else if (Config.listKartuProduk.contains(this.getKartu(idx).getNama())) {
+            } else if (Config.listKartuProduk.contains(this.getKartu(idx).getNama())) {
                 kartuRandom.add(new KartuProduk(this.getKartu(idx).getNama()));
                 this.kartu.remove(idx);
-            }
-            else if (Config.listKartuItem.contains(this.getKartu(idx).getNama())) {
+            } else if (Config.listKartuItem.contains(this.getKartu(idx).getNama())) {
                 kartuRandom.add(new KartuItem(this.getKartu(idx).getNama()));
                 this.kartu.remove(idx);
             }
@@ -77,11 +75,11 @@ public class DeckNonAktif extends Deck {
             this.kartuSisa--;
         }
 
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++) {
             this.kartu.add(null);
         }
 
-        for (Kartu kartu : kartuRandom){
+        for (Kartu kartu : kartuRandom) {
             System.out.println("Nama: " + kartu.getNama());
         }
 
@@ -90,8 +88,8 @@ public class DeckNonAktif extends Deck {
         return kartuRandom;
     }
 
-    public void kembalikanKartu(List<Kartu> kartu, int banyak){
-        for (int i = 0; i < banyak; i++){
+    public void kembalikanKartu(List<Kartu> kartu, int banyak) {
+        for (int i = 0; i < banyak; i++) {
             this.kartu.set(this.kartuSisa, kartu.get(i));
             this.kartuSisa++;
         }

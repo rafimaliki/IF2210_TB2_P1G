@@ -18,7 +18,9 @@ public class Player implements TokoActionInterface, CardActionsInterface {
     private DeckNonAktif deckNonAktif;
     private LadangLogic ladang;
 
-    public  Player(){};
+    public  Player(){
+        this.deckNonAktif = new DeckNonAktif(40);
+    };
 
     public Player(String nama){
         this.nama = nama;
@@ -157,13 +159,16 @@ public class Player implements TokoActionInterface, CardActionsInterface {
                     } else {
                         throw new InvalidMoveExceptions("Tipe makanan tidak sesuai!", kartu);
                     }
-                } else {
+                } else if (tipe_dest.equals("HERBIVORE")){
                     if (Config.makananHerbivore.contains(k_produk.getNama())){
                         k_hewan.tambahBerat(k_produk);
                         beriMakan = true;
                     } else {
                         throw new InvalidMoveExceptions("Tipe makanan tidak sesuai!", kartu);
                     }
+                } else {
+                    k_hewan.tambahBerat(k_produk);
+                    beriMakan = true;
                 }
             }
             else if ((prosesladang.getKartu(rowDest, colDest) != null) && (!Config.listKartuItem.contains(kartu.getNama()))){
@@ -185,10 +190,10 @@ public class Player implements TokoActionInterface, CardActionsInterface {
                             if (kartu.getNama().equals("DESTROY")){
                                 prosesladang.removeKartu(rowDest,colDest);
                             } else {
-                                if(Config.listKartuHewan.contains(kartuTujuan.getNama())){
+                                if (Config.listKartuHewan.contains(kartuTujuan.getNama())){
                                     KartuHewan kh = (KartuHewan) kartuTujuan;
                                     kh.setEfekItem((KartuItem) kartu);
-                                }else if(Config.listKartuTanaman.contains(kartuTujuan.getNama())){
+                                } else if (Config.listKartuTanaman.contains(kartuTujuan.getNama())){
                                     KartuTanaman kt = (KartuTanaman) kartuTujuan;
                                     kt.setEfekItem((KartuItem) kartu);
                                 }
@@ -211,10 +216,10 @@ public class Player implements TokoActionInterface, CardActionsInterface {
                             prosesladang.removeKartu(rowDest, colDest);
                             prosesladang.addKartu(produk, rowDest, colDest);
                         }
-                        if(Config.listKartuHewan.contains(kartuTujuan.getNama())){
+                        if (Config.listKartuHewan.contains(kartuTujuan.getNama())){
                             KartuHewan kh = (KartuHewan) kartuTujuan;
                             kh.setEfekItem((KartuItem) kartu);
-                        }else if(Config.listKartuTanaman.contains(kartuTujuan.getNama())){
+                        } else if (Config.listKartuTanaman.contains(kartuTujuan.getNama())){
                             KartuTanaman kt = (KartuTanaman) kartuTujuan;
                             kt.setEfekItem((KartuItem) kartu);
                         }
@@ -244,25 +249,27 @@ public class Player implements TokoActionInterface, CardActionsInterface {
             //Kartu valid ke kartu valid
             if (ladang.getKartu(rowDest, colDest) != null){
                 // kartu produk cuma bisa ke hewan
-                if(Config.listKartuProduk.contains(temp.getNama()) && Config.listKartuHewan.contains(dest.getNama())){
+                if (Config.listKartuProduk.contains(temp.getNama()) && Config.listKartuHewan.contains(dest.getNama())){
                     KartuHewan k_hewan = (KartuHewan) dest;
                     KartuProduk k_produk = (KartuProduk) temp;
                     //Karnivore herbivore atau omnivore
                     String tipe_dest = Config.mapTipeHewan.get(dest.getNama());
-                    if(tipe_dest.equals("CARNIVORE")){
-                        if(Config.makananKarnivore.contains(k_produk.getNama())){
+                    if (tipe_dest.equals("CARNIVORE")){
+                        if (Config.makananKarnivore.contains(k_produk.getNama())){
                             k_hewan.tambahBerat(k_produk);
-                        }else{
+                        } else {
                             throw new InvalidMoveExceptions("Tipe makanan tidak sesuai!",temp);
                         }
-                    }else {
-                        if(Config.makananHerbivore.contains(k_produk.getNama())){
+                    } else if (tipe_dest.equals("HERBIVORE")) {
+                        if (Config.makananHerbivore.contains(k_produk.getNama())){
                             k_hewan.tambahBerat(k_produk);
-                        }else{
+                        } else {
                             throw new InvalidMoveExceptions("Tipe makanan tidak sesuai!",temp);
                         }
+                    } else {
+                        k_hewan.tambahBerat(k_produk);
                     }
-                }else{
+                } else {
                     throw new InvalidMoveExceptions("Tujuan bukan hewan atau inisial bukan produk! gagal",temp);
                 }
             }else{

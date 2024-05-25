@@ -122,8 +122,8 @@ public class Config {
         put("SAPI", "HERBIVORE");
         put("DOMBA", "HERBIVORE");
         put("KUDA", "HERBIVORE");
-        put("AYAM", "HERBIVORE");
-        put("BERUANG", "HERBIVORE");
+        put("AYAM", "OMNIVORE");
+        put("BERUANG", "OMNIVORE");
     }};
     final static Map<String, String> mapTipeKartu = new HashMap<>(){{
         put("ACCELERATE", "ACCELERATE");

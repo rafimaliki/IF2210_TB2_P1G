@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"nama":"Player 2","gulden":0,"deckAktif":{"jumlahSlotKosong":6,"kartuNames":null,"full":false,"lengthKartu":0},"deckNonAktif":{"kartuSisa":40,"kartuNames":["DAGING_DOMBA","TELUR","STROBERI","SIRIP_HIU","INSTANT_HARVEST","DAGING_DOMBA","INSTANT_HARVEST","DELAY","TRAP","PROTECT","BIJI_JAGUNG","STROBERI","SUSU","TELUR","AYAM","AYAM","SUSU","HIU_DARAT","SIRIP_HIU","LABU","DELAY","DESTROY","DAGING_KUDA","SAPI","HIU_DARAT","DELAY","BIJI_LABU","DAGING_DOMBA","TELUR","INSTANT_HARVEST","ACCELERATE","HIU_DARAT","HIU_DARAT","BIJI_LABU","BERUANG","DOMBA","LABU","SUSU","BIJI_STROBERI","DESTROY"],"lengthKartu":40},"ladang":{"ladang":[[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null]],"jumlahKartu":0}}
+=======
+{"nama":"Player 2","gulden":0,"deckAktif":{"full":false,"jumlahSlotKosong":6,"lengthKartu":0},"deckNonAktif":{"kartuSisa":40,"lengthKartu":40},"ladang":{"ladang":[[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null],[null,null,null,null,null]],"jumlahKartu":0}}
+>>>>>>> 79bff308efab2bb478caf118bf2425479b488461

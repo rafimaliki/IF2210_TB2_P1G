@@ -118,16 +118,13 @@ public class PluginLoader {
             }
             if (o instanceof Player) {
                 Player player = (Player) o;
-                player.getDeckAktif().setDeckAktif(player.getDeckAktif().getKartuNames());;
-                if (player.getNama().equals("Player 1")) {
+                if (player.getNama().equals("Player1")) {
                     GameManager.getInstance().getPlayers().set(0, player);
-                } else if (player.getNama().equals("Player 2")) {
+                } else if (player.getNama().equals("Player2")) {
                     GameManager.getInstance().getPlayers().set(1, player);
                 } else {
                     System.out.println("Nama player tidak sesuai");
                 }
-//                playertest = GameManager.getInstance().getPlayerOne();
-                System.out.println("TESTING");
                 // Additional processing for Player object
             }
 

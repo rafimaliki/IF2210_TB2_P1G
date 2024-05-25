@@ -9,8 +9,10 @@ import tb2.p1g.harvestmooncombat.Components.Draggables;
 
 import javafx.scene.layout.Pane;
 import tb2.p1g.harvestmooncombat.Models.GameManager;
+import tb2.p1g.harvestmooncombat.Models.Player;
 import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 
+import javax.swing.text.PlainDocument;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,6 +59,10 @@ public class GameScreenController {
             System.out.println("Beruang sedang menyerang!");
             return;
         }
+        Player p = GameManager.getInstance().getPlayerOne();
+        Player p2 = GameManager.getInstance().getPlayerTwo();
+        GameManager gm = GameManager.getInstance();
+
 
         if (!gameManager.getIsRunning()){
             System.out.println("Game is not running");

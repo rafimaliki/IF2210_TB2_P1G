@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import tb2.p1g.harvestmooncombat.App;
 import tb2.p1g.harvestmooncombat.Models.GameManager;
 import tb2.p1g.harvestmooncombat.Models.Muat;
+import tb2.p1g.harvestmooncombat.Models.Player;
 import tb2.p1g.harvestmooncombat.Views.ViewFactory;
 import tb2.p1g.harvestmooncombat.Models.Simpan;
 import tb2.p1g.harvestmooncombat.PluginLoader.PluginLoader;
@@ -20,34 +21,36 @@ import java.util.List;
 
 public class MuatSceeenController {
 
-    @FXML ComboBox comboBox;
-    @FXML Button inputButton;
+    @FXML
+    ComboBox comboBox;
+    @FXML
+    Button inputButton;
 
     List<String> fileNames = new ArrayList<>();
     String selectedFormat;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         System.out.println("Muat Screen Controller Initialized");
         comboBox.getItems().clear();
         comboBox.getItems().add(".txt");
         List<String> availExtensions = PluginLoader.getPluginNameList();
         // set comboBox items
 
-        if(!availExtensions.isEmpty()){
+        if (!availExtensions.isEmpty()) {
             comboBox.getItems().addAll(availExtensions);
 
         }
     }
 
     @FXML
-    public void inputButtonAction(){
+    public void inputButtonAction() {
         System.out.println("Input Button Clicked");
 
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Select Folder");
 
-        File selectedDirectory = directoryChooser.showDialog(ViewFactory.PrimaryStage);
+        File selectedDirectory = directoryChooser.showDialog(MainScreenController.primaryStage);
 
         if (selectedDirectory == null) {
             return;
@@ -89,24 +92,24 @@ public class MuatSceeenController {
                 return;
             }
         }
-        if(idFormat == 0) { //default txt
+        if (idFormat == 0) { // default txt
             Muat muat = new Muat(fileNames);
             muat.loadGame();
-        }else{
-            try{
-                for(String file :fileNames){
-                    PluginLoader.loadObjectWithPlugins(idFormat-1,file);
-                    //update ladang dan deck active
+        } else {
+            try {
+                for (String file : fileNames) {
+                    PluginLoader.loadObjectWithPlugins(idFormat - 1, file);
+                    // update ladang dan deck active
 
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
             PluginLoader.loadObjects();
+            Player p1 = GameManager.getInstance().getCurrentPlayer();
             GameManager.getInstance().setDeckAktif(GameManager.getInstance().getCurrentPlayer().getDeckAktif());
             GameManager.getInstance().setLadang(GameManager.getInstance().getCurrentPlayer().getLadang());
         }
-
 
     }
 

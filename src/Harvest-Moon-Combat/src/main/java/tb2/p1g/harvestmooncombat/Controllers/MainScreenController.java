@@ -32,8 +32,4 @@ public class MainScreenController {
     private void startNewGame() {
         ViewFactory.LoadGameScreen();
     }
-
-    public void setPrimaryStage(Stage stage) {
-        MainScreenController.primaryStage = stage;
-    }
 }

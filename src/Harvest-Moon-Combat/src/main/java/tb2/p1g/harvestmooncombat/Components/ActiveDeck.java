@@ -40,8 +40,6 @@ public class ActiveDeck {
         clearCards();
         DeckAktif deck_aktif = GameManager.getInstance().getDeckAktif();
         for (int i = 0; i < cards.size(); i++) {
-            System.out.println(deck_aktif.getKartu(i));
-            System.out.println(deck_aktif);
             if (deck_aktif.getKartu(i) != null) {
 
                 Card card = new Card(deck_aktif.getKartu(i).getNama());

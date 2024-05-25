@@ -19,7 +19,7 @@ public class ViewFactory {
     public static Stage PrimaryStage;
     public static AnchorPane Root;
 
-    public void setPrimaryStage(Stage stage) {
+    public static void setPrimaryStage(Stage stage) {
         PrimaryStage = stage;
     }
 

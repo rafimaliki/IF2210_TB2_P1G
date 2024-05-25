@@ -8,35 +8,6 @@ public class DeckAktif extends Deck {
         super(6);
     }
 
-    public DeckAktif(List<String> kartuNames) {
-        super(6);
-        this.kartuNames = kartuNames;
-        this.lengthKartu = kartuNames.size();
-    }
-
-    public void setDeckAktif(List<String> kartuNames) {
-        this.kartuNames = kartuNames;
-        this.lengthKartu = kartuNames.size();
-
-        for (String kartuName : kartuNames) {
-
-            try {
-                if (Config.listKartuHewan.contains(kartuName)) {
-                    super.tambahKartu(new KartuHewan(kartuName));
-                } else if (Config.listKartuTanaman.contains(kartuName)) {
-                    super.tambahKartu(new KartuTanaman(kartuName));
-                } else if (Config.listKartuProduk.contains(kartuName)) {
-                    super.tambahKartu(new KartuProduk(kartuName));
-                } else if (Config.listKartuItem.contains(kartuName)) {
-                    super.tambahKartu(new KartuItem(kartuName));
-                }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-    }
-
     public int getJumlahSlotKosong() {
         return 6 - super.getLengthKartu();
     }
@@ -51,9 +22,5 @@ public class DeckAktif extends Deck {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    public List<String> getKartuNames() {
-        return kartuNames;
     }
 }

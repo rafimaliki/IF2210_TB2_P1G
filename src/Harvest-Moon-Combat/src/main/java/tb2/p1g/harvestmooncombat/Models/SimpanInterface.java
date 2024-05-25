@@ -13,6 +13,5 @@ public interface SimpanInterface {
      * @param player player yang ingin disimpan
      */
     public void writeSavePlayer(Player player);
-    public  void writeSaveObject(Object object) throws Exception;
 
 }

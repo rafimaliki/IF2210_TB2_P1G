@@ -213,44 +213,4 @@ public class Muat implements MuatInterface {
         }
     }
 
-    @Override
-    public Player loadPlayerPlugin(String filepath) throws Exception {
-        return null;
-    }
-
-    @Override
-    public StateSave loadStatePlugin(String filepath) throws Exception {
-        return null;
-    }
-
-//    public static void main(String[] args) {
-//        Muat muat = new Muat();
-//
-//        muat.loadGameState("test/gamestate.txt");
-//        muat.loadPlayer("test/player1.txt", 1);
-//
-//        muat.loadPlayer("test/player2.txt", 2);
-////        // Buatlah print untuk mengecek apakah fungsi yang dibuat sudah benar?
-////        System.out.println("Current Turn: " + muat.current_turn);
-////        System.out.println("Jumlah Item Shop: " + muat.jumlah_item_shop);
-////        System.out.println("Item Shop: ");
-////        for (Map.Entry<String, Integer> entry : muat.item_shop.entrySet()) {
-////            System.out.println(entry.getKey() + " " + entry.getValue());
-////        }
-//
-//        // System.out.println("Player 1: ");
-//
-//        // System.out.println("Gulden: " + muat.player1.getGulden());
-//        // System.out.println("Deck Aktif: ");
-//        // for (int i = 0; i < 6; i++) {
-//        //     Kartu kartu = muat.player1.getDeckAktif().getKartu(i);
-//        //     if (kartu != null) {
-//        //         System.out.println(kartu.getNama());
-//        //         System.out.println("i: " + i);
-//        //     }
-//        // }
-//
-//        // System.out.println("Ladang: ");
-//        // muat.player1.getLadang().displayDataKartuLadang();
-//    }
 }

@@ -35,7 +35,7 @@ public class Config {
     final static int BERAT_TAMBAH_STROBERI = 5;
 
     // list kartu hewan yang ada pada permainan
-    final static List<String> listKartuHewan = new ArrayList<>(){{
+    public final static List<String> listKartuHewan = new ArrayList<>(){{
         add("HIU_DARAT");
         add("SAPI");
         add("DOMBA");
@@ -45,14 +45,14 @@ public class Config {
     }};
 
     // list kartu tanaman yang ada pada permainan
-    final static List<String> listKartuTanaman = new ArrayList<>(){{
+    public final static List<String> listKartuTanaman = new ArrayList<>(){{
         add("BIJI_JAGUNG");
         add("BIJI_LABU");
         add("BIJI_STROBERI");
     }};
 
     // list kartu produk yang ada pada permainan
-    final static List<String> listKartuProduk = new ArrayList<>(){{
+    public final static List<String> listKartuProduk = new ArrayList<>(){{
         add("LABU");
         add("JAGUNG");
         add("STROBERI");
@@ -65,7 +65,7 @@ public class Config {
     }};
 
     // list kartu item yang ada pada permainan
-    final static List<String> listKartuItem = new ArrayList<>(){{
+    public final static List<String> listKartuItem = new ArrayList<>(){{
         add("ACCELERATE");
         add("DELAY");
         add("INSTANT_HARVEST");

@@ -220,11 +220,6 @@ public class Simpan implements SimpanInterface {
         return result;
     }
 
-    @Override
-    public void writeSaveObject(Object object) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'writeSaveObject'");
-    }
 }
 
 

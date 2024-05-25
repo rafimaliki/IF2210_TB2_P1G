@@ -94,7 +94,9 @@ public class KartuHewan extends Kartu {
         List<String> efekItem = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : this.itemAktif.entrySet()){
             if (entry.getValue() > 0){
-                efekItem.add(entry.getKey());
+                for (int i = 0; i <entry.getValue() ; i++) {
+                    efekItem.add(entry.getKey());
+                }
             }
         }
         return efekItem;

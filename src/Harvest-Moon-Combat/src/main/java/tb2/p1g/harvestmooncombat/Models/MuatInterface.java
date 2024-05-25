@@ -18,7 +18,7 @@ public interface MuatInterface {
     /**
      * prosedur memuat informasi player
      *
-     * @param path path (string) ke file yang ingin di-load
+     * @param path   path (string) ke file yang ingin di-load
      * @param player nomor player (int) yang ingin di-load
      */
     public void loadPlayer(String path, int player);
@@ -28,7 +28,5 @@ public interface MuatInterface {
      * @param filepath
      * @return
      */
-    public Player loadPlayerPlugin(String filepath) throws Exception;
-    public StateSave loadStatePlugin(String filepath) throws Exception;
 
 }

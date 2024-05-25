@@ -146,15 +146,7 @@ class TokoBuyEntryUI {
 
         }
     }
-
-    public void updatePrice(int price) {
-        this.harga.setText(String.valueOf(price));
-    }
-
-    public String getCardName() {
-        return this.nama;
-    }
-
+    
     public void setLabel(String text) {
         this.label.setText(text);
     }

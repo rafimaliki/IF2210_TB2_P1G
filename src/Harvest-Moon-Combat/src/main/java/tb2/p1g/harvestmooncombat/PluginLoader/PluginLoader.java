@@ -48,7 +48,7 @@ public class PluginLoader {
         }
     }
 
-    public static List<Class<? extends MuatInterface>> getMuatPlugins() {
+    public static List<Class<? extends MuatInterface>>                                                                                          getMuatPlugins() {
         return muatPlugins;
     }
 
@@ -118,8 +118,7 @@ public class PluginLoader {
             }
             if (o instanceof Player) {
                 Player player = (Player) o;
-                Player playertest = GameManager.getInstance().getPlayerOne();
-                Player playerTwo = GameManager.getInstance().getPlayerTwo();
+                player.getDeckAktif().setDeckAktif(player.getDeckAktif().getKartuNames());;
                 if (player.getNama().equals("Player 1")) {
                     GameManager.getInstance().getPlayers().set(0, player);
                 } else if (player.getNama().equals("Player 2")) {
@@ -127,7 +126,7 @@ public class PluginLoader {
                 } else {
                     System.out.println("Nama player tidak sesuai");
                 }
-                playertest = GameManager.getInstance().getPlayerOne();
+//                playertest = GameManager.getInstance().getPlayerOne();
                 System.out.println("TESTING");
                 // Additional processing for Player object
             }

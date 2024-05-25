@@ -113,14 +113,6 @@ public class Card extends Pane {
         }
     }
 
-    public static int GetIdxFromId(String id) {
-        return Integer.parseInt(id.substring(1));
-    }
-
-    public int keyToIndex(String key){
-        return Integer.parseInt(key.substring(1));
-    }
-
     public String getCardName() {
         return cardName;
     }

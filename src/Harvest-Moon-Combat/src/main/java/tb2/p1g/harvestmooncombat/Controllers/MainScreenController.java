@@ -15,10 +15,7 @@ import javax.swing.text.View;
 
 
 public class MainScreenController {
-
-    public static Stage primaryStage;
-    public static AnchorPane root;
-
+    
     @FXML
     private ImageView newGameButton;
 

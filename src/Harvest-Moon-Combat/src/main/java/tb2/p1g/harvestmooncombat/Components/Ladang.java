@@ -42,10 +42,6 @@ public class Ladang {
         return cards;
     }
 
-    public void addCard(String key, Card card) {
-        cards.get(Integer.parseInt(key.substring(1))).getChildren().add(card);
-    }
-
 
     public Pane getCard(String key){
         return cards.get(Integer.parseInt(key.substring(1)));
@@ -69,16 +65,5 @@ public class Ladang {
             }
         }
 
-    }
-
-    public Map<String, Card> saveCards() {
-        Map<String, Card> savedCards = new HashMap<>();
-        for (int i = 0; i < cards.size(); i++) {
-            if (!cards.get(i).getChildren().isEmpty() && cards.get(i).getChildren().get(0) instanceof Pane){
-                Card pane = (Card) cards.get(i).getChildren().get(0);
-                savedCards.put("l" + i, pane);
-            }
-        }
-        return savedCards;
     }
 }
